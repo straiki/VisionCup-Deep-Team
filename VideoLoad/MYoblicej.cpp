@@ -51,6 +51,8 @@ void MYoblicej::vypocti_klicove_body(){
 	knirek_x += mezi_oci_x;
 	knirek_y = cos(uhel)*vzdalenost_oci*0.8;
 	knirek_y += mezi_oci_y;
+
+	//knirek_y -= 70;//kaja gott
 //	this->uhel = (uhel/(2*M_PI))*360.0;
 }
 

@@ -24,28 +24,30 @@ double tta = (double)cvGetTickCount();
 
 MYvideo *video;
     video = new MYvideo();
-    video->open("../videos/L2 - RK.avi");
+    video->open("../videos/L2 - MD.avi");
 int counter = 0 ;
 
 detect = new MYdetektor(NULL); // zpracuj frame
 
     for(;;){
         IplImage *image = video->next_frame();
+        if( image == NULL) break;
             //meric casu
             double tt = (double)cvGetTickCount();
 
         //Zpracovani snimku
         detect->setFrame(image);
-        if(counter){
+        if(counter > 0){
             detect->FindFaces();
             detect->DrawSezOblic();
+            MYdisplay::ShowImage(detect->MyFrame,(char)-1);
         }
 
             //meric casu
             tt = (double)cvGetTickCount() - tt;
             cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
 
-        //MYdisplay::ShowImage(detect->MyFrame,(char)-1);
+
         //moznost cekani na klavesu, musi se pridat okno ale
         char c = cvWaitKey(33);
         if(c == 27) break;

@@ -66,8 +66,8 @@ void MYmaska::rotateImage(float angleRadians)
 void MYmaska::vytvorKnirek(MYoblicej *oblicej){
 
     this->oblicej = oblicej;
-    this->open("../masks/moustache.png");
-    this->changeSize(0.1);
+    this->open("../masks/gott2.png");
+    this->changeSize(0.5);
     this->rotateImage(this->oblicej->uhel);
     printf("knirek ok/n");
 }

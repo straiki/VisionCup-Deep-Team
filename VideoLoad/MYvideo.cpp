@@ -69,15 +69,16 @@ IplImage* MYvideo::next_frame(){
 IplImage* MYvideo::addMask(IplImage *frame, MYmaska *mask){
 //    cvSetImageROI(frame, cvRect(mezi_oci_x - mask->rotated->width/2,
   //                              mezi_oci_y - mask->rotated->height/2));
-
+    const int Thres = 100;
+    const int HT = 50;
     int x,y,i,j;
     int start_y = mask->oblicej->sour_y + mask->oblicej->knirek_y - mask->rotated->height/2;
     int start_x = mask->oblicej->sour_x + mask->oblicej->knirek_x - mask->rotated->width/2;
     for (i = start_y; i < start_y + mask->rotated->height; i++) {
         for (j = start_x; j < start_x + mask->rotated->width; j++) {
-			if(CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3)   == 0 &&
-			   CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+1) == 255 &&
-			   CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+2) == 0) {
+			if(CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3)   < Thres &&
+			   CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+1) > 255-HT &&
+			   CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+2) < Thres) {
 
 				continue;
             }

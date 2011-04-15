@@ -31,9 +31,9 @@ void MYdetektor::setFrame(IplImage * setter){
 
 int MYdetektor::FindFaces(){
     // Create memory for calculations
-static CvMemStorage* storage = 0;
+CvMemStorage* storage = 0;
 // Create a new Haar classifier
-static CvHaarClassifierCascade* cascade = 0;
+CvHaarClassifierCascade* cascade = 0;
 
 
     //cout << "Hledam Obliceje" << endl;
@@ -81,20 +81,21 @@ static CvHaarClassifierCascade* cascade = 0;
                 cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
                 if(i >= 0) break;
             }
+cvResetImageROI(this->MyFrame);
+            cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
 
-
-            cvResetImageROI(this->MyFrame);
 
 
         }
+        cvClearMemStorage(storage);
     return sXichts.size(); // vraci pocet nalezenych obliceju
 
 }
 
 int MYdetektor::FindEyes(IplImage * imROI){
 
-static CvMemStorage* storageEye = 0;
-static CvHaarClassifierCascade* cascadeEye = 0;
+CvMemStorage* storageEye = 0;
+CvHaarClassifierCascade* cascadeEye = 0;
 
 
     cout << "Hledam Ocicka" << endl;
@@ -132,8 +133,7 @@ static CvHaarClassifierCascade* cascadeEye = 0;
                 if(i == 1) break;
         }
     }
-
-
+cvClearMemStorage(storageEye);
 return eyes->total;
 }
 
