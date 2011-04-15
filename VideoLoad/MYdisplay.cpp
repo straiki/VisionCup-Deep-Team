@@ -27,6 +27,9 @@ char MYdisplay::ShowImage(IplImage * image, char cvKey, const char * winName,int
             cvWaitKey(0);
             return cvKey;
         }
+        else if(cvKey == -1){
+            return cvKey;
+        }
         else{
             while(1){
                 char keystroke = cvWaitKey();

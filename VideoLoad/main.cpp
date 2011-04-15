@@ -31,25 +31,24 @@ detect = new MYdetektor(NULL); // zpracuj frame
 
     for(;;){
         IplImage *image = video->next_frame();
-        //MYdisplay::ShowImage(image);
+            //meric casu
             double tt = (double)cvGetTickCount();
 
-//            if(counter == 75){
-//                        detect->FindFaces();
-//                         MYdisplay::ShowImage(detect->MyFrame,'q');
-//            }
+        //Zpracovani snimku
         detect->setFrame(image);
-detect->FindFaces();
+        detect->FindFaces();
+
+            //meric casu
             tt = (double)cvGetTickCount() - tt;
             cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
 
-        //break;
+        MYdisplay::ShowImage(detect->MyFrame,(char)-1);
+        //moznost cekani na klavesu, musi se pridat okno ale
         char c = cvWaitKey(33);
         if(c == 27) break;
         video->writeFrame(image);
         cout << endl << counter << " - takovy snimek" << endl;
         counter++;
-       // MYdisplay::ShowImage(image,'q');
     }
             tta = (double)cvGetTickCount() - tta;
             cout << tta/(cvGetTickFrequency()*1000.) << " -- CELKOVY CAS ms" << endl;

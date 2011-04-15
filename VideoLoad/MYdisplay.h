@@ -21,6 +21,7 @@ class MYdisplay
         /**
           * Zobrazi obrazek v okne - s tim ze obrazek se zavre stisknutim klavesy cvKey
           * Pokud je cvKey == 0 - po jakekoliv klavese se okno zavre
+          * pokud je cvKey == -1 tak neni nutno makcat klavesu -!! pozor nutne pretypovat (char) -1
           * Pokud je cvKey != 0 - zavre se okno po klavese cvKey
           * @return vraci vzdy hodnotu cvKey
           * volitelne parametry: jmeno okna, souradnice okna
