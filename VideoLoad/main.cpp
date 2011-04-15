@@ -1,5 +1,5 @@
 #include "MYdetektor.h"
-#include "MYdisplay.h"
+
 
 #include <iostream>
 #include <vector>
@@ -18,6 +18,12 @@ int main( int argc, char** argv )
     tt = (double)cvGetTickCount() - tt;
     cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
     // Wait for user input before quitting the program
+
+    detect.DrawSezOblic();
+//img = cvLoadImage("test/1.jpg");
+//    detect.setFrame(img);
+//    detect.DrawFaces();
+
 
     // Release the image
     cvReleaseImage(&img);

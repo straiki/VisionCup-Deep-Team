@@ -1,10 +1,12 @@
 # depslib dependency file v1.0
-1302871741 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
+1302876190 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
 	"MYdetektor.h"
+	"MYdisplay.h"
 
-1302871558 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
+1302876870 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
 	<cv.h>
 	<highgui.h>
+	<deque>
 	<iostream>
 	<vector>
 	<stdio.h>
@@ -106,9 +108,8 @@
 
 1302870736 D
 
-1302871038 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/main.cpp
+1302873423 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/main.cpp
 	"MYdetektor.h"
-	"MYdisplay.h"
 	<iostream>
 	<vector>
 

@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="testy/4.jpg" />
+				<Option parameters="test/1.jpg" />
 				<Compiler>
 					<Add option="-pedantic" />
 					<Add option="-w" />
@@ -47,6 +47,10 @@
 		<Unit filename="MYdetektor.h" />
 		<Unit filename="MYdisplay.cpp" />
 		<Unit filename="MYdisplay.h" />
+		<Unit filename="MYmaska.cpp" />
+		<Unit filename="MYmaska.h" />
+		<Unit filename="MYoblicej.cpp" />
+		<Unit filename="MYoblicej.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
