@@ -1,3 +1,5 @@
+#ifndef MYOBLICEJ_H
+#define MYOBLICEJ_H
 
 class MYoblicej
 {
@@ -11,8 +13,11 @@ private:
 	float uhel;
 
 //funkce
+public:
 	MYoblicej();	//konstruktor
-	~MYoblicej();	//destruktor
+	virtual ~MYoblicej();	//destruktor
 	void vypocti_klicove_body();
 	
 };
+
+#endif // MYOBLICEJ_H
