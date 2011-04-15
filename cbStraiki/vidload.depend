@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1302870295 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
+1302869544 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
 	"MYdetektor.h"
 
-1302870758 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
+1302869585 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
 	<cv.h>
 	<highgui.h>
 	<iostream>
@@ -97,17 +97,11 @@
 
 1270517080 /usr/include/opencv//highgui.hpp
 
-1302870671 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdisplay.cpp
+1302869515 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdisplay.cpp
 	"MYdisplay.h"
 
-1302870690 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdisplay.h
-	<cv.h>
-	<highgui.h>
+1302869515 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdisplay.h
 
-<<<<<<< HEAD
-1302870736 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/main.cpp
-=======
-<<<<<<< HEAD
 1302870211 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
 	"MYdetektor.h"
 
@@ -135,22 +129,4 @@
 	"MYdetektor.h"
 	<iostream>
 	<vector>
-=======
-1302869928 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/main.cpp
->>>>>>> 5919dc83ff9de5a0e0cb8b2b24d285aac8b47c76
-	"MYdetektor.h"
-	"MYdisplay.h"
-	<iostream>
-	<vector>
-
-1302870371 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYmaska.cpp
-	"MYmaska.h"
-
-1302869862 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYmaska.h
->>>>>>> 1933e77f2fc4f1f0e2fda9ce3c5da113e172046c
-
-1302870385 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYoblicej.cpp
-	"MYoblicej.h"
-
-1302869862 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYoblicej.h
 
