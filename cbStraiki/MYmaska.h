@@ -2,8 +2,9 @@
 #define MYMASKA_H
 
 #include "stdhead.h"
-
+#include "MYoblicej.h"
 using namespace std;
+
 
 class MYmaska
 {
@@ -23,7 +24,7 @@ public:
     IplImage *rotated;
 	void changeSize(float);
     void rotateImage(float);
-
+    void vytvorKnirek(MYoblicej*);
 };
 
 #endif // MYMASKA_H

@@ -36,7 +36,9 @@ public:
     void open(int);
     void open(string);
     void writeInit();
-    void writeFrame(IplImage *image);
+    void writeFrame(IplImage*);
+    IplImage *addMask(IplImage*,IplImage*)
+
 private:
 
 };

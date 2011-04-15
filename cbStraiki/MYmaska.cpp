@@ -1,4 +1,5 @@
 #include "MYmaska.h"
+#include "MYoblicej.h"
 #include "stdhead.h"
 using namespace std;
 //konstruktor
@@ -60,4 +61,11 @@ void MYmaska::rotateImage(float angleRadians)
 
     //cvCopy(this->edited, this->source);
     //cvReleaseImage(&this->edited);
+}
+
+void MYmaska::vytvorKnirek(MYoblicej *oblicej){
+
+    this->open("../masks/moustache.png");
+    this->changeSize(0.5);
+    this->rotateImage(oblicej->uhel);
 }

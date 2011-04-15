@@ -1,5 +1,5 @@
 #include "MYoblicej.h"
-
+#include "stdhead.h"
 //konstruktor
 MYoblicej::MYoblicej(){
 //	printf("vytvoren oblicej\n");

@@ -65,6 +65,10 @@ IplImage* MYvideo::next_frame(){
     return this->img;
 }
 
+IplImage* MYvideo::addMask(IplImage *frame, IplImage *mask){
+
+}
+
 void MYvideo::writeFrame(IplImage *image){
     cvWriteFrame(this->writer, image);
 }

@@ -153,20 +153,23 @@
 
 1302870211 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYdisplay.h
 
-1302881544 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/main.cpp
+1302886824 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/main.cpp
 	"stdhead.h"
 	"MYdetektor.h"
 	"MYmaska.h"
 	"MYvideo.h"
+	"MYoblicej.h"
 	<iostream>
 	<vector>
 
-1302881527 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.cpp
+1302886738 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.cpp
 	"MYmaska.h"
+	"MYoblicej.h"
 	"stdhead.h"
 
-1302881512 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.h
+1302886718 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.h
 	"stdhead.h"
+	"MYoblicej.h"
 
 1302872966 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/stdhead.h
 	<stdlib.h>
@@ -179,11 +182,11 @@
 	<highgui.h>
 	<string>
 
-1302872968 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYoblicej.cpp
+1302886845 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYoblicej.cpp
 	"MYoblicej.h"
 	"stdhead.h"
 
-1302870211 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYoblicej.h
+1302886914 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYoblicej.h
 
 1302879221 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYvideo.cpp
 	"MYvideo.h"

@@ -5,6 +5,7 @@
 #include "MYdetektor.h"
 #include "MYmaska.h"
 #include "MYvideo.h"
+#include "MYoblicej.h"
 
 #include <iostream>
 #include <vector>
@@ -13,7 +14,7 @@ int main( int argc, char** argv )
 {
 
     // Create a sample image
-    IplImage *img = cvLoadImage(argv[1]);
+    IplImage *img = cvLoadImage("../img/obr.jpg");
 
     double tt = (double)cvGetTickCount();
     // Call the function to detect and draw the face positions
@@ -27,19 +28,36 @@ int main( int argc, char** argv )
     const char * WinName = "Debug";
     cvNamedWindow(WinName, CV_WINDOW_AUTOSIZE);
     cvMoveWindow(WinName, 100, 100);
+/// oblicej
+    MYoblicej *oblicej = new MYoblicej;
+
+	//nastaveni
+	oblicej->sour_x = 0;
+	oblicej->sour_y = 0;
+	oblicej->sirka = img->width;
+	oblicej->vyska = img->height;
+	oblicej->leve_oko_x  = 116;	oblicej->leve_oko_y  = 191;
+	oblicej->prave_oko_x = 205;	oblicej->prave_oko_y = 190;
+
+	oblicej->vypocti_klicove_body();
+
+///maska
     MYmaska *maska;
     maska = new MYmaska();
-    maska->open("../masks/moustache.png");
-    maska->changeSize(0.5);
-    maska->rotateImage(1);
+    maska->vytvorKnirek(oblicej);
+
     cvShowImage(WinName, maska->rotated);
     cvWaitKey();
+    ///endmask
 /*
     MYvideo *video;
     video = new MYvideo();
     video->open("../videos/L1 - JH.avi");
     for(;;){
         IplImage *image = video->next_frame();
+        // ker zpracovani pajou
+        // tady bude maska
+        // vlozit masku do obrazu
         cvShowImage(WinName, image);
         char c = cvWaitKey(33);
         if(c == 27) break;
