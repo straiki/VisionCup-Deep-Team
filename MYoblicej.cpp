@@ -12,5 +12,5 @@ MYoblicej::~MYoblicej(){
 
 //vypocte klicove body
 void vypocti_klicove_body(){
-	//printf("pocitam klicove body\n");
+	printf("pocitam klicove body\n");
 }

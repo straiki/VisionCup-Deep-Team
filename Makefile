@@ -5,9 +5,9 @@ proj=MYmirror
 
 EXEC=$(proj)
 
-OBJ=
-SRC=
-HEAD=
+OBJ=MYdetektor.o MYdisplay.o MYmaska.o MYoblicej.o
+SRC=MYdetektor.cpp MYdisplay.cpp MYmaska.cpp MYoblicej.cpp
+HEAD=MYdetektor.h MYdisplay.h MYmaska.h MYoblicej.h
 
 .PHONY: build
 .PHONY: clean
