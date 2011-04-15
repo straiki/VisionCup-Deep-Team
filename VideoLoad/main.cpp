@@ -19,7 +19,8 @@ IplImage * img = cvLoadImage(argv[1]);
 
 
 
-
+cout << "PRO DALSI SNIMEK STISTKNI KLAVESU q" << endl;
+double tta = (double)cvGetTickCount();
 
 MYvideo *video;
     video = new MYvideo();
@@ -32,13 +33,15 @@ MYvideo *video;
         detect->FindFaces();
             tt = (double)cvGetTickCount() - tt;
             cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
-           // MYdisplay::ShowImage(detect->MyFrame,'q');
+            MYdisplay::ShowImage(detect->MyFrame,'q');
         //break;
         char c = cvWaitKey(33);
         if(c == 27) break;
         video->writeFrame(image);
+       // MYdisplay::ShowImage(image,'q');
     }
-
+            tta = (double)cvGetTickCount() - tta;
+            cout << tta/(cvGetTickFrequency()*1000.) << " -- CELKOVY CAS ms" << endl;
   //  detect.DrawSezOblic();
 //img = cvLoadImage("test/1.jpg");
 //    detect.setFrame(img);

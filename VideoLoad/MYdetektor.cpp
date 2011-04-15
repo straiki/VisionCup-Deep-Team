@@ -61,7 +61,7 @@ int MYdetektor::FindFaces(){
             if (FindEyes(this->MyFrame) > 1){
                 cvResetImageROI(this->MyFrame);
                 cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
-                //MYdisplay::ShowImage(MyFrame,'q');
+//                MYdisplay::ShowImage(MyFrame,'q');
             }
             else{
                 cvResetImageROI(this->MyFrame);
@@ -107,10 +107,18 @@ static CvHaarClassifierCascade* cascadeEye = 0;
             pt1.y = r->y*scale;
             pt2.y = (r->y+r->height)*scale;
                 cvRectangle( imROI, pt1, pt2, CV_RGB(0,125,255), 2, 8, 0 );
+                _findEyeCenter(pt1,pt2);
+
                 if(i == 1) break;
         }
 
 return eyes->total;
+}
+
+CvPoint MYdetektor::_findEyeCenter(CvPoint a, CvPoint b){
+    CvPoint stred = cvPoint(a.x + abs(a.x-b.x)/2, a.y + abs(a.y-b.y)/2);
+    MYdisplay::DrawPoint(MyFrame,stred);
+
 }
 
 int MYdetektor::DrawFaces(){

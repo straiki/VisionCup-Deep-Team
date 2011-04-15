@@ -37,3 +37,8 @@ char MYdisplay::ShowImage(IplImage * image, char cvKey, const char * winName,int
         }
     }
 }
+
+void MYdisplay::DrawPoint(IplImage * image, CvPoint P, int delka, int tloustka, CvScalar barva){
+    cvLine(image,cvPoint(P.x-delka,P.y),cvPoint(P.x+delka,P.y),barva,tloustka,8,0);
+    cvLine(image,cvPoint(P.x,P.y-delka),cvPoint(P.x,P.y+delka),barva,tloustka,8,0);
+}

@@ -72,6 +72,8 @@ class MYdetektor
         *   Setter - nasteveni vsech pouzivanych cascades
         */
         void _setHaars();
+
+        CvPoint _findEyeCenter(CvPoint, CvPoint);
         /**
         *  Vsechny Pouzivane Cascady
         */

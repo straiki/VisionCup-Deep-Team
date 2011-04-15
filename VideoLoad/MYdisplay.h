@@ -30,7 +30,15 @@ class MYdisplay
           * @param x,y souradnice pro umisteni okna - defaultne 0,0
         */
         static char ShowImage(IplImage * image, char cvKey, const char * winName = "image",int x = 0, int y = 0);
-
+        /**
+          * Do obrazku vykresli bod - krizek s danymi parametry
+          * @param image cilovy obrazek
+          * @param P bod, ktery se vykresli
+          * @param delka delka krizku pri vizualizaci bodu
+          * @param tloustka tloustka cark krizku
+          * @param barva krizku
+        */
+        static void DrawPoint(IplImage * image, CvPoint P, int delka = 3, int tloustka = 1,CvScalar barva = cvScalar(0,0,255));
     protected:
     private:
 };
