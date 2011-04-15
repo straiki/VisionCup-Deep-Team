@@ -22,12 +22,21 @@ class MYdetektor
     public:
         MYdetektor(IplImage *);
         virtual ~MYdetektor();
-    protected:
-    private:
+
         /** @var IplImage * MyFrame
         *   @brief Obrazek daneho framu, ve kterem se hledaji obliceje
         */
         IplImage * MyFrame;
+
+        /**
+        *   Metoda, ktera v obrazku zvyrazni obliceje
+        *   podle klasifikatoru nejakeho z OpenCV
+        */
+        int DrawFaces();
+
+    protected:
+    private:
+
         /** @var
         *   @brief
         */
