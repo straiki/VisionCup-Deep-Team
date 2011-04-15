@@ -38,7 +38,10 @@ detect = new MYdetektor(NULL); // zpracuj frame
         detect->setFrame(image);
         if(counter){
             detect->FindFaces();
+            detect->DrawSezOblic();
             MYdisplay::ShowImage(detect->MyFrame,(char)-1);
+
+
         }
 
             //meric casu

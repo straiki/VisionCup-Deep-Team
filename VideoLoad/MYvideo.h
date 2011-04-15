@@ -17,6 +17,7 @@
  */
 
 #include "stdhead.h"
+#include "MYmaska.h"
 
 using namespace cv;
 using namespace std;
@@ -32,11 +33,14 @@ public:
     CvVideoWriter *writer;
     CvCapture *capture;
 
+
     IplImage *next_frame();
     void open(int);
     void open(string);
     void writeInit();
-    void writeFrame(IplImage *image);
+    void writeFrame(IplImage*);
+    static IplImage *addMask(IplImage*,MYmaska*);
+
 private:
 
 };

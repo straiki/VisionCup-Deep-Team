@@ -1,7 +1,7 @@
 #include "MYdetektor.h"
 #include "MYdisplay.h"
-
-
+#include "MYmaska.h"
+#include "MYvideo.h"
 
 
 
@@ -67,11 +67,18 @@ static CvHaarClassifierCascade* cascade = 0;
 
             cvSetImageROI( this->MyFrame,cvRect( obl1.x, obl1.y, r->width, r->height));
 
-            if (FindEyes(this->MyFrame) > 1){
-                FindMouth(this->MyFrame);
+            MYoblicej::zeroesOblicej(&xicht);
+            if (FindEyes(this->MyFrame) > 1){ // detekovany oblicej
+                xicht.sour_x = obl1.x;
+                xicht.sour_y = obl1.y;
+                xicht.sirka = r->width;
+                xicht.vyska = r->height;
+
+                xicht.vypocti_klicove_body();
+                sXichts.push_back(xicht);
+               // FindMouth(this->MyFrame);
                 cvResetImageROI(this->MyFrame);
                 cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
-//                MYdisplay::ShowImage(MyFrame,'q');
             }
 
 
@@ -79,7 +86,7 @@ static CvHaarClassifierCascade* cascade = 0;
 
 
         }
-    return sezOblic.size(); // vraci pocet nalezenych obliceju
+    return sXichts.size(); // vraci pocet nalezenych obliceju
 
 }
 
@@ -175,17 +182,40 @@ return mouth->total;
 
 CvPoint MYdetektor::_findEyeCenter(CvPoint a, CvPoint b){
     CvPoint stred = cvPoint(a.x + abs(a.x-b.x)/2, a.y + abs(a.y-b.y)/2);
+
+
+    if( xicht.prave_oko_x == 0){
+        xicht.prave_oko_x = stred.x;
+        xicht.prave_oko_y = stred.y;
+    }
+    else if( xicht.leve_oko_x == 0){
+        xicht.leve_oko_x = stred.x;
+        xicht.leve_oko_y = stred.y;
+    }
+
+
+
     MYdisplay::DrawPoint(MyFrame,stred);
 
 }
 
 void MYdetektor::DrawSezOblic(){
 
-    for(int i = 0; i < sezOblic.size() ; i++){
-    	cvRectangle( this->MyFrame, sezOblic.at(i).a, sezOblic.at(i).b, CV_RGB(255,125,0), 2, 8, 0 );
+
+
+    for(int i = 0; i < sXichts.size() ; i++){
+        MYmaska *maska;
+        maska = new MYmaska();
+        maska->vytvorKnirek(&sXichts.at(i));
+
+        MYvideo::addMask(MyFrame,maska);
+//    	cvRectangle( this->MyFrame, sezOblic.at(i).a, sezOblic.at(i).b, CV_RGB(255,125,0), 2, 8, 0 );
     	//MYdisplay::ShowImage(this->MyFrame,'n');
-    	OrezPic(sezOblic.at(i).a,sezOblic.at(i).b);
+  //  	OrezPic(sezOblic.at(i).a,sezOblic.at(i).b);
+        delete maska;
     }
+    sXichts.empty();
+
 
 }
 

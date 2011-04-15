@@ -19,9 +19,8 @@ using namespace std;
 #include <time.h>
 #include <ctype.h>
 
-struct xicht{
-    CvPoint a,b;
-};
+#include "MYoblicej.h"
+
 
 /** Cesty k haarcascades*/
 
@@ -41,7 +40,11 @@ class MYdetektor
         /** @var deque<int> sezOblic
         *   @brief Seznam vsech nalezenych oblizeju
         */
-        deque<xicht> sezOblic;
+        deque<MYoblicej> sXichts;
+        /** @var MYoblicej xicht
+        *   @brief aktualni oblicej
+        */
+        MYoblicej xicht;
 
         /**
         *   Metoda, ktera v obrazku zvyrazni obliceje
