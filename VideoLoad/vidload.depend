@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1302869544 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
+1302870295 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
 	"MYdetektor.h"
 
-1302869585 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
+1302870278 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
 	<cv.h>
 	<highgui.h>
 	<iostream>
@@ -106,4 +106,9 @@
 	"MYdetektor.h"
 	<iostream>
 	<vector>
+
+1302870371 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYmaska.cpp
+	"MYmaska.h"
+
+1302869862 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYmaska.h
 

@@ -8,14 +8,14 @@
 
 int main( int argc, char** argv )
 {
-
-    // Create a sample image
+// nacte obrazek
     IplImage *img = cvLoadImage(argv[1]);
 
-// nejaky comment
     double tt = (double)cvGetTickCount();
-    // Call the function to detect and draw the face positions
-//    detect_and_draw(img);
+
+
+    MYdetektor detect(img);
+
     tt = (double)cvGetTickCount() - tt;
     cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
     // Wait for user input before quitting the program
