@@ -52,8 +52,8 @@ static CvHaarClassifierCascade* cascade = 0;
     cvClearMemStorage( storage );
     //prochazim jednotlive vyrezy
         CvSeq* faces = cvHaarDetectObjects( this->MyFrame, cascade, storage,
-                                            1.1, 2, CV_HAAR_DO_CANNY_PRUNING,
-                                            cvSize(30, 30) );
+                                            1.2, 4, CV_HAAR_DO_CANNY_PRUNING,
+                                            cvSize(40, 40) );
         for( int i = 0; i < (faces ? faces->total : 0); i++ )
         {
            // Create a new rectangle for drawing the face
@@ -65,28 +65,29 @@ static CvHaarClassifierCascade* cascade = 0;
             obl1.y = r->y*scale;
             obl2.y = (r->y+r->height)*scale;
 
-            //cvSetImageROI( this->MyFrame,cvRect( obl1.x, obl1.y, r->width, r->height));
+            cvSetImageROI( this->MyFrame,cvRect( obl1.x, obl1.y, r->width, r->height));
 
-//            MYoblicej::zeroesOblicej(&xicht);
-//            if (FindEyes(this->MyFrame) > 1){ // detekovany oblicej
-//                xicht.sour_x = obl1.x;
-//                xicht.sour_y = obl1.y;
-//                xicht.sirka = r->width;
-//                xicht.vyska = r->height;
-//
-//                xicht.vypocti_klicove_body();
-//                sXichts.push_back(xicht);
-//               // FindMouth(this->MyFrame);
-//                cvResetImageROI(this->MyFrame);
+            MYoblicej::zeroesOblicej(&xicht);
+            if (FindEyes(this->MyFrame) > 1){ // detekovany oblicej
+                xicht.sour_x = obl1.x;
+                xicht.sour_y = obl1.y;
+                xicht.sirka = r->width;
+                xicht.vyska = r->height;
+
+                xicht.vypocti_klicove_body();
+                sXichts.push_back(xicht);
+               // FindMouth(this->MyFrame);
+                cvResetImageROI(this->MyFrame);
                 cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
-//                if(i >= 0) break;
-//            }
-//            else cvResetImageROI(this->MyFrame);
+                if(i >= 0) break;
+            }
+            cvResetImageROI(this->MyFrame);
 
 
 
 
         }
+
         cvClearMemStorage(storage);
     return sXichts.size(); // vraci pocet nalezenych obliceju
 
@@ -98,7 +99,7 @@ CvMemStorage* storageEye = 0;
 CvHaarClassifierCascade* cascadeEye = 0;
 
 
-    cout << "Hledam Ocicka" << endl;
+   // cout << "Hledam Ocicka" << endl;
     cascadeEye = (CvHaarClassifierCascade*)cvLoad( cascEyes, 0, 0, 0 );
 
     if( !cascadeEye ){ // kontrola nacteni cascade
