@@ -33,12 +33,13 @@ detect = new MYdetektor(NULL); // zpracuj frame
         IplImage *image = video->next_frame();
         //MYdisplay::ShowImage(image);
             double tt = (double)cvGetTickCount();
-            if(counter == 75){
-                        detect->FindFaces();
-                         MYdisplay::ShowImage(detect->MyFrame,'q');
-            }
-        detect->setFrame(image);
 
+//            if(counter == 75){
+//                        detect->FindFaces();
+//                         MYdisplay::ShowImage(detect->MyFrame,'q');
+//            }
+        detect->setFrame(image);
+detect->FindFaces();
             tt = (double)cvGetTickCount() - tt;
             cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
 
