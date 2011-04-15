@@ -10,12 +10,12 @@ int main( int argc, char** argv )
 
 MYdetektor *detect;
 
-IplImage * img = cvLoadImage(argv[1]);
-            double tt = (double)cvGetTickCount();
-        detect = new MYdetektor(img); // zpracuj frame
-        detect->FindFaces();
-            tt = (double)cvGetTickCount() - tt;
-            cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
+//IplImage * img = cvLoadImage(argv[1]);
+//            double tt = (double)cvGetTickCount();
+//        detect = new MYdetektor(img); // zpracuj frame
+//        detect->FindFaces();
+//            tt = (double)cvGetTickCount() - tt;
+//            cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
 
 
 
