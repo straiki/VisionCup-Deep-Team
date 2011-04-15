@@ -81,8 +81,8 @@ CvHaarClassifierCascade* cascade = 0;
                 cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
                 if(i >= 0) break;
             }
-cvResetImageROI(this->MyFrame);
-            cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
+            else cvResetImageROI(this->MyFrame);
+
 
 
 
