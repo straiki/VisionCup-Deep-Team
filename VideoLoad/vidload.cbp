@@ -43,10 +43,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Mydetektor.cpp" />
-		<Unit filename="Mydetektor.h" />
-		<Unit filename="Mydisplay.cpp" />
-		<Unit filename="Mydisplay.h" />
+		<Unit filename="MYdetektor.cpp" />
+		<Unit filename="MYdetektor.h" />
+		<Unit filename="MYdisplay.cpp" />
+		<Unit filename="MYdisplay.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

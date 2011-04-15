@@ -1,7 +1,7 @@
 // Sample Application to demonstrate how Face detection can be done as a part of your source code.
 
 // Include header files
-#include "include/Mydetektor.h"
+#include "MYdetektor.h"
 
 #include <iostream>
 #include <vector>
