@@ -1,7 +1,5 @@
-// Sample Application to demonstrate how Face detection can be done as a part of your source code.
-
-// Include header files
 #include "MYdetektor.h"
+#include "MYdisplay.h"
 
 #include <iostream>
 #include <vector>
@@ -15,6 +13,7 @@ int main( int argc, char** argv )
 
 
     MYdetektor detect(img);
+    MYdisplay::ShowImage(detect.MyFrame);
 
     tt = (double)cvGetTickCount() - tt;
     cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;

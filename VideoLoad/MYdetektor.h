@@ -22,12 +22,15 @@ class MYdetektor
     public:
         MYdetektor(IplImage *);
         virtual ~MYdetektor();
-    protected:
-    private:
+
         /** @var IplImage * MyFrame
         *   @brief Obrazek daneho framu, ve kterem se hledaji obliceje
         */
         IplImage * MyFrame;
+
+    protected:
+    private:
+
         /** @var
         *   @brief
         */

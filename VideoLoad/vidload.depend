@@ -2,7 +2,7 @@
 1302870295 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
 	"MYdetektor.h"
 
-1302870278 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
+1302870758 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
 	<cv.h>
 	<highgui.h>
 	<iostream>
@@ -97,13 +97,16 @@
 
 1263944927 /usr/include/opencv//highgui.hpp
 
-1302869515 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdisplay.cpp
+1302870671 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdisplay.cpp
 	"MYdisplay.h"
 
-1302869515 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdisplay.h
+1302870690 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdisplay.h
+	<cv.h>
+	<highgui.h>
 
-1302869928 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/main.cpp
+1302870736 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/main.cpp
 	"MYdetektor.h"
+	"MYdisplay.h"
 	<iostream>
 	<vector>
 
@@ -111,4 +114,9 @@
 	"MYmaska.h"
 
 1302869862 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYmaska.h
+
+1302870385 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYoblicej.cpp
+	"MYoblicej.h"
+
+1302869862 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYoblicej.h
 
