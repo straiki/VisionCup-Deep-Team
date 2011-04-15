@@ -36,7 +36,10 @@ detect = new MYdetektor(NULL); // zpracuj frame
 
         //Zpracovani snimku
         detect->setFrame(image);
-        detect->FindFaces();
+        if(counter){
+            detect->FindFaces();
+            MYdisplay::ShowImage(detect->MyFrame,(char)-1);
+        }
 
             //meric casu
             tt = (double)cvGetTickCount() - tt;

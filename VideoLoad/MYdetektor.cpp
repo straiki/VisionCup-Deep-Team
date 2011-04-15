@@ -21,6 +21,7 @@ MYdetektor::~MYdetektor()
 void MYdetektor::_setHaars(){
     cascFace = "haarcascades/haarcascade_frontalface_alt.xml";
     cascEyes = "haarcascades/haarcascade_eye.xml";
+    cascMouth = "haarcascades/haarcascade_mcs_mouth.xml";
 }
 
 void MYdetektor::setFrame(IplImage * setter){
@@ -67,13 +68,15 @@ static CvHaarClassifierCascade* cascade = 0;
             cvSetImageROI( this->MyFrame,cvRect( obl1.x, obl1.y, r->width, r->height));
 
             if (FindEyes(this->MyFrame) > 1){
+                FindMouth(this->MyFrame);
                 cvResetImageROI(this->MyFrame);
                 cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
 //                MYdisplay::ShowImage(MyFrame,'q');
             }
-            else{
-                cvResetImageROI(this->MyFrame);
-            }
+
+
+            cvResetImageROI(this->MyFrame);
+
 
         }
     return sezOblic.size(); // vraci pocet nalezenych obliceju
@@ -124,6 +127,50 @@ static CvHaarClassifierCascade* cascadeEye = 0;
 
 
 return eyes->total;
+}
+
+int MYdetektor::FindMouth(IplImage * imROI){
+
+static CvMemStorage* storageMouth = 0;
+static CvHaarClassifierCascade* cascadeMouth = 0;
+
+
+    cout << "Hledam Pusinku" << endl;
+    cascadeMouth = (CvHaarClassifierCascade*)cvLoad( cascMouth, 0, 0, 0 );
+
+    if( !cascadeMouth ){ // kontrola nacteni cascade
+        fprintf( stderr, "ERROR: Could not load classifier cascade\n" );
+        return -1;
+    }
+    storageMouth = cvCreateMemStorage(0); // vynulovani pametoveho uloziste
+    int scale = 1; // skala, nejaky pomer zvetseni dejme tomu == zmensieni obrazku podil velikosti
+
+
+    CvPoint pt1, pt2;
+    int i;
+
+    cvClearMemStorage( storageMouth );
+        CvSeq* mouth = cvHaarDetectObjects( imROI, cascadeMouth, storageMouth,
+                                            1.15, 3, 0,
+                                            cvSize(25, 10) );
+//! dobre paramatry 1.15,4,0=CVHAAR,35,15
+    if(mouth->total >= 1){ // Pouze pro vice jak jedno Oci :)
+        for( i = 0; i < (mouth ? mouth->total : 0); i++ )
+        {
+           // Create a new rectangle for drawing the face
+            CvRect* r = (CvRect*)cvGetSeqElem( mouth, i );
+            // Find the dimensions of the face,and scale it if necessary
+            pt1.x = r->x*scale;
+            pt2.x = (r->x+r->width)*scale;
+            pt1.y = r->y*scale;
+            pt2.y = (r->y+r->height)*scale;
+                cvRectangle( imROI, pt1, pt2, CV_RGB(0,255,0), 2, 8, 0 );
+                if(i==2)break;
+        }
+    }
+
+
+return mouth->total;
 }
 
 CvPoint MYdetektor::_findEyeCenter(CvPoint a, CvPoint b){

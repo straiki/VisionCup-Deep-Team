@@ -54,7 +54,7 @@ class MYdetektor
         int FindFaces();
 
         int FindEyes(IplImage *);
-
+        int FindMouth(IplImage *);
         /**
         *   Vykresli obdelniky kolem nalezenych obliceju
         */
@@ -79,6 +79,7 @@ class MYdetektor
         */
         const char* cascFace;
         const char* cascEyes;
+        const char* cascMouth;
 
         /** @var
         *   @brief
