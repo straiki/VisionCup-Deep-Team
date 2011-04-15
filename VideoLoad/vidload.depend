@@ -180,3 +180,64 @@
 	<highgui.h>
 	<string>
 
+1302888766 source:/homes/eva/xs/xsimur01/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
+	"MYdetektor.h"
+	"MYdisplay.h"
+
+1302888766 /homes/eva/xs/xsimur01/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
+	<cv.h>
+	<highgui.h>
+	<deque>
+	<iostream>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<math.h>
+	<float.h>
+	<limits.h>
+	<time.h>
+	<ctype.h>
+
+1302888766 /homes/eva/xs/xsimur01/VisionCup-Deep-Team/VideoLoad/MYdisplay.h
+	<cv.h>
+	<highgui.h>
+
+1302888766 source:/homes/eva/xs/xsimur01/VisionCup-Deep-Team/VideoLoad/MYdisplay.cpp
+	"MYdisplay.h"
+
+1302888766 source:/homes/eva/xs/xsimur01/VisionCup-Deep-Team/VideoLoad/MYmaska.cpp
+	"MYmaska.h"
+
+1302888766 /homes/eva/xs/xsimur01/VisionCup-Deep-Team/VideoLoad/MYmaska.h
+
+1302888766 source:/homes/eva/xs/xsimur01/VisionCup-Deep-Team/VideoLoad/MYoblicej.cpp
+	"MYoblicej.h"
+
+1302888766 /homes/eva/xs/xsimur01/VisionCup-Deep-Team/VideoLoad/MYoblicej.h
+
+1302888766 source:/homes/eva/xs/xsimur01/VisionCup-Deep-Team/VideoLoad/main.cpp
+	"MYdetektor.h"
+	"MYdisplay.h"
+	"MYvideo.h"
+	<iostream>
+	<vector>
+
+1302888766 /homes/eva/xs/xsimur01/VisionCup-Deep-Team/VideoLoad/MYvideo.h
+	"stdhead.h"
+
+1302888767 /homes/eva/xs/xsimur01/VisionCup-Deep-Team/VideoLoad/stdhead.h
+	<stdlib.h>
+	<stdio.h>
+	<iostream>
+	<math.h>
+	<cv.h>
+	<cxcore.h>
+	<highgui.h>
+	<highgui.h>
+	<string>
+
+1302888766 source:/homes/eva/xs/xsimur01/VisionCup-Deep-Team/VideoLoad/MYvideo.cpp
+	"MYvideo.h"
+
