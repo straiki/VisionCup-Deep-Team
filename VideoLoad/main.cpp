@@ -40,7 +40,7 @@ detect = new MYdetektor(NULL); // zpracuj frame
         if(counter > 0){
             detect->FindFaces();
             detect->DrawSezOblic();
-            MYdisplay::ShowImage(detect->MyFrame,(char)-1);
+           // MYdisplay::ShowImage(detect->MyFrame,(char)-1);
         }
 
             //meric casu

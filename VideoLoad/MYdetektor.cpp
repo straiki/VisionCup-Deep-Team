@@ -29,6 +29,19 @@ void MYdetektor::setFrame(IplImage * setter){
 }
 
 
+int MYdetektor::Fpokus(){
+CvHaarClassifierCascade* cascade = 0;
+cascade = (CvHaarClassifierCascade*)cvLoad( cascFace, 0, 0, 0 );
+
+    if( !cascade ){ // kontrola nacteni cascade
+        fprintf( stderr, "ERROR: Could not load classifier cascade\n" );
+        return -1;
+    }
+
+    cvReleaseHaarClassifierCascade(&cascade);
+
+}
+
 int MYdetektor::FindFaces(){
     // Create memory for calculations
 static CvMemStorage* storage = 0;
@@ -87,8 +100,8 @@ static CvHaarClassifierCascade* cascade = 0;
 
 
         }
-
-        cvClearMemStorage(storage);
+        cvReleaseHaarClassifierCascade(&cascade);
+        cvReleaseMemStorage(&storage);
     return sXichts.size(); // vraci pocet nalezenych obliceju
 
 }
@@ -134,7 +147,8 @@ CvHaarClassifierCascade* cascadeEye = 0;
                 if(i == 1) break;
         }
     }
-cvClearMemStorage(storageEye);
+    cvReleaseHaarClassifierCascade(&cascadeEye);
+   // cvReleaseMemStorage(&storageEye);
 return eyes->total;
 }
 
