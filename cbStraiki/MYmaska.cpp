@@ -11,12 +11,17 @@ MYmaska::~MYmaska(){
 	cout << "znicena maska" << endl;
 }
 
+void MYmaska::open(string name){
+    this->source = cvLoadImage(name.c_str());
+}
+
 void MYmaska::changeSize(float size){
    // IplImage *source = cvLoadImage("obrazek.png");
 
-    IplImage *destination = cvCreateImage(cvSize((int)(this->source->width*size),
+    this->edited = cvCreateImage(cvSize((int)(this->source->width*size),
                                                  (int)(this->source->height*size)),
                                           source->depth,
                                           source->nChannels);
-    cvResize(source, destination);
+    cvResize(this->source, this->edited);
 }
+

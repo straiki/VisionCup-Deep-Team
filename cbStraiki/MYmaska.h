@@ -3,6 +3,8 @@
 
 #include "stdhead.h"
 
+using namespace std;
+
 class MYmaska
 {
 
@@ -14,10 +16,13 @@ private:
 public:
 	MYmaska();	//konstruktor
 	virtual ~MYmaska();	//destruktor
+	void open(string);
 
     IplImage *source;
+    IplImage *edited;
 
 	void changeSize(float);
+
 
 };
 
