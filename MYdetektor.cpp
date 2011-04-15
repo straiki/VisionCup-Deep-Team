@@ -1,8 +1,8 @@
 #include "MYdetektor.h"
 
-MYdetektor::MYdetektor()
+MYdetektor::MYdetektor(IplImage * ctor)
 {
-    //ctor
+    this->MyFrame = ctor;
 }
 
 MYdetektor::~MYdetektor()
