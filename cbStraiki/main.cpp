@@ -28,6 +28,7 @@ int main( int argc, char** argv )
     const char * WinName = "Debug";
     cvNamedWindow(WinName, CV_WINDOW_AUTOSIZE);
     cvMoveWindow(WinName, 100, 100);
+    /*
 /// oblicej
     MYoblicej *oblicej = new MYoblicej;
 
@@ -53,22 +54,43 @@ int main( int argc, char** argv )
 
    // cvShowImage(WinName, maska->rotated);
     cvWaitKey();
+    */
     ///endmask
-/*
+
     MYvideo *video;
     video = new MYvideo();
-    video->open("../videos/L1 - JH.avi");
+    video->open("video.avi");
+    int i = 0;
+    //video->open("../videos/L1 - JH.avi");
     for(;;){
-        IplImage *image = video->next_frame();
+        //stringstream num;
+        //num << i;
+       // string nazev = "obrazky/pusa/vzorky/";
+       // nazev.append(num.str());
+        //nazev.append(".jpg");
+
+        IplImage *image = video->next_frame();//cvLoadImage(nazev.c_str());//video->next_frame();
         // ker zpracovani pajou
         // tady bude maska
         // vlozit masku do obrazu
         cvShowImage(WinName, image);
         char c = cvWaitKey(33);
         if(c == 27) break;
-        video->writeFrame(image);
+        ///i++;
+        //if(i == 20)
+       //     break;
+        //cvSaveImage(nazev.c_str(), image);
+        if(i==0){
+            for(int j = 0; j < 20; j++)
+                video->writeFrame(image);
+        }else{
+            for(int j = 0; j < 5; j++)
+                video->writeFrame(image);
+        }
+    i++;
+        //cvReleaseImage(&image);
     }
-*/
+/**/
     cvDestroyWindow(WinName);
     // Release the image
     //cvReleaseImage(&img);

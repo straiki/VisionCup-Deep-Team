@@ -52,7 +52,7 @@ void MYvideo::writeInit(){
     string name = "vystup.avi";
     double fps = -1;
     if((fps = cvGetCaptureProperty(this->capture, CV_CAP_PROP_FPS))==0)
-        fps = 10; // nelze vytahnout fps
+        fps = 5; // nelze vytahnout fps
 	cout << "Nastavuji " << fps << " FPS" << endl;
 	CvSize size = cvSize((int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH),(int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT));
 	this->writer = cvCreateVideoWriter(name.c_str(), CV_FOURCC('D', 'I', 'V', 'X'), fps, size);
