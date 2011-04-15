@@ -23,6 +23,10 @@ struct xicht{
     CvPoint a,b;
 };
 
+/** Cesty k haarcascades*/
+
+
+
 class MYdetektor
 {
     public:
@@ -47,7 +51,7 @@ class MYdetektor
         /**
         *   Metoda, ktera najde oblicej v obrazku
         */
-        void FindFace();
+        int FindFaces();
 
         /**
         *   Vykresli obdelniky kolem nalezenych obliceju
@@ -61,6 +65,16 @@ class MYdetektor
         void setFrame(IplImage *);
     protected:
     private:
+        void OrezPic(CvPoint, CvPoint);
+        /**
+        *   Setter - nasteveni vsech pouzivanych cascades
+        */
+        void _setHaars();
+        /**
+        *  Vsechny Pouzivane Cascady
+        */
+        const char* cascFace;
+        const char* cascEyes;
 
         /** @var
         *   @brief
