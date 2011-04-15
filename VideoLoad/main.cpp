@@ -26,11 +26,14 @@ MYvideo *video;
     video = new MYvideo();
     video->open("../videos/L2 - RK.avi");
 int counter = 0 ;
+
+detect = new MYdetektor(NULL); // zpracuj frame
+
     for(;;){
         IplImage *image = video->next_frame();
         //MYdisplay::ShowImage(image);
             double tt = (double)cvGetTickCount();
-        detect = new MYdetektor(image); // zpracuj frame
+        detect->setFrame(image);
         detect->FindFaces();
             tt = (double)cvGetTickCount() - tt;
             cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
