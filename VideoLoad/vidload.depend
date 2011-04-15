@@ -2,7 +2,7 @@
 1302871741 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
 	"MYdetektor.h"
 
-1302871558 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
+1302872268 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
 	<cv.h>
 	<highgui.h>
 	<iostream>

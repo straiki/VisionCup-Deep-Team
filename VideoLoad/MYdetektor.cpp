@@ -2,7 +2,7 @@
 
 MYdetektor::MYdetektor(IplImage * ctor)
 {
-    this->MyFrame = ctor;
+    this->MyFrame = ctor; // natahnuti obrazku
 }
 
 MYdetektor::~MYdetektor()
