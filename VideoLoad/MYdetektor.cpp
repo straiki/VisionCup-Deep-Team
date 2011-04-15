@@ -61,10 +61,12 @@ int MYdetektor::FindFaces(){
             if (FindEyes(this->MyFrame) > 1){
                 cvResetImageROI(this->MyFrame);
                 cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
+                //MYdisplay::ShowImage(MyFrame,'q');
             }
             else{
                 cvResetImageROI(this->MyFrame);
             }
+
         }
     return sezOblic.size(); // vraci pocet nalezenych obliceju
 
@@ -107,6 +109,7 @@ static CvHaarClassifierCascade* cascadeEye = 0;
                 cvRectangle( imROI, pt1, pt2, CV_RGB(0,125,255), 2, 8, 0 );
                 if(i == 1) break;
         }
+
 return eyes->total;
 }
 

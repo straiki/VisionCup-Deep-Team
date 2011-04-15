@@ -51,6 +51,8 @@
 		<Unit filename="MYmaska.h" />
 		<Unit filename="MYoblicej.cpp" />
 		<Unit filename="MYoblicej.h" />
+		<Unit filename="MYvideo.cpp" />
+		<Unit filename="MYvideo.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
