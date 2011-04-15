@@ -13,6 +13,16 @@ MYoblicej::~MYoblicej(){
 
 //vypocte klicove body
 void MYoblicej::vypocti_klicove_body(){
+
+    if(prave_oko_x<leve_oko_x){
+		int pomoc_x = prave_oko_x;
+		int pomoc_y = prave_oko_y;
+		prave_oko_x = leve_oko_x;
+		prave_oko_y = leve_oko_y;
+		leve_oko_x = pomoc_x;
+		leve_oko_y = pomoc_y;
+	}
+
 	printf("pocitam klicove body\n");
 	//rozdil mezi ocima
 	delta_x = prave_oko_x-leve_oko_x;

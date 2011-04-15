@@ -39,16 +39,13 @@ detect = new MYdetektor(NULL); // zpracuj frame
         if(counter){
             detect->FindFaces();
             detect->DrawSezOblic();
-            MYdisplay::ShowImage(detect->MyFrame,(char)-1);
-
-
         }
 
             //meric casu
             tt = (double)cvGetTickCount() - tt;
             cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
 
-        MYdisplay::ShowImage(detect->MyFrame,(char)-1);
+        //MYdisplay::ShowImage(detect->MyFrame,(char)-1);
         //moznost cekani na klavesu, musi se pridat okno ale
         char c = cvWaitKey(33);
         if(c == 27) break;

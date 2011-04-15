@@ -79,6 +79,7 @@ static CvHaarClassifierCascade* cascade = 0;
                // FindMouth(this->MyFrame);
                 cvResetImageROI(this->MyFrame);
                 cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
+                if(i >= 0) break;
             }
 
 
@@ -214,7 +215,7 @@ void MYdetektor::DrawSezOblic(){
   //  	OrezPic(sezOblic.at(i).a,sezOblic.at(i).b);
         delete maska;
     }
-    sXichts.empty();
+    sXichts.clear();
 
 
 }
