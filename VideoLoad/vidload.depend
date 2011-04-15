@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1302870295 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
+1302871707 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
 	"MYdetektor.h"
 
-1302870758 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
+1302871558 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
 	<cv.h>
 	<highgui.h>
 	<iostream>
@@ -17,14 +17,14 @@
 	<time.h>
 	<ctype.h>
 
-1270517080 /usr/include/opencv//cv.h
+1263944927 /usr/include/opencv//cv.h
 	<chdl.h>
 	"cxcore.h"
 	"cvtypes.h"
 	"cv.hpp"
 	"cvcompat.h"
 
-1270517080 /usr/include/opencv//cxcore.h
+1263944927 /usr/include/opencv//cxcore.h
 	"ipl.h"
 	"ipl/ipl.h"
 	"cxtypes.h"
@@ -32,24 +32,24 @@
 	"cvver.h"
 	"cxcore.hpp"
 
-1270517080 /usr/include/opencv//cxtypes.h
+1263944927 /usr/include/opencv//cxtypes.h
 	<assert.h>
 	<stdlib.h>
 	<string.h>
 	<float.h>
 	<stdint.h>
-	<intrin.h>
 	<emmintrin.h>
+	<mmintrin.h>
 	<fastmath.h>
 	<math.h>
 	<ipl.h>
 	<ipl/ipl.h>
 
-1270517080 /usr/include/opencv//cxerror.h
+1263944927 /usr/include/opencv//cxerror.h
 
-1270517080 /usr/include/opencv//cvver.h
+1263944927 /usr/include/opencv//cvver.h
 
-1270517080 /usr/include/opencv//cxcore.hpp
+1263944927 /usr/include/opencv//cxcore.hpp
 	"cxmisc.h"
 	<algorithm>
 	<cmath>
@@ -62,40 +62,40 @@
 	"cxmat.hpp"
 	"cxflann.h"
 
-1270517080 /usr/include/opencv//cxmisc.h
+1263944927 /usr/include/opencv//cxmisc.h
 	<limits.h>
 	<malloc.h>
 	<alloca.h>
 	<stdlib.h>
 
-1270517080 /usr/include/opencv//cxoperations.hpp
+1263944927 /usr/include/opencv//cxoperations.hpp
 	<string.h>
 	<limits.h>
 	<ext/atomicity.h>
 	<bits/atomicity.h>
 	"windows.h"
 
-1270517080 /usr/include/opencv//cxmat.hpp
+1263944927 /usr/include/opencv//cxmat.hpp
 	<limits.h>
 
-1270517080 /usr/include/opencv//cxflann.h
+1263944927 /usr/include/opencv//cxflann.h
 
-1270517080 /usr/include/opencv//cvtypes.h
+1263944927 /usr/include/opencv//cvtypes.h
 	<assert.h>
 	<stdlib.h>
 
-1270517080 /usr/include/opencv//cv.hpp
+1263944927 /usr/include/opencv//cv.hpp
 
-1270517080 /usr/include/opencv//cvcompat.h
+1263944927 /usr/include/opencv//cvcompat.h
 	<string.h>
 
-1270517080 /usr/include/opencv//highgui.h
+1263944927 /usr/include/opencv//highgui.h
 	"cxcore.h"
 	<windows.h>
 	<chdl.h>
 	"highgui.hpp"
 
-1270517080 /usr/include/opencv//highgui.hpp
+1263944927 /usr/include/opencv//highgui.hpp
 
 1302870671 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdisplay.cpp
 	"MYdisplay.h"
@@ -104,10 +104,14 @@
 	<cv.h>
 	<highgui.h>
 
-<<<<<<< HEAD
-1302870736 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/main.cpp
-=======
-<<<<<<< HEAD
+1302870736 D
+
+1302871038 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/main.cpp
+	"MYdetektor.h"
+	"MYdisplay.h"
+	<iostream>
+	<vector>
+
 1302870211 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
 	"MYdetektor.h"
 
@@ -135,9 +139,10 @@
 	"MYdetektor.h"
 	<iostream>
 	<vector>
-=======
-1302869928 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/main.cpp
->>>>>>> 5919dc83ff9de5a0e0cb8b2b24d285aac8b47c76
+
+1302870211 
+
+1302869928 9dc83ff9de5a0e0cb8b2b24d285aac8b47c76
 	"MYdetektor.h"
 	"MYdisplay.h"
 	<iostream>
@@ -147,7 +152,8 @@
 	"MYmaska.h"
 
 1302869862 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYmaska.h
->>>>>>> 1933e77f2fc4f1f0e2fda9ce3c5da113e172046c
+
+1302869862 3e77f2fc4f1f0e2fda9ce3c5da113e172046c
 
 1302870385 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYoblicej.cpp
 	"MYoblicej.h"

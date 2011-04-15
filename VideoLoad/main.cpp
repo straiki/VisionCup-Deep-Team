@@ -13,12 +13,11 @@ int main( int argc, char** argv )
 
 
     MYdetektor detect(img);
-    MYdisplay::ShowImage(detect.MyFrame);
+    detect.DrawFaces();
 
     tt = (double)cvGetTickCount() - tt;
     cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
     // Wait for user input before quitting the program
-    cvWaitKey();
 
     // Release the image
     cvReleaseImage(&img);

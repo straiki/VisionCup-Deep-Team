@@ -28,6 +28,12 @@ class MYdetektor
         */
         IplImage * MyFrame;
 
+        /**
+        *   Metoda, ktera v obrazku zvyrazni obliceje
+        *   podle klasifikatoru nejakeho z OpenCV
+        */
+        int DrawFaces();
+
     protected:
     private:
 
