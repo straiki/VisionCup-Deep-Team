@@ -19,6 +19,8 @@ IplImage * img = cvLoadImage(argv[1]);
 
 
 
+
+
 MYvideo *video;
     video = new MYvideo();
     video->open("../videos/L2 - RK.avi");
@@ -30,6 +32,7 @@ MYvideo *video;
         detect->FindFaces();
             tt = (double)cvGetTickCount() - tt;
             cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
+           // MYdisplay::ShowImage(detect->MyFrame,'q');
         //break;
         char c = cvWaitKey(33);
         if(c == 27) break;

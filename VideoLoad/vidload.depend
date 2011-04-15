@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1302885821 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
+1302887351 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
 	"MYdetektor.h"
 	"MYdisplay.h"
 
@@ -108,7 +108,7 @@
 
 1302870736 D
 
-1302885790 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/main.cpp
+1302886875 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/main.cpp
 	"MYdetektor.h"
 	"MYdisplay.h"
 	"MYvideo.h"

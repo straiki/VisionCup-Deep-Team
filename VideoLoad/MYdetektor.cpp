@@ -40,17 +40,11 @@ int MYdetektor::FindFaces(){
 
     CvPoint pt1, pt2;
     CvPoint obl1,obl2;
-
     cvClearMemStorage( storage );
-
     //prochazim jednotlive vyrezy
-
-
         CvSeq* faces = cvHaarDetectObjects( this->MyFrame, cascade, storage,
                                             1.1, 2, CV_HAAR_DO_CANNY_PRUNING,
                                             cvSize(40, 40) );
-
-        // Loop the number of faces found.
         for( int i = 0; i < (faces ? faces->total : 0); i++ )
         {
            // Create a new rectangle for drawing the face
@@ -62,49 +56,16 @@ int MYdetektor::FindFaces(){
             obl1.y = r->y*scale;
             obl2.y = (r->y+r->height)*scale;
 
-
             cvSetImageROI( this->MyFrame,cvRect( obl1.x, obl1.y, r->width, r->height));
 
             if (FindEyes(this->MyFrame) > 1){
-                 cvResetImageROI(this->MyFrame);
+                cvResetImageROI(this->MyFrame);
                 cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
-
             }
-
- cvResetImageROI(this->MyFrame);
-            // Nasteveni ROI
-          //  MYdisplay::ShowImage(MyFrame,'q');
-//            cvSetImageROI( this->MyFrame,cvRect( obl1.x, obl1.y + r->height, r->width, r->height));
-//
-//MYdisplay::ShowImage(MyFrame,'q');
-//
-//             CvSeq* eyes = cvHaarDetectObjects( this->MyFrame, cascade, storage,
-//                                            1.15, 3, CV_HAAR_DO_CANNY_PRUNING,
-//                                            cvSize(25, 15) );
-//            if(eyes->total > 0){
-//                cout << "mam ocicka "<< eyes->total << endl;
-//                for( int j = 0; j < (eyes ? eyes->total : 0); j++ )
-//                    {
-//                       // Create a new rectangle for drawing the face
-//                        CvRect* e = (CvRect*)cvGetSeqElem( eyes, j );
-//
-//                        // Find the dimensions of the face,and scale it if necessary
-//                        pt1.x = e->x*scale;
-//                        pt2.x = (e->x+e->width)*scale;
-//                        pt1.y = e->y*scale;
-//                        pt2.y = (e->y+e->height)*scale;
-//                            cvRectangle( this->MyFrame, pt1, pt2, CV_RGB(0,125,255), 2, 8, 0 );
-//                    }
-//
-//                xicht oblicej;
-//                    oblicej.a = obl1;
-//                    oblicej.b = obl2;
-//
-//                    sezOblic.push_back(oblicej);
-//            }
-//            cvResetImageROI(this->MyFrame);
+            else{
+                cvResetImageROI(this->MyFrame);
+            }
         }
-//MYdisplay::ShowImage(MyFrame,'q');
     return sezOblic.size(); // vraci pocet nalezenych obliceju
 
 }
@@ -130,43 +91,23 @@ static CvHaarClassifierCascade* cascadeEye = 0;
     int i;
 
     cvClearMemStorage( storageEye );
-
-    //prochazim jednotlive vyrezy
-
-
         CvSeq* eyes = cvHaarDetectObjects( imROI, cascadeEye, storageEye,
-                                            1.15, 3, CV_HAAR_DO_CANNY_PRUNING,
-                                            cvSize(25, 15) );
-
-        // Loop the number of faces found.
+                                            1.25, 4, 0,
+                                            cvSize(35, 15) );
+//! dobre paramatry 1.15,4,0=CVHAAR,35,15
         for( i = 0; i < (eyes ? eyes->total : 0); i++ )
         {
            // Create a new rectangle for drawing the face
             CvRect* r = (CvRect*)cvGetSeqElem( eyes, i );
-
             // Find the dimensions of the face,and scale it if necessary
             pt1.x = r->x*scale;
             pt2.x = (r->x+r->width)*scale;
             pt1.y = r->y*scale;
             pt2.y = (r->y+r->height)*scale;
-
-//            xicht oblicej;
-//                oblicej.a = pt1;
-//                oblicej.b = pt2;
-//
-//                sezOblic.push_back(oblicej);
-
                 cvRectangle( imROI, pt1, pt2, CV_RGB(0,125,255), 2, 8, 0 );
-
+                if(i == 1) break;
         }
-        if(eyes->total > 1){
-           //MYdisplay::ShowImage(MyFrame,'q');
-           return eyes->total ;
-        }
-
-    //return sezOblic.size(); // vraci pocet nalezenych obliceju
-return 0;
-
+return eyes->total;
 }
 
 int MYdetektor::DrawFaces(){
