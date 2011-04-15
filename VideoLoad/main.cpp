@@ -12,7 +12,8 @@ int main( int argc, char** argv )
     // Create a sample image
     IplImage *img = cvLoadImage(argv[1]);
 
-double tt = (double)cvGetTickCount();
+// nejaky comment
+    double tt = (double)cvGetTickCount();
     // Call the function to detect and draw the face positions
 //    detect_and_draw(img);
     tt = (double)cvGetTickCount() - tt;
