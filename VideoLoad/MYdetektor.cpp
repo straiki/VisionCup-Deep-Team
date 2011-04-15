@@ -9,7 +9,7 @@ MYdetektor::MYdetektor(IplImage * ctor)
 
 MYdetektor::~MYdetektor()
 {
-    //dtor
+    //dtot
 }
 
 void MYdetektor::_setHaars(){
