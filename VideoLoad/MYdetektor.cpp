@@ -105,6 +105,7 @@ static CvHaarClassifierCascade* cascadeEye = 0;
                                             1.25, 4, 0,
                                             cvSize(35, 15) );
 //! dobre paramatry 1.15,4,0=CVHAAR,35,15
+    if(eyes->total > 1){ // Pouze pro vice jak jedno Oci :)
         for( i = 0; i < (eyes ? eyes->total : 0); i++ )
         {
            // Create a new rectangle for drawing the face
@@ -119,6 +120,8 @@ static CvHaarClassifierCascade* cascadeEye = 0;
 
                 if(i == 1) break;
         }
+    }
+
 
 return eyes->total;
 }
