@@ -108,8 +108,8 @@ static CvHaarClassifierCascade* cascade = 0;
 
 int MYdetektor::FindEyes(IplImage * imROI){
 
-CvMemStorage* storageEye = 0;
-CvHaarClassifierCascade* cascadeEye = 0;
+static CvMemStorage* storageEye = 0;
+static CvHaarClassifierCascade* cascadeEye = 0;
 
 
    // cout << "Hledam Ocicka" << endl;
@@ -148,7 +148,7 @@ CvHaarClassifierCascade* cascadeEye = 0;
         }
     }
     cvReleaseHaarClassifierCascade(&cascadeEye);
-   // cvReleaseMemStorage(&storageEye);
+    cvReleaseMemStorage(&storageEye);
 return eyes->total;
 }
 
