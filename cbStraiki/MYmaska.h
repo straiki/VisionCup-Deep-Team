@@ -20,9 +20,9 @@ public:
 
     IplImage *source;
     IplImage *edited;
-
+    IplImage *rotated;
 	void changeSize(float);
-
+    void rotateImage(float);
 
 };
 

@@ -3,6 +3,7 @@
 // Include header files
 #include "stdhead.h"
 #include "MYdetektor.h"
+#include "MYmaska.h"
 #include "MYvideo.h"
 
 #include <iostream>
@@ -26,7 +27,14 @@ int main( int argc, char** argv )
     const char * WinName = "Debug";
     cvNamedWindow(WinName, CV_WINDOW_AUTOSIZE);
     cvMoveWindow(WinName, 100, 100);
-
+    MYmaska *maska;
+    maska = new MYmaska();
+    maska->open("../masks/moustache.png");
+    maska->changeSize(0.5);
+    maska->rotateImage(1);
+    cvShowImage(WinName, maska->rotated);
+    cvWaitKey();
+/*
     MYvideo *video;
     video = new MYvideo();
     video->open("../videos/L1 - JH.avi");
@@ -37,7 +45,7 @@ int main( int argc, char** argv )
         if(c == 27) break;
         video->writeFrame(image);
     }
-
+*/
     cvDestroyWindow(WinName);
     // Release the image
     //cvReleaseImage(&img);
