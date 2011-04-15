@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="vidload" />
+		<Option title="str_cb" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -47,7 +47,14 @@
 		<Unit filename="MYdetektor.h" />
 		<Unit filename="MYdisplay.cpp" />
 		<Unit filename="MYdisplay.h" />
+		<Unit filename="MYmaska.cpp" />
+		<Unit filename="MYmaska.h" />
+		<Unit filename="MYoblicej.cpp" />
+		<Unit filename="MYoblicej.h" />
+		<Unit filename="MYvideo.cpp" />
+		<Unit filename="MYvideo.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="stdhead.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

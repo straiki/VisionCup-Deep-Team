@@ -16,3 +16,27 @@
  * =====================================================================================
  */
 
+#include "stdhead.h"
+
+using namespace cv;
+using namespace std;
+
+class MYvideo {
+
+public:
+    MYvideo();
+
+    ~MYvideo();
+
+    IplImage *img;
+    CvVideoWriter *writer;
+    CvCapture *capture;
+
+    IplImage *next_frame();
+    void open(int);
+    void open(string);
+    void writeInit();
+    void writeFrame(IplImage *image);
+private:
+
+};

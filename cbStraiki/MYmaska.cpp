@@ -1,12 +1,13 @@
 #include "MYmaska.h"
-
+#include "stdhead.h"
+using namespace std;
 //konstruktor
-MYmaska::MYmaska{
-	printf("vytvorena maska\n");
+MYmaska::MYmaska(){
+	cout << "vytvorena maska" << endl;
 }
 
 //destruktor
-MYmaska::~MYmaska{
-	printf("znicena maska\n");
+MYmaska::~MYmaska(){
+	cout << "znicena maska" << endl;
 }
 
