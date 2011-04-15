@@ -102,3 +102,8 @@
 
 1302869515 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdisplay.h
 
+1302869928 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/main.cpp
+	"MYdetektor.h"
+	<iostream>
+	<vector>
+
