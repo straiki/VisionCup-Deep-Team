@@ -35,5 +35,11 @@ void MYoblicej::vypocti_klicove_body(){
 	else if((delta_x<0)&&(delta_y<0)) uhel +=M_PI;
 	else if((delta_x>0)&&(delta_y<0)) uhel +=2*M_PI;
 
-	this->uhel = (uhel/(2*M_PI))*360.0;
+    vzdalenost_oci = sqrt(delta_x*delta_x+delta_y*delta_y);
+	knirek_x = sin(uhel)*vzdalenost_oci*0.8;
+	knirek_x*=-1;
+	knirek_x += mezi_oci_x;
+	knirek_y = cos(uhel)*vzdalenost_oci*0.8;
+	knirek_y += mezi_oci_y;
+//	this->uhel = (uhel/(2*M_PI))*360.0;
 }

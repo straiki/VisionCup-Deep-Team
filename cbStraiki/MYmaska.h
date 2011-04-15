@@ -22,6 +22,7 @@ public:
     IplImage *source;
     IplImage *edited;
     IplImage *rotated;
+    MYoblicej *oblicej;
 	void changeSize(float);
     void rotateImage(float);
     void vytvorKnirek(MYoblicej*);

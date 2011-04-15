@@ -17,6 +17,7 @@
  */
 
 #include "MYvideo.h"
+#include "MYoblicej.h"
 
 MYvideo::MYvideo(){
     this->capture = 0;
@@ -65,8 +66,31 @@ IplImage* MYvideo::next_frame(){
     return this->img;
 }
 
-IplImage* MYvideo::addMask(IplImage *frame, IplImage *mask){
+IplImage* MYvideo::addMask(IplImage *frame, MYmaska *mask){
+//    cvSetImageROI(frame, cvRect(mezi_oci_x - mask->rotated->width/2,
+  //                              mezi_oci_y - mask->rotated->height/2));
 
+    int x,y,i,j;
+    int start_y = mask->oblicej->knirek_y - mask->rotated->height/2;
+    int start_x = mask->oblicej->knirek_x - mask->rotated->width/2;
+    for (i = start_y; i < start_y + mask->rotated->height; i++) {
+        for (j = start_x; j < start_x + mask->rotated->width; j++) {
+			if(CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3)   == 0 &&
+			   CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+1) == 255 &&
+			   CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+2) == 0) {
+
+				continue;
+            }
+            else{
+                ((uchar*)(frame->imageData + i * frame->widthStep))[j*3]   = CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3); //b
+                ((uchar*)(frame->imageData + i * frame->widthStep))[j*3+1] = CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+1); //g
+                ((uchar*)(frame->imageData + i * frame->widthStep))[j*3+2] = CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+2); //r
+
+            }
+        }
+    }
+
+    return frame;
 }
 
 void MYvideo::writeFrame(IplImage *image){

@@ -46,7 +46,12 @@ int main( int argc, char** argv )
     maska = new MYmaska();
     maska->vytvorKnirek(oblicej);
 
-    cvShowImage(WinName, maska->rotated);
+
+    MYvideo *video;
+    video = new MYvideo();
+    cvShowImage(WinName, video->addMask(img,maska));
+
+   // cvShowImage(WinName, maska->rotated);
     cvWaitKey();
     ///endmask
 /*

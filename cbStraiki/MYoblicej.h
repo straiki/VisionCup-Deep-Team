@@ -21,7 +21,8 @@ public:
 	int mezi_oci_x,  mezi_oci_y;
 	int delta_x, delta_y;
 	float uhel;
-
+    int knirek_x, knirek_y;
+	float vzdalenost_oci;
 };
 
 #endif // MYOBLICEJ_H
