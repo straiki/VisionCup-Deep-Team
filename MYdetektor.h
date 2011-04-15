@@ -20,7 +20,7 @@ using namespace std;
 class MYdetektor
 {
     public:
-        MYdetektor();
+        MYdetektor(IplImage *);
         virtual ~MYdetektor();
     protected:
     private:
