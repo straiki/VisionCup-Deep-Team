@@ -1,5 +1,5 @@
 #include "MYdetektor.h"
-
+#include "MYdisplay.h"
 MYdetektor::MYdetektor(IplImage * ctor)
 {
     this->MyFrame = ctor; // natahnuti obrazku
@@ -8,6 +8,10 @@ MYdetektor::MYdetektor(IplImage * ctor)
 MYdetektor::~MYdetektor()
 {
     //dtor
+}
+
+void MYdetektor::setFrame(IplImage * setter){
+    this->MyFrame = setter;
 }
 
 
@@ -19,12 +23,12 @@ static CvHaarClassifierCascade* cascade = 0;
 
 // Create a string that contains the cascade name
 const char* cascade_name =
-    "/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml";
+    "/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml";
 /*    "haarcascade_profileface.xml";*/
 
 
 int MYdetektor::DrawFaces(){
-
+    cout << "Hledam ksich" << endl;
     cascade = (CvHaarClassifierCascade*)cvLoad( cascade_name, 0, 0, 0 );
     // Check whether the cascade has loaded successfully. Else report and error and quit
     if( !cascade )
@@ -69,17 +73,31 @@ int MYdetektor::DrawFaces(){
             pt1.y = r->y*scale;
             pt2.y = (r->y+r->height)*scale;
 
+            xicht oblicej;
+                oblicej.a = pt1;
+                oblicej.b = pt2;
+
+                sezOblic.push_back(oblicej);
             // Draw the rectangle in the input image
-            cvRectangle( this->MyFrame, pt1, pt2, CV_RGB(255,0,0), 3, 8, 0 );
+            //cvRectangle( this->MyFrame, pt1, pt2, CV_RGB(255,0,0), 3, 8, 0 );
+
+
         }
     }
 
     // Show the image in the window named "result"
-    cvShowImage( "result", this->MyFrame );
+
 
     // Release the temp image created.
     cvReleaseImage( &temp );
-    cvWaitKey();
+
 }
 
+void MYdetektor::DrawSezOblic(){
+    for(int i = 0; i < sezOblic.size() ; i++){
+    	cvRectangle( this->MyFrame, sezOblic.at(i).a, sezOblic.at(i).b, CV_RGB(255,125,0), 2, 8, 0 );
+    	MYdisplay::ShowImage(this->MyFrame,'n');
+    }
+
+}
 
