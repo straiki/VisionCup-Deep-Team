@@ -25,6 +25,7 @@ double tta = (double)cvGetTickCount();
 MYvideo *video;
     video = new MYvideo();
     video->open("../videos/L2 - RK.avi");
+int counter = 0 ;
     for(;;){
         IplImage *image = video->next_frame();
         //MYdisplay::ShowImage(image);
@@ -33,11 +34,13 @@ MYvideo *video;
         detect->FindFaces();
             tt = (double)cvGetTickCount() - tt;
             cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
-            MYdisplay::ShowImage(detect->MyFrame,'q');
+          //  MYdisplay::ShowImage(detect->MyFrame,'q');
         //break;
         char c = cvWaitKey(33);
         if(c == 27) break;
         video->writeFrame(image);
+        cout << endl << counter << " - takovy snimek" << endl;
+        counter++;
        // MYdisplay::ShowImage(image,'q');
     }
             tta = (double)cvGetTickCount() - tta;
