@@ -6,20 +6,24 @@
 
 int main( int argc, char** argv )
 {
-// nacte obrazek
-    IplImage *img = cvLoadImage(argv[1]);
 
-    double tt = (double)cvGetTickCount();
+MYdetektor *detect;
+MYvideo *video;
+    video = new MYvideo();
+    video->open("../videos/L1 - JH.avi");
+    for(;;){
+        IplImage *image = video->next_frame();
+        cvShowImage(WinName, image);
+            double tt = (double)cvGetTickCount();
+        detect = new detect(image); // zpracuj frame
+            tt = (double)cvGetTickCount() - tt;
+            cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
+        char c = cvWaitKey(33);
+        if(c == 27) break;
+        video->writeFrame(image);
+    }
 
-
-    MYdetektor detect(img);
-    detect.DrawFaces();
-
-    tt = (double)cvGetTickCount() - tt;
-    cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
-    // Wait for user input before quitting the program
-
-    detect.DrawSezOblic();
+  //  detect.DrawSezOblic();
 //img = cvLoadImage("test/1.jpg");
 //    detect.setFrame(img);
 //    detect.DrawFaces();

@@ -53,6 +53,8 @@ class MYdetektor
         */
         int FindFaces();
 
+        int FindEyes(IplImage *);
+
         /**
         *   Vykresli obdelniky kolem nalezenych obliceju
         */
