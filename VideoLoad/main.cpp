@@ -1,5 +1,6 @@
 #include "MYdetektor.h"
-
+#include "MYdisplay.h"
+#include "MYvideo.h"
 
 #include <iostream>
 #include <vector>
@@ -8,16 +9,28 @@ int main( int argc, char** argv )
 {
 
 MYdetektor *detect;
-MYvideo *video;
-    video = new MYvideo();
-    video->open("../videos/L1 - JH.avi");
-    for(;;){
-        IplImage *image = video->next_frame();
-        cvShowImage(WinName, image);
+
+IplImage * img = cvLoadImage(argv[1]);
             double tt = (double)cvGetTickCount();
-        detect = new detect(image); // zpracuj frame
+        detect = new MYdetektor(img); // zpracuj frame
+        detect->FindFaces();
             tt = (double)cvGetTickCount() - tt;
             cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
+
+
+
+MYvideo *video;
+    video = new MYvideo();
+    video->open("../videos/L2 - RK.avi");
+    for(;;){
+        IplImage *image = video->next_frame();
+        //MYdisplay::ShowImage(image);
+            double tt = (double)cvGetTickCount();
+        detect = new MYdetektor(image); // zpracuj frame
+        detect->FindFaces();
+            tt = (double)cvGetTickCount() - tt;
+            cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
+        //break;
         char c = cvWaitKey(33);
         if(c == 27) break;
         video->writeFrame(image);
@@ -30,7 +43,7 @@ MYvideo *video;
 
 
     // Release the image
-    cvReleaseImage(&img);
+   // cvReleaseImage(&image);
 
     // Destroy the window previously created with filename: "result"
     cvDestroyWindow("result");
