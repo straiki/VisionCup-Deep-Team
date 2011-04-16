@@ -35,6 +35,7 @@ double tta = (double)cvGetTickCount();
 //            detect->DrawSezOblic();
             detect->FindFaces();
 
+// pokud nenajde face nic nevykresli
             if(!detect->sX.empty()){
                 //! Vyprazdnit seznam kdyz si neco vyzvednu
                 MYoblicej ksicht(detect->sX.at(0).rFace,detect->sX.at(0).eye1,detect->sX.at(0).eye2);
