@@ -15,7 +15,7 @@ cout << "PRO DALSI SNIMEK STISTKNI KLAVESU q" << endl;
 
 MYvideo *video;
     video = new MYvideo();
-    video->open("../videos/L2 - RK.avi");
+    video->open("../videos/PS2.avi");
     video->writeInit();
 int counter = 0 ;
 
@@ -43,7 +43,7 @@ double tta = (double)cvGetTickCount();
                 ksicht.DrawOblicej(image);
                 ksicht.DrawHighPoints(image);
 
-               // MYdisplay::ShowImage(image,(char)'q');
+                MYdisplay::ShowImage(image,(char)-1);
             }
 //            while(facec !epmt){ Myoblice(display->nextface);
 //
