@@ -3,12 +3,12 @@
 using namespace std;
 //konstruktor
 MYoblicej::MYoblicej(){
-	printf("vytvoren oblicej\n");
+
 }
 
 //destruktor
 MYoblicej::~MYoblicej(){
-	printf("znicen oblicej\n");
+
 }
 
 //vypocte klicove body
