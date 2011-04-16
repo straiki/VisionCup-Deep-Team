@@ -40,6 +40,13 @@ class MYdisplay
           * @param barva krizku
         */
         static void DrawPoint(IplImage * image, CvPoint P, int delka = 3, int tloustka = 1,CvScalar barva = cvScalar(0,0,255));
+        /**
+          * Nacte obrazek do struktury IplImage, z cestu imgPath
+          * @param image ukazatel na strukturu image (budouci obrazek) obrazkova data
+          * @param imgPath cesta k obrazku (i se jmenem) s koncovkou
+          *
+        */
+        static int LoadImage(IplImage** image, const char * imgPath);
     protected:
     private:
 };
