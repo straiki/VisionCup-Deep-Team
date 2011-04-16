@@ -24,7 +24,7 @@ double tta = (double)cvGetTickCount();
 
 MYvideo *video;
     video = new MYvideo();
-    video->open("../videos/L2 - MD.avi");
+    video->open("../videos/TV.mov");
     video->writeInit();
 int counter = 0 ;
 
