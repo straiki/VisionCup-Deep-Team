@@ -63,7 +63,7 @@ CvMemStorage* storage = 0;
             if(FindEyes(forRoi) > 0){// hledam oci v ramci ksichtu
                // MYdisplay::ShowImage(MyFrame,'x');
                 cvResetImageROI(this->MyFrame);
-                cvRectangle( this->MyFrame, cvPoint(face->x,face->y), cvPoint(face->x+face->width,face->y+face->height), CV_RGB(255,25,55), 2, 8, 0 );
+//                cvRectangle( this->MyFrame, cvPoint(face->x,face->y), cvPoint(face->x+face->width,face->y+face->height), CV_RGB(255,25,55), 2, 8, 0 );
 
 
                 Xakt.rFace = *face;

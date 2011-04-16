@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 
+// cesta pocet_obliceju parametry ...
 int main( int argc, char** argv )
 {
 
@@ -16,7 +17,7 @@ cout << "PRO DALSI SNIMEK STISTKNI KLAVESU q" << endl;
 
 MYvideo *video;
     video = new MYvideo();
-    video->open("../videos/deep/new/Video 6.wmv");
+    video->open(argv[1]);
     video->writeInit();
 int counter = 0 ;
 
@@ -35,7 +36,7 @@ MYoblicej *ksicht;
         detect->setFrame(image);
 
         double tt = (double)cvGetTickCount();
-        if(counter >=0){
+        if(counter >= 0){
 //            detect->FindFaces();
 //            detect->DrawSezOblic();
             detect->FindFaces();
@@ -46,7 +47,7 @@ MYoblicej *ksicht;
                 int k = 0;
                 int x = 0;
                 while(!detect->sX.empty()){
-                     if(x >= 2){
+                     if(x >= atoi(argv[2])){
                         detect->sX.clear();
                         break;
                      }
@@ -57,9 +58,14 @@ MYoblicej *ksicht;
                      detect->sX.pop_front();
 
 
-                     ksicht->DrawVodiciObdel(image);
-                     ksicht->DrawHighPoints(image);
-                     ksicht->DrawOblicej(image);
+           //          ksicht->DrawVodiciObdel(image);
+           //          ksicht->DrawHighPoints(image);
+
+
+                    for(int i=3; i<argc; i++){
+                     ksicht->DrawOblicej(image, atoi(argv[i]));
+                    }
+
                      x++;
 
                     delete pre_ksicht;
@@ -74,7 +80,7 @@ MYoblicej *ksicht;
 
 
 
-                MYdisplay::ShowImage(image,(char)'q');
+                MYdisplay::ShowImage(image,(char)-1);
             }
 //            while(facec !epmt){ Myoblice(display->nextface);
 //

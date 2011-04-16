@@ -43,23 +43,70 @@ void MYoblicej::swapEyes(CvRect * R, CvRect * L){
             *L = temp;
         }
 }
-void MYoblicej::DrawOblicej(IplImage * img){
+void MYoblicej::DrawOblicej(IplImage * img,int typ){
 
+
+    switch (typ)
+    {
+    	case KLOBOUK:{
+
+            MYmaska *mask = new MYmaska(img);
+            mask->vytvorKlobouk(this);
+            mask->addMask(img,KLOBOUK);
+            delete mask;
+
+    		break;
+    	}
+    	case KAJA:{
+
+            MYmaska *mask = new MYmaska(img);
+            mask->vytvorKaju(this);
+            mask->addMask(img,KAJA);
+            delete mask;
+
+    		break;
+    	}
+    	case PUSA:{
+
+            MYmaska *mask = new MYmaska(img);
+            mask->vytvorPusu(this);
+            mask->addMask(img,PUSA);
+            delete mask;
+
+    		break;
+    	}
+    	case KNIR:{
+
+            MYmaska *mask = new MYmaska(img);
+            mask->vytvorKnirek(this);
+            mask->addMask(img,KNIR);
+            delete mask;
+
+    		break;
+    	}
+    	case OCI:{
+
+            MYmaska *mask = new MYmaska(img);
+            mask->skryjOci(this);
+            mask->addMask(img,OCI);
+            delete mask;
+
+    		break;
+    	}
+    	default:
+    		break;
+    }
 
 
 //       MYmaska *mask = new MYmaska(img);
-//            mask->vytvorPusu(this);
+//            mask->vytvorKnirek(this);
 //            mask->addMask(img,0);
 //            delete mask;
-       MYmaska *mask = new MYmaska(img);
-            mask->vytvorKnirek(this);
-            mask->addMask(img,0);
-            delete mask;
-
-    MYmaska *maska2 = new MYmaska(img);
-            maska2->vytvorKnirek(this);
-            maska2->addMask(img,1);
-            delete maska2;
+//
+//    MYmaska *maska2 = new MYmaska(img);
+//            maska2->vytvorKnirek(this);
+//            maska2->addMask(img,1);
+//            delete maska2;
 
 }
 

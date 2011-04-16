@@ -44,7 +44,7 @@ public:
 	float vzdalenost_oci;
 
 
-	void DrawOblicej(IplImage *);
+	void DrawOblicej(IplImage *,int typ=0);
 	void swapEyes(CvRect *, CvRect*);
 	/**
 	*   VYkresli dulezite, vypocitane body z obliceje
@@ -54,5 +54,11 @@ public:
 
 	void ber_v_uvahu(MYoblicej*);
 };
+
+#define PUSA 0
+#define KNIR 1
+#define KAJA 2
+#define KLOBOUK 3
+#define OCI 4
 
 #endif // MYOBLICEJ_H
