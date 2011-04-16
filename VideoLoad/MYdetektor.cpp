@@ -53,7 +53,8 @@ CvMemStorage* storage = 0;
            // cout << "Nasel facy" << endl;
             CvRect *face = (CvRect*)cvGetSeqElem(faces, i);
 
-            cvSetImageROI(this->MyFrame,*face);
+            cvSetImageROI(this->MyFrame,cvRect(face->x,face->y, face->width,face->height/2.0));
+            //cvSetImageROI(this->MyFrame,*face);
             //MYdisplay::ShowImage(this->MyFrame,'x');
             if(FindEyes() > 0){// hledam oci v ramci ksichtu
                 cvResetImageROI(this->MyFrame);
