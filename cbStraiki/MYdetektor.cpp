@@ -250,8 +250,8 @@ void MYdetektor::DrawSezOblic(){
         //maska->vytvorPusu(&sXichts.at(i));
         maska->vytvorKnirek(&sXichts.at(i));
         //maska->vytvorKlobouk(&sXichts.at(i));
-        IplImage *oko = cvLoadImage("../img/oko.jpg");
-        maska->skryjOci(&sXichts.at(i), oko);
+       // IplImage *oko = cvLoadImage("../img/oko.jpg");
+        maska->skryjOci(&sXichts.at(i));//, oko);
 
         maska->addMask(MyFrame,OCI);
 //    	cvRectangle( this->MyFrame, sezOblic.at(i).a, sezOblic.at(i).b, CV_RGB(255,125,0), 2, 8, 0 );

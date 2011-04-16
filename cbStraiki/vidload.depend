@@ -157,7 +157,7 @@
 	<cv.h>
 	<highgui.h>
 
-1302955578 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYdetektor.cpp
+1302959523 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYdetektor.cpp
 	"MYdetektor.h"
 	"MYdisplay.h"
 	"MYmaska.h"
@@ -182,7 +182,7 @@
 
 1302943937 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYoblicej.h
 
-1302955489 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.h
+1302959509 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.h
 	"stdhead.h"
 	"MYoblicej.h"
 
@@ -201,7 +201,7 @@
 	"stdhead.h"
 	"MYmaska.h"
 
-1302955547 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.cpp
+1302961217 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.cpp
 	"MYmaska.h"
 	"MYoblicej.h"
 	"stdhead.h"

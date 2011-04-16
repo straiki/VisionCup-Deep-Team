@@ -132,31 +132,70 @@ void MYmaska::vytvorPusu(MYoblicej * oblic){
     this->changeSize(0.5);
     this->rotateImage(this->oblicej->uhel);
 }
-uchar MYmaska::interpolate(uchar *barva, uchar *barva2, int krok, int pocet_kroku){
-    if(barva < barva2){
-        return ((*barva2 - *barva)*(krok/pocet_kroku)) + *barva;
-    }else{
-        return ((*barva - *barva2)*(1 - (krok/pocet_kroku))) + *barva2;
-    }
+uchar MYmaska::interpolate(int barva2, int barva, int krok, int pocet_kroku){
+   // return (krok % 2) ? (barva) : (barva2);
+
+    //if(barva < barva2){
+
+        return (uchar)(((float)(barva2 - barva)*(1 - krok/(float)pocet_kroku)) + (float)barva);
+    //}else{
+    //    return ((barva - barva2)*((krok/(float)pocet_kroku))) + barva2;
+    //}
+
 }
 
-void MYmaska::skryjOci(MYoblicej *oblicej, IplImage *img){
+void MYmaska::skryjOci(MYoblicej *oblicej){
+    int sirka = 75;
+    int vyska = 55;
     this->oblicej = oblicej;
 
-    this->source = cvCreateImage(cvSize(img->width,img->height),IPL_DEPTH_8U, 3);
-    this->mask = cvCreateImage(cvSize(img->width,img->height),IPL_DEPTH_8U, 3);
-    cvCopy(img, this->mask);
+    this->open("../masks/oko.png"); //this->source = cvCreateImage(cvSize(img->width,img->height),IPL_DEPTH_8U, 3);
+    this->open_mask("../masks/oko_mask.png");
+    this->changeSize(0.1);
+    this->rotateImage(this->oblicej->uhel);
+    //this->mask = cvCreateImage(cvSize(img->width,img->height),IPL_DEPTH_8U, 3);
+    //cvCopy(img, this->mask);
     // naalokovan prostor
-
-    for(int i = 0; i < this->source->height; i++ ){
-        for(int j = 0 ; j < this->source->width; j++){
-            CV_IMAGE_ELEM( this->source, uchar, i, (j)*3)   = 255 - CV_IMAGE_ELEM( img, uchar, i, (j)*3); //b
-            CV_IMAGE_ELEM( this->source, uchar, i, (j)*3+1) = 255 - CV_IMAGE_ELEM( img, uchar, i, (j)*3+1); //g
-            CV_IMAGE_ELEM( this->source, uchar, i, (j)*3+2) = 255 - CV_IMAGE_ELEM( img, uchar, i, (j)*3+2); //r
+    CvRect rect = cvRect(oblicej->leve_oko_x + oblicej->sour_x - sirka/2, oblicej->leve_oko_y + oblicej->sour_y - vyska/2, sirka, vyska);
+    cvSetImageROI(this->frame, rect);//jsem na levem oku
+int k;
+    for(int i = rect.x; i < (rect.x + rect.width); i++ ){
+        int bod1B = CV_IMAGE_ELEM( this->frame, uchar, rect.y, (i)*3);//+rect.height-1
+        int bod1G = CV_IMAGE_ELEM( this->frame, uchar, rect.y, (i)*3+1);
+        int bod1R = CV_IMAGE_ELEM( this->frame, uchar, rect.y, (i)*3+2);
+        int bod2B = CV_IMAGE_ELEM( this->frame, uchar, rect.y+rect.height-1, (i)*3);//
+        int bod2G = CV_IMAGE_ELEM( this->frame, uchar, rect.y+rect.height-1, (i)*3+1);
+        int bod2R = CV_IMAGE_ELEM( this->frame, uchar, rect.y+rect.height-1, (i)*3+2);
+        k=0;
+        for(int j = rect.y; j < (rect.y + rect.height); j++){
+            CV_IMAGE_ELEM( this->frame, uchar, j, (i)*3)   = this->interpolate(bod1B,bod2B,k,rect.height); //b
+            CV_IMAGE_ELEM( this->frame, uchar, j, (i)*3+1) = this->interpolate(bod1G,bod2G,k,rect.height); //g
+            CV_IMAGE_ELEM( this->frame, uchar, j, (i)*3+2) = this->interpolate(bod1R,bod2R,k,rect.height); //r
+             k++;
         }
     }
-    this->changeSize(1.0);
-    this->rotateImage(this->oblicej->uhel);
+    cvResetImageROI(this->frame);
+
+    rect = cvRect(oblicej->prave_oko_x + oblicej->sour_x - sirka/2, oblicej->prave_oko_y + oblicej->sour_y - vyska/2, sirka, vyska);
+    cvSetImageROI(this->frame, rect);//jsem na levem oku
+
+    for(int i = rect.x; i < (rect.x + rect.width); i++ ){
+        int bod1B = CV_IMAGE_ELEM( this->frame, uchar, rect.y, (i)*3);//+rect.height-1
+        int bod1G = CV_IMAGE_ELEM( this->frame, uchar, rect.y, (i)*3+1);
+        int bod1R = CV_IMAGE_ELEM( this->frame, uchar, rect.y, (i)*3+2);
+        int bod2B = CV_IMAGE_ELEM( this->frame, uchar, rect.y+rect.height-1, (i)*3);//
+        int bod2G = CV_IMAGE_ELEM( this->frame, uchar, rect.y+rect.height-1, (i)*3+1);
+        int bod2R = CV_IMAGE_ELEM( this->frame, uchar, rect.y+rect.height-1, (i)*3+2);
+        k=0;
+        for(int j = rect.y; j < (rect.y + rect.height); j++){
+            CV_IMAGE_ELEM( this->frame, uchar, j, (i)*3)   = this->interpolate(bod1B,bod2B,k,rect.height); //b
+            CV_IMAGE_ELEM( this->frame, uchar, j, (i)*3+1) = this->interpolate(bod1G,bod2G,k,rect.height); //g
+            CV_IMAGE_ELEM( this->frame, uchar, j, (i)*3+2) = this->interpolate(bod1R,bod2R,k,rect.height); //r
+             k++;
+        }
+    }
+    cvResetImageROI(this->frame);
+
 }
 
 
