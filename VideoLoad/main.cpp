@@ -15,7 +15,7 @@ cout << "PRO DALSI SNIMEK STISTKNI KLAVESU q" << endl;
 
 MYvideo *video;
     video = new MYvideo();
-    video->open("../videos/PS2.avi");
+    video->open("../videos/L2 - RK.avi");
     video->writeInit();
 int counter = 0 ;
 
@@ -30,7 +30,7 @@ double tta = (double)cvGetTickCount();
         detect->setFrame(image);
 
         double tt = (double)cvGetTickCount();
-        if(counter >= 0){
+        if(counter >= 16){
 //            detect->FindFaces();
 //            detect->DrawSezOblic();
             detect->FindFaces();

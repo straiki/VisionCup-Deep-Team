@@ -11,6 +11,9 @@ MYdetektor::MYdetektor(IplImage * ctor)
     cout << "Nastaveni obrazku a klasifikatoru" << endl;
     this->MyFrame = ctor; // natahnuti obrazku
     this->_setHaars();
+
+    Xakt.eye1 = {0,};
+    Xakt.eye2 = {0,};
 }
 
 MYdetektor::~MYdetektor()
@@ -53,17 +56,18 @@ CvMemStorage* storage = 0;
            // cout << "Nasel facy" << endl;
             CvRect *face = (CvRect*)cvGetSeqElem(faces, i);
 
-            cvSetImageROI(this->MyFrame,cvRect(face->x,face->y + (face->height/5.5), face->width,face->height/3.0));
+            cvSetImageROI(this->MyFrame,cvRect(face->x,face->y + (face->height/4.5), face->width,face->height/2.0));
             //cvSetImageROI(this->MyFrame,*face);
-            //MYdisplay::ShowImage(this->MyFrame,'x');
+
             if(FindEyes() > 0){// hledam oci v ramci ksichtu
+                MYdisplay::ShowImage(MyFrame,'x');
                 cvResetImageROI(this->MyFrame);
                 //cvRectangle( this->MyFrame, cvPoint(face->x,face->y), cvPoint(face->x+face->width,face->y+face->height), CV_RGB(255,25,55), 2, 8, 0 );
                 Xakt.rFace = *face;
                 Xakt.eye1.x += Xakt.rFace.x;
-                Xakt.eye1.y += Xakt.rFace.y + (face->height/5.5);
+                Xakt.eye1.y += Xakt.rFace.y + (face->height/4.5);
                 Xakt.eye2.x += Xakt.rFace.x;
-                Xakt.eye2.y += Xakt.rFace.y + (face->height/5.5);
+                Xakt.eye2.y += Xakt.rFace.y + (face->height/4.5);
                 sX.push_back(Xakt);
             }
             else{
@@ -82,6 +86,8 @@ CvMemStorage* storage = 0;
 }
 
 int MYdetektor::FindEyes(){
+
+int ZARAZ = 1;
 int eyeCounter = 0;
 CvHaarClassifierCascade * cascadeEye = 0;
     cascadeEye = (CvHaarClassifierCascade*)cvLoad( cascEyes, 0, 0, 0 );
@@ -107,13 +113,19 @@ CvMemStorage * storageEye = 0;
                 Xakt.eye1 = *eye;
             }
             else{
+//                if( _prusecik(*eye,Xakt.eye1) > 0){
+//                    ZARAZ ++;
+//                }
                 Xakt.eye2 = *eye;
             }
 
             cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(0,25,255), 2, 8, 0 );
             eyeCounter++;
 
-            if(i == 1) break; //! ochrana, pouze dve oci!
+            if(i == ZARAZ) {
+                ZARAZ = 1;
+                break; //! ochrana, pouze dve oci!
+            }
         }
 
     cvReleaseHaarClassifierCascade(&cascadeEye);
@@ -122,6 +134,15 @@ CvMemStorage * storageEye = 0;
     return eyeCounter;
 }
 
+
+int MYdetektor::_prusecik(CvRect A, CvRect B){
+
+    if(A.x >= B.x && A.x <= B.x + B.width) return 1;
+    if(A.y >= B.y && A.y <= B.y + B.height) return 1;
+
+    return 0;
+
+}
 
 
 int MYdetektor::FindMouth(IplImage * imROI){

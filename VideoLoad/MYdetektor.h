@@ -73,6 +73,9 @@ class MYdetektor
         void setFrame(IplImage *);
     protected:
     private:
+
+        int _prusecik(CvRect,CvRect);
+
         void OrezPic(CvPoint, CvPoint);
         /**
         *   Setter - nasteveni vsech pouzivanych cascades
