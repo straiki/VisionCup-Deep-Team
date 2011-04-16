@@ -17,7 +17,7 @@
 					<Add option="-w" />
 					<Add option="-g" />
 					<Add directory="/usr/local/lib/" />
-					<Add directory="/usr/include/opencv/" />
+					<Add directory="../../../OpenCV-2.2.0/include/opencv" />
 				</Compiler>
 				<Linker>
 					<Add option="-lhighgui -lcv -lm -lcvaux" />

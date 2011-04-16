@@ -196,3 +196,115 @@
 	"stdhead.h"
 	"MYmaska.h"
 
+1302908175 source:/homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYdetektor.cpp
+	"MYdetektor.h"
+
+1302908175 /homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYdetektor.h
+	<cv.h>
+	<highgui.h>
+	<iostream>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<math.h>
+	<float.h>
+	<limits.h>
+	<time.h>
+	<ctype.h>
+
+1302908175 source:/homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYdisplay.cpp
+	"MYdisplay.h"
+
+1302908175 /homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYdisplay.h
+
+1291520124 /usr/local/include/opencv//cv.h
+	"opencv2/core/core_c.h"
+	"opencv2/core/core.hpp"
+	"opencv2/imgproc/imgproc_c.h"
+	"opencv2/imgproc/imgproc.hpp"
+	"opencv2/video/tracking.hpp"
+	"opencv2/features2d/features2d.hpp"
+	"opencv2/flann/flann.hpp"
+	"opencv2/calib3d/calib3d.hpp"
+	"opencv2/objdetect/objdetect.hpp"
+	"opencv2/legacy/compat.hpp"
+	"opencv2/core/internal.hpp"
+
+1291520124 /usr/local/include/opencv//highgui.h
+	"opencv2/core/core_c.h"
+	"opencv2/core/core.hpp"
+	"opencv2/highgui/highgui_c.h"
+	"opencv2/highgui/highgui.hpp"
+
+1302908175 source:/homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYmaska.cpp
+	"MYmaska.h"
+	"MYoblicej.h"
+	"stdhead.h"
+
+1302908175 /homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYmaska.h
+	"stdhead.h"
+	"MYoblicej.h"
+
+1302908441 /homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/stdhead.h
+	<stdlib.h>
+	<stdio.h>
+	<iostream>
+	<math.h>
+	<cv.h>
+	<cxcore.h>
+	<highgui.h>
+	<highgui.h>
+	<string>
+
+1291520124 /usr/local/include/opencv//cxcore.h
+	"opencv2/core/core_c.h"
+	"opencv2/core/core.hpp"
+
+1302908175 /homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYoblicej.h
+
+1302908175 source:/homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYoblicej.cpp
+	"MYoblicej.h"
+	"stdhead.h"
+
+1302908175 source:/homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYvideo.cpp
+	"MYvideo.h"
+	"MYoblicej.h"
+
+1302908175 /homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYvideo.h
+	"stdhead.h"
+	"MYmaska.h"
+
+1302908600 source:/homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/main.cpp
+	"stdhead.h"
+	"MYdetektor.h"
+	"MYmaska.h"
+	"MYvideo.h"
+	"MYoblicej.h"
+	<iostream>
+	<vector>
+
+1291520124 /homes/eva/xv/xvahal02/Desktop/OpenCV-2.2.0/include/opencv/cv.h
+	"opencv2/core/core_c.h"
+	"opencv2/core/core.hpp"
+	"opencv2/imgproc/imgproc_c.h"
+	"opencv2/imgproc/imgproc.hpp"
+	"opencv2/video/tracking.hpp"
+	"opencv2/features2d/features2d.hpp"
+	"opencv2/flann/flann.hpp"
+	"opencv2/calib3d/calib3d.hpp"
+	"opencv2/objdetect/objdetect.hpp"
+	"opencv2/legacy/compat.hpp"
+	"opencv2/core/internal.hpp"
+
+1291520124 /homes/eva/xv/xvahal02/Desktop/OpenCV-2.2.0/include/opencv/highgui.h
+	"opencv2/core/core_c.h"
+	"opencv2/core/core.hpp"
+	"opencv2/highgui/highgui_c.h"
+	"opencv2/highgui/highgui.hpp"
+
+1291520124 /homes/eva/xv/xvahal02/Desktop/OpenCV-2.2.0/include/opencv/cxcore.h
+	"opencv2/core/core_c.h"
+	"opencv2/core/core.hpp"
+

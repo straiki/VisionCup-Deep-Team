@@ -59,7 +59,7 @@ int main( int argc, char** argv )
 
     MYvideo *video;
     video = new MYvideo();
-    video->open("video.avi");
+    video->open(0);
     int i = 0;
     //video->open("../videos/L1 - JH.avi");
     for(;;){
