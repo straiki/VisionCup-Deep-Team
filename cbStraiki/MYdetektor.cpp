@@ -238,18 +238,22 @@ CvPoint MYdetektor::_findEyeCenter(CvPoint a, CvPoint b){
 #define KNIR 1
 #define KAJA 2
 #define KLOBOUK 3
+#define OCI 4
 void MYdetektor::DrawSezOblic(){
 
 
 
     for(int i = 0; i < sXichts.size() ; i++){
         MYmaska *maska;
-        maska = new MYmaska();
-        maska->vytvorKaju(&sXichts.at(i));
+        maska = new MYmaska(MyFrame);
+        //maska->vytvorKaju(&sXichts.at(i));
+        //maska->vytvorPusu(&sXichts.at(i));
+        maska->vytvorKnirek(&sXichts.at(i));
+        //maska->vytvorKlobouk(&sXichts.at(i));
         IplImage *oko = cvLoadImage("../img/oko.jpg");
-        //maska->skryjOci(&sXichts.at(i), );
+        maska->skryjOci(&sXichts.at(i), oko);
 
-        MYvideo::addMask(MyFrame,maska,KAJA);
+        maska->addMask(MyFrame,OCI);
 //    	cvRectangle( this->MyFrame, sezOblic.at(i).a, sezOblic.at(i).b, CV_RGB(255,125,0), 2, 8, 0 );
     	//MYdisplay::ShowImage(this->MyFrame,'n');
         //OrezPic(sezOblic.at(i).a,sezOblic.at(i).b);

@@ -51,16 +51,16 @@ class MYdetektor
         *   podle klasifikatoru nejakeho z OpenCV
         */
         int DrawFaces();
+
         /**
         *   Metoda, ktera najde oblicej v obrazku
         */
         int FindFaces();
+        int FindEyes();
+        int FindMouth(IplImage *);
 
         int Fpokus();
         int Epokus();
-
-        int FindEyes(IplImage *);
-        int FindMouth(IplImage *);
         /**
         *   Vykresli obdelniky kolem nalezenych obliceju
         */

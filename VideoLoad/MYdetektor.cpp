@@ -29,7 +29,7 @@ void MYdetektor::setFrame(IplImage * setter){
 }
 
 
-int MYdetektor::Fpokus(){
+int MYdetektor::FindFaces(){
 int FaceCounter = 0;
 // Vytvoreni a naloadovani Klasifikatoru pro oblicej
 CvHaarClassifierCascade* cascade = 0;
@@ -55,7 +55,7 @@ CvMemStorage* storage = 0;
 
             cvSetImageROI(this->MyFrame,*face);
             //MYdisplay::ShowImage(this->MyFrame,'x');
-            if(Epokus() > 0){// hledam oci v ramci ksichtu
+            if(FindEyes() > 0){// hledam oci v ramci ksichtu
                 cvResetImageROI(this->MyFrame);
                 //cvRectangle( this->MyFrame, cvPoint(face->x,face->y), cvPoint(face->x+face->width,face->y+face->height), CV_RGB(255,25,55), 2, 8, 0 );
                 Xakt.rFace = *face;
@@ -80,7 +80,7 @@ CvMemStorage* storage = 0;
     return FaceCounter; // vracim pocet nalezenych ksichtu (i s ocima)
 }
 
-int MYdetektor::Epokus(){
+int MYdetektor::FindEyes(){
 int eyeCounter = 0;
 CvHaarClassifierCascade * cascadeEye = 0;
     cascadeEye = (CvHaarClassifierCascade*)cvLoad( cascEyes, 0, 0, 0 );
@@ -121,115 +121,7 @@ CvMemStorage * storageEye = 0;
     return eyeCounter;
 }
 
-int MYdetektor::FindFaces(){
-    // Create memory for calculations
-static CvMemStorage* storage = 0;
-// Create a new Haar classifier
-static CvHaarClassifierCascade* cascade = 0;
 
-
-    //cout << "Hledam Obliceje" << endl;
-    cascade = (CvHaarClassifierCascade*)cvLoad( cascFace, 0, 0, 0 );
-
-    if( !cascade ){ // kontrola nacteni cascade
-        fprintf( stderr, "ERROR: Could not load classifier cascade\n" );
-        return -1;
-    }
-    storage = cvCreateMemStorage(0); // vynulovani pametoveho uloziste
-    int scale = 1; // skala, nejaky pomer zvetseni dejme tomu == zmensieni obrazku podil velikosti
-
-
-    CvPoint pt1, pt2;
-    CvPoint obl1,obl2;
-    cvClearMemStorage( storage );
-    //prochazim jednotlive vyrezy
-        CvSeq* faces = cvHaarDetectObjects( this->MyFrame, cascade, storage,
-                                            1.2, 4, CV_HAAR_DO_CANNY_PRUNING,
-                                            cvSize(40, 40) );
-        for( int i = 0; i < (faces ? faces->total : 0); i++ )
-        {
-           // Create a new rectangle for drawing the face
-            CvRect* r = (CvRect*)cvGetSeqElem( faces, i );
-
-            // Find the dimensions of the face,and scale it if necessary
-            obl1.x = r->x*scale;
-            obl2.x = (r->x+r->width)*scale;
-            obl1.y = r->y*scale;
-            obl2.y = (r->y+r->height)*scale;
-
-            cvSetImageROI( this->MyFrame,cvRect( obl1.x, obl1.y, r->width, r->height));
-
-//            MYoblicej::zeroesOblicej(&xicht);
-            if (FindEyes(this->MyFrame) > 1){ // detekovany oblicej
-//                xicht.sour_x = obl1.x;
-//                xicht.sour_y = obl1.y;
-//                xicht.sirka = r->width;
-//                xicht.vyska = r->height;
-//
-//                xicht.vypocti_klicove_body();
-//                sXichts.push_back(xicht);
-               // FindMouth(this->MyFrame);
-                cvResetImageROI(this->MyFrame);
-                //cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
-                if(i >= 0) break;
-            }
-            cvResetImageROI(this->MyFrame);
-
-
-
-
-        }
-        cvReleaseHaarClassifierCascade(&cascade);
-        cvReleaseMemStorage(&storage);
-    return sX.size(); // vraci pocet nalezenych obliceju
-
-}
-
-int MYdetektor::FindEyes(IplImage * imROI){
-
-static CvMemStorage* storageEye = 0;
-static CvHaarClassifierCascade* cascadeEye = 0;
-
-
-   // cout << "Hledam Ocicka" << endl;
-    cascadeEye = (CvHaarClassifierCascade*)cvLoad( cascEyes, 0, 0, 0 );
-
-    if( !cascadeEye ){ // kontrola nacteni cascade
-        fprintf( stderr, "ERROR: Could not load classifier cascade\n" );
-        return -1;
-    }
-    storageEye = cvCreateMemStorage(0); // vynulovani pametoveho uloziste
-    int scale = 1; // skala, nejaky pomer zvetseni dejme tomu == zmensieni obrazku podil velikosti
-
-
-    CvPoint pt1, pt2;
-    int i;
-
-    cvClearMemStorage( storageEye );
-        CvSeq* eyes = cvHaarDetectObjects( imROI, cascadeEye, storageEye,
-                                            1.25, 4, 0,
-                                            cvSize(35, 15) );
-//! dobre paramatry 1.15,4,0=CVHAAR,35,15
-    if(eyes->total > 1){ // Pouze pro vice jak jedno Oci :)
-        for( i = 0; i < (eyes ? eyes->total : 0); i++ )
-        {
-           // Create a new rectangle for drawing the face
-            CvRect* r = (CvRect*)cvGetSeqElem( eyes, i );
-            // Find the dimensions of the face,and scale it if necessary
-            pt1.x = r->x*scale;
-            pt2.x = (r->x+r->width)*scale;
-            pt1.y = r->y*scale;
-            pt2.y = (r->y+r->height)*scale;
-                //cvRectangle( imROI, pt1, pt2, CV_RGB(0,125,255), 2, 8, 0 );
-                _findEyeCenter(pt1,pt2);
-
-                if(i == 1) break;
-        }
-    }
-    cvReleaseHaarClassifierCascade(&cascadeEye);
-   // cvReleaseMemStorage(&storageEye);
-return eyes->total;
-}
 
 int MYdetektor::FindMouth(IplImage * imROI){
 
@@ -326,7 +218,7 @@ IplImage *img2 = cvCreateImage(cvGetSize(MyFrame),
 /* copy subimage */
 cvCopy(MyFrame, img2, NULL);
 
-    FindEyes(img2);
+//    FindEyes(img2);
 cvResetImageROI(MyFrame);
     MYdisplay::ShowImage(MyFrame,"aj");
 MYdisplay::ShowImage(img2,'n');
