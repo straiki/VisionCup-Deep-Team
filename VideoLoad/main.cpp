@@ -24,7 +24,11 @@ double tta = (double)cvGetTickCount();
 
 MYvideo *video;
     video = new MYvideo();
+<<<<<<< HEAD
     video->open("../videos/TV.mov");
+=======
+    video->open("../videos/L2 - RK.avi");
+>>>>>>> f6291df3a16e64b82fe8f15b5814843d79f81396
     video->writeInit();
 int counter = 0 ;
 
@@ -39,8 +43,9 @@ detect = new MYdetektor(NULL); // zpracuj frame
         //Zpracovani snimku
         detect->setFrame(image);
         if(counter > 0){
-            detect->FindFaces();
-            detect->DrawSezOblic();
+//            detect->FindFaces();
+//            detect->DrawSezOblic();
+            detect->Fpokus();
             MYdisplay::ShowImage(detect->MyFrame,(char)-1);
         }
 

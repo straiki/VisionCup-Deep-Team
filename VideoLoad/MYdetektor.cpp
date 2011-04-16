@@ -222,9 +222,9 @@ void MYdetektor::DrawSezOblic(){
     for(int i = 0; i < sXichts.size() ; i++){
         MYmaska *maska;
         maska = new MYmaska();
-        maska->vytvorKlobouk(&sXichts.at(i));
+        maska->vytvorPusu(&sXichts.at(i));
 
-        MYvideo::addMask(MyFrame,maska,3);
+        MYvideo::addMask(MyFrame,maska,0);
 //    	cvRectangle( this->MyFrame, sezOblic.at(i).a, sezOblic.at(i).b, CV_RGB(255,125,0), 2, 8, 0 );
     	//MYdisplay::ShowImage(this->MyFrame,'n');
   //  	OrezPic(sezOblic.at(i).a,sezOblic.at(i).b);
