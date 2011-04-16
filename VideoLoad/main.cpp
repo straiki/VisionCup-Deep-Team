@@ -10,25 +10,12 @@ int main( int argc, char** argv )
 
 MYdetektor *detect;
 
-//IplImage * img = cvLoadImage(argv[1]);
-//            double tt = (double)cvGetTickCount();
-//        detect = new MYdetektor(img); // zpracuj frame
-//        detect->FindFaces();
-//            tt = (double)cvGetTickCount() - tt;
-//            cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
-
-
-
 cout << "PRO DALSI SNIMEK STISTKNI KLAVESU q" << endl;
-double tta = (double)cvGetTickCount();
+
 
 MYvideo *video;
     video = new MYvideo();
-<<<<<<< HEAD
-    video->open("../videos/TV.mov");
-=======
-    video->open("../videos/L2 - RK.avi");
->>>>>>> f6291df3a16e64b82fe8f15b5814843d79f81396
+    video->open("../videos/L2 - MD.avi");
     video->writeInit();
 int counter = 0 ;
 
@@ -36,9 +23,8 @@ detect = new MYdetektor(NULL); // zpracuj frame
 
     for(;;){
         IplImage *image = video->next_frame();
-        if( image == NULL) break;
-            //meric casu
-            double tt = (double)cvGetTickCount();
+
+        if( image == NULL) break;//Pri nacteni prazdneho FRAMU == konec videa
 
         //Zpracovani snimku
         detect->setFrame(image);
@@ -49,18 +35,15 @@ detect = new MYdetektor(NULL); // zpracuj frame
             MYdisplay::ShowImage(detect->MyFrame,(char)-1);
         }
 
-            //meric casu
-            tt = (double)cvGetTickCount() - tt;
-            cout << tt/(cvGetTickFrequency()*1000.) << "ms" << endl;
 
-
-        //moznost cekani na klavesu, musi se pridat okno ale
         char c = cvWaitKey(33);
         if(c == 27) break;
         video->writeFrame(image);
+
         cout << endl << counter << " - takovy snimek" << endl;
         counter++;
     }
+        double tta = (double)cvGetTickCount();
             tta = (double)cvGetTickCount() - tta;
             cout << tta/(cvGetTickFrequency()*1000.) << " -- CELKOVY CAS ms" << endl;
   //  detect.DrawSezOblic();

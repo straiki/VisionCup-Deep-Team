@@ -57,6 +57,7 @@ class MYdetektor
         int FindFaces();
 
         int Fpokus();
+        int Epokus();
 
         int FindEyes(IplImage *);
         int FindMouth(IplImage *);
