@@ -51,7 +51,7 @@ void MYvideo::open(int cam = -1){
 void MYvideo::writeInit(){
     string name = "vystup.avi";
     double fps = -1;
-    //if((fps = cvGetCaptureProperty(this->capture, CV_CAP_PROP_FPS))==0)
+    if((fps = cvGetCaptureProperty(this->capture, CV_CAP_PROP_FPS))==0)
         fps = 10; // nelze vytahnout fps
 	cout << "Nastavuji " << fps << " FPS" << endl;
 	CvSize size = cvSize((int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH),(int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT));
@@ -101,18 +101,46 @@ IplImage* MYvideo::addMask(IplImage *frame, MYmaska *mask,int typ){
 
     for (i = start_y; i < start_y + mask->rotated->height; i++) {
         for (j = start_x; j < start_x + mask->rotated->width; j++) {
-			if(CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3)   < Thres &&
-			   CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+1) > 255-HT &&
-			   CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+2) < Thres) {
-
-				continue;
-            }
-            else{
-                ((uchar*)(frame->imageData + i * frame->widthStep))[j*3]   = CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3); //b
-                ((uchar*)(frame->imageData + i * frame->widthStep))[j*3+1] = CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+1); //g
-                ((uchar*)(frame->imageData + i * frame->widthStep))[j*3+2] = CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+2); //r
-
-            }
+			
+			
+			float vaha_r = (CV_IMAGE_ELEM( mask->mask3, uchar, i - start_y, (j - start_x)*3+0)/255);
+			float vaha_g = (CV_IMAGE_ELEM( mask->mask3, uchar, i - start_y, (j - start_x)*3+1)/255);
+			float vaha_b = (CV_IMAGE_ELEM( mask->mask3, uchar, i - start_y, (j - start_x)*3+2)/255);
+			
+			int barva_r = 0;
+			int barva_g = 0;
+			int barva_b = 0;
+			
+			
+			barva_r = vaha_r*CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+0) + (1.0-vaha_r)*CV_IMAGE_ELEM( frame, uchar, i, j*3+0);
+			barva_g = vaha_g*CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+1) + (1.0-vaha_g)*CV_IMAGE_ELEM( frame, uchar, i, j*3+1);
+			barva_b = vaha_b*CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+2) + (1.0-vaha_b)*CV_IMAGE_ELEM( frame, uchar, i, j*3+2);
+			
+			if(barva_r>255) barva_r = 255;
+			if(barva_g>255) barva_g = 255;
+			if(barva_b>255) barva_b = 255;
+			
+			if(barva_r<0) barva_r = 0;
+			if(barva_g<0) barva_g = 0;
+			if(barva_b<0) barva_b = 0;
+			
+			((uchar*)(frame->imageData + i * frame->widthStep))[j*3+0]   = (uchar)barva_r;
+			((uchar*)(frame->imageData + i * frame->widthStep))[j*3+1]   = (uchar)barva_g;
+			((uchar*)(frame->imageData + i * frame->widthStep))[j*3+2]   = (uchar)barva_b;
+			
+			
+//			if(CV_IMAGE_ELEM( mask->mask3, uchar, i - start_y, (j - start_x)*3)   < Thres &&
+//			   CV_IMAGE_ELEM( mask->mask3, uchar, i - start_y, (j - start_x)*3+1) > 255-HT &&
+//			   CV_IMAGE_ELEM( mask->mask3, uchar, i - start_y, (j - start_x)*3+2) < Thres) {
+//
+//				continue;
+//            }
+//            else{
+//                ((uchar*)(frame->imageData + i * frame->widthStep))[j*3]   = CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3); //b
+//                ((uchar*)(frame->imageData + i * frame->widthStep))[j*3+1] = CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+1); //g
+//                ((uchar*)(frame->imageData + i * frame->widthStep))[j*3+2] = CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3+2); //r
+//
+//            }
         }
     }
 

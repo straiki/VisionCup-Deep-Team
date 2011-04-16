@@ -18,16 +18,26 @@ void MYmaska::open(string name){
     this->source = cvLoadImage(name.c_str());
 }
 
-void MYmaska::changeSize(float size){
-   // IplImage *source = cvLoadImage("obrazek.png");
+void MYmaska::open_mask(string name){
+    this->mask = cvLoadImage(name.c_str());
+}
 
+void MYmaska::changeSize(float size){
+	
+	//zmena originalu
     this->edited = cvCreateImage(cvSize((int)(this->source->width*size),
-                                                 (int)(this->source->height*size)),
-                                          source->depth,
-                                          source->nChannels);
+										(int)(this->source->height*size)),
+								 source->depth,
+								 source->nChannels);
     cvResize(this->source, this->edited);
-    //cvCopy(this->edited, this->source);
-    //cvReleaseImage(&this->edited);
+	
+	//zmena masky
+    this->mask2 = cvCreateImage(cvSize((int)(this->mask->width*size),
+										(int)(this->mask->height*size)),
+								 mask->depth,
+								 mask->nChannels);
+    cvResize(this->mask, this->mask2);
+	
 }
 
 // Rotate the image clockwise (or counter-clockwise if negative).
@@ -40,7 +50,7 @@ void MYmaska::rotateImage(float angleRadians)
 	CvMat M = cvMat(2, 3, CV_32F, m);
 	int w = this->edited->width;
 	int h = this->edited->height;
-	//float angleRadians = angleDegrees * ((float)CV_PI / 180.0f);
+	
 	m[0] = (float)( cos(angleRadians) );
 	m[1] = (float)( sin(angleRadians) );
 	m[3] = -m[1];
@@ -55,14 +65,19 @@ void MYmaska::rotateImage(float angleRadians)
 	sizeRotated.height = cvRound(MAX(w,h));
 
 	// Rotate
-	this->rotated = cvCreateImage( sizeRotated,
-		this->edited->depth, this->edited->nChannels );
+	this->rotated = cvCreateImage(sizeRotated,
+								  this->edited->depth,
+								  this->edited->nChannels );
+	
+	this->mask3 = cvCreateImage(sizeRotated,
+								this->mask2->depth,
+								this->mask2->nChannels );
 
 	// Transform the image
 	cvGetQuadrangleSubPix( this->edited, this->rotated, &M);
+	
+	cvGetQuadrangleSubPix( this->mask2, this->mask3, &M);
 
-    //cvCopy(this->edited, this->source);
-    //cvReleaseImage(&this->edited);
 }
 
 void MYmaska::vytvorKnirek(MYoblicej *oblicej){
@@ -77,7 +92,8 @@ void MYmaska::vytvorKnirek(MYoblicej *oblicej){
 void MYmaska::vytvorKaju(MYoblicej *oblicej){
 
     this->oblicej = oblicej;
-    this->open("../masks/gott2.png");
+    this->open("../masks/gott.png");
+    this->open_mask("../masks/gott_mask.png");
     this->changeSize(0.5);
     this->rotateImage(this->oblicej->uhel);
 

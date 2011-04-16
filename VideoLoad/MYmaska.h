@@ -18,7 +18,12 @@ public:
 	MYmaska();	//konstruktor
 	virtual ~MYmaska();	//destruktor
 	void open(string);
-
+	void open_mask(string);
+	
+	
+    IplImage *mask;
+    IplImage *mask2;
+    IplImage *mask3;
     IplImage *source;
     IplImage *edited;
     IplImage *rotated;
