@@ -2,6 +2,7 @@
 #include "MYdisplay.h"
 #include "MYvideo.h"
 
+
 #include <iostream>
 #include <vector>
 
@@ -15,7 +16,7 @@ cout << "PRO DALSI SNIMEK STISTKNI KLAVESU q" << endl;
 
 MYvideo *video;
     video = new MYvideo();
-    video->open("../videos/deep/new/Video 11.wmv");
+    video->open("../videos/deep/new/Video 6.wmv");
     video->writeInit();
 int counter = 0 ;
 
