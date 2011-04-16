@@ -50,6 +50,8 @@ public:
 	*   VYkresli dulezite, vypocitane body z obliceje
 	*/
 	void DrawHighPoints(IplImage *);
+	void DrawVodiciObdel(IplImage *);
+
 	void ber_v_uvahu(MYoblicej*);
 };
 

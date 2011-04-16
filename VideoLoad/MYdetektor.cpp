@@ -119,7 +119,7 @@ CvMemStorage * storageEye = 0;
                 Xakt.eye2 = *eye;
             }
 
-            cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(0,25,255), 2, 8, 0 );
+            //cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(0,25,255), 2, 8, 0 );
             eyeCounter++;
 
             if(i == ZARAZ) {

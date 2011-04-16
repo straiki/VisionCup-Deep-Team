@@ -44,19 +44,7 @@ void MYoblicej::swapEyes(CvRect * R, CvRect * L){
         }
 }
 void MYoblicej::DrawOblicej(IplImage * img){
-        CvPoint h1 = cvPoint(sour_x,sour_y);
-        CvPoint h2 = cvPoint(sour_x+sirka,sour_y+vyska);
 
-        cvRectangle(img,h1,h2,CV_RGB(128,0,0), 1, 8, 0);
-
-    	//Vykresleni Oci
-        h1 = cvPoint(Reye.x,Reye.y);
-        h2 = cvPoint(Reye.x + Reye.width,Reye.y + Reye.height);
-    	cvRectangle(img,h1,h2,CV_RGB(0,0,128), 1, 8, 0);
-
-        h1 = cvPoint(Leye.x,Leye.y);
-        h2 = cvPoint(Leye.x + Leye.width,Leye.y + Leye.height);
-    	cvRectangle(img,h1,h2,CV_RGB(0,128,128), 1, 8, 0);
 
 
        MYmaska *mask = new MYmaska(img);
@@ -72,7 +60,6 @@ void MYoblicej::DrawOblicej(IplImage * img){
 }
 
 void MYoblicej::DrawHighPoints(IplImage * img){
-
     MYdisplay::DrawPoint(img,Pcent,5,2,CV_RGB(0,0,0));
     MYdisplay::DrawPoint(img,PeyeL,5,2,CV_RGB(0,128,128));
     MYdisplay::DrawPoint(img,PeyeR,5,2,CV_RGB(0,0,128));
@@ -81,6 +68,24 @@ void MYoblicej::DrawHighPoints(IplImage * img){
     MYdisplay::DrawPoint(img,Pmoust,5,2,CV_RGB(255,255,128));
 
     MYdisplay::DrawPoint(img,Phead,6,2,CV_RGB(255,0,0));
+
+}
+
+void MYoblicej::DrawVodiciObdel(IplImage * img){
+
+        CvPoint h1 = cvPoint(sour_x,sour_y);
+        CvPoint h2 = cvPoint(sour_x+sirka,sour_y+vyska);
+
+        cvRectangle(img,h1,h2,CV_RGB(128,0,0), 1, 8, 0);
+
+    	//Vykresleni Oci
+        h1 = cvPoint(Reye.x,Reye.y);
+        h2 = cvPoint(Reye.x + Reye.width,Reye.y + Reye.height);
+    	cvRectangle(img,h1,h2,CV_RGB(0,0,128), 1, 8, 0);
+
+        h1 = cvPoint(Leye.x,Leye.y);
+        h2 = cvPoint(Leye.x + Leye.width,Leye.y + Leye.height);
+    	cvRectangle(img,h1,h2,CV_RGB(0,128,128), 1, 8, 0);
 
 }
 
