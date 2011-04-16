@@ -180,9 +180,14 @@ void MYoblicej::ber_v_uvahu(MYoblicej *pre_ksicht){
 
     if(pre_ksicht==NULL) return;
 
-    this->uhel = (pre_ksicht->uhel+this->uhel)/2.0;
-    if((this->uhel>2.0)&&(this->uhel<5.0)) this->uhel +=3.1415926535;
+    if(this->uhel>3.1415926535){
+        this->uhel -= 6.283185307;
+    }
+    if(pre_ksicht->uhel>3.1415926535){
+        pre_ksicht->uhel -= 6.283185307;
+    }
 
+    this->uhel = (pre_ksicht->uhel+this->uhel)/2.0;
     this->sirka = (pre_ksicht->sirka+this->sirka)/2.0;
     this->vyska = (pre_ksicht->vyska+this->vyska)/2.0;
     this->prave_oko_x = (pre_ksicht->prave_oko_x+this->prave_oko_x)/2.0;
