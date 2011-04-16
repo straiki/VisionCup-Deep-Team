@@ -31,14 +31,34 @@ void MYdetektor::setFrame(IplImage * setter){
 
 int MYdetektor::Fpokus(){
 CvHaarClassifierCascade* cascade = 0;
-cascade = (CvHaarClassifierCascade*)cvLoad( cascFace, 0, 0, 0 );
+    cascade = (CvHaarClassifierCascade*)cvLoad( cascFace, 0, 0, 0 );
 
+CvMemStorage* storage = 0;
+    storage = cvCreateMemStorage(0);
     if( !cascade ){ // kontrola nacteni cascade
         fprintf( stderr, "ERROR: Could not load classifier cascade\n" );
         return -1;
     }
 
+    cvClearMemStorage( storage );
+    //prochazim jednotlive vyrezy
+        CvSeq* faces = cvHaarDetectObjects( this->MyFrame, cascade, storage,
+                                            1.2, 4, CV_HAAR_DO_CANNY_PRUNING,
+                                            cvSize(40, 40) );
+
+        if(faces->total > 0){
+
+            for(int i = 0; i < faces->total ; i++){
+                cout << "Nasel facy" << endl;
+                CvRect *face = (CvRect*)cvGetSeqElem(faces, i);
+                cvRectangle( this->MyFrame, cvPoint(face->x,face->y), cvPoint(face->x+face->width,face->y+face->height), CV_RGB(255,25,55), 2, 8, 0 );
+            }
+        }
+
+
+
     cvReleaseHaarClassifierCascade(&cascade);
+    cvReleaseMemStorage(&storage);
 
 }
 
