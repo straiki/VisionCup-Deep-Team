@@ -17,6 +17,9 @@ private:
     void _Moustache();
     void _Hat(CvRect);
 
+    void _makeMoustache();
+    void _drawTexture();
+
 
 //funkce
 public:

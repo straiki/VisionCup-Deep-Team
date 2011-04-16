@@ -1,5 +1,6 @@
 #include "MYoblicej.h"
 #include "MYdisplay.h"
+#include "MYvideo.h"
 
 #include "stdhead.h"
 using namespace std;
@@ -14,6 +15,12 @@ MYoblicej::MYoblicej(CvRect Face, CvRect rEye1, CvRect rEye2){
     this->Reye = rEye1;
     this->Leye = rEye2;
     swapEyes(&this->Reye,&this->Leye);
+
+    this->prave_oko_x = Reye.x;
+    this->prave_oko_y = Reye.y;
+
+    this->leve_oko_x = Leye.x;
+    this->leve_oko_y = Leye.y;
 
     _CenterPoint(Face);
 
@@ -50,6 +57,13 @@ void MYoblicej::DrawOblicej(IplImage * img){
         h1 = cvPoint(Leye.x,Leye.y);
         h2 = cvPoint(Leye.x + Leye.width,Leye.y + Leye.height);
     	cvRectangle(img,h1,h2,CV_RGB(0,128,128), 1, 8, 0);
+
+        MYmaska maska;
+            maska.open("../masks/klobouk.png");
+            maska.open_mask("../masks/klobouk_mask.png");
+            maska.vytvorKlobouk(this);
+
+    	 MYvideo::addMask(img,&maska,3);
 }
 
 void MYoblicej::DrawHighPoints(IplImage * img){
@@ -88,23 +102,15 @@ void MYoblicej::_Hat(CvRect F){
     Phead = cvPoint(F.x + F.width/2,F.y);
 
 }
+
+void MYoblicej::_makeMoustache(){
+//    IplImage * Tmoust;
+//    MYdisplay::LoadImage( &Tmoust, "../masks/mustache.png");
+//    MYdisplay::ShowImage(Tmoust,'x');
+
+}
 //vypocte klicove body
 void MYoblicej::vypocti_klicove_body(){
-
-    prave_oko_x = PeyeR.x;
-    prave_oko_y = PeyeR.y;
-
-    leve_oko_x = PeyeL.x;
-    leve_oko_y = PeyeL.y;
-
-    if(prave_oko_x<leve_oko_x){
-		int pomoc_x = prave_oko_x;
-		int pomoc_y = prave_oko_y;
-		prave_oko_x = leve_oko_x;
-		prave_oko_y = leve_oko_y;
-		leve_oko_x = pomoc_x;
-		leve_oko_y = pomoc_y;
-	}
 
 	printf("pocitam klicove body\n");
 	//rozdil mezi ocima
