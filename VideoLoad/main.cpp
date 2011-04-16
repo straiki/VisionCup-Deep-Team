@@ -15,7 +15,7 @@ cout << "PRO DALSI SNIMEK STISTKNI KLAVESU q" << endl;
 
 MYvideo *video;
     video = new MYvideo();
-    video->open("../videos/L2 - RK.avi");
+    video->open("../videos/deep/new/Video 6.wmv");
     video->writeInit();
 int counter = 0 ;
 
