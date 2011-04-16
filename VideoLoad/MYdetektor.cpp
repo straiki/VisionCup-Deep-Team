@@ -56,13 +56,16 @@ CvMemStorage* storage = 0;
            // cout << "Nasel facy" << endl;
             CvRect *face = (CvRect*)cvGetSeqElem(faces, i);
 
-            cvSetImageROI(this->MyFrame,cvRect(face->x,face->y + (face->height/4.5), face->width,face->height/2.5));
+            CvRect forRoi = cvRect(face->x,face->y + (face->height/4.5), face->width,face->height/2.8);
+            cvSetImageROI(this->MyFrame,forRoi);
             //cvSetImageROI(this->MyFrame,*face);
 
-            if(FindEyes() > 0){// hledam oci v ramci ksichtu
+            if(FindEyes(forRoi) > 0){// hledam oci v ramci ksichtu
                // MYdisplay::ShowImage(MyFrame,'x');
                 cvResetImageROI(this->MyFrame);
-                //cvRectangle( this->MyFrame, cvPoint(face->x,face->y), cvPoint(face->x+face->width,face->y+face->height), CV_RGB(255,25,55), 2, 8, 0 );
+                cvRectangle( this->MyFrame, cvPoint(face->x,face->y), cvPoint(face->x+face->width,face->y+face->height), CV_RGB(255,25,55), 2, 8, 0 );
+
+
                 Xakt.rFace = *face;
                 Xakt.eye1.x += Xakt.rFace.x;
                 Xakt.eye1.y += Xakt.rFace.y + (face->height/4.5);
@@ -85,7 +88,7 @@ CvMemStorage* storage = 0;
     return FaceCounter; // vracim pocet nalezenych ksichtu (i s ocima)
 }
 
-int MYdetektor::FindEyes(){
+int MYdetektor::FindEyes(CvRect Roi){
 
 int ZARAZ = 1;
 int eyeCounter = 0;
@@ -113,8 +116,23 @@ CvMemStorage * storageEye = 0;
                 Xakt.eye1 = *eye;
             }
             else{
+                if( _prekriz(*eye,Xakt.eye1,Roi) <0){
+                // Oci sou prekrizene
+                    cout << "prekriz" << endl;
+ // cvRectangle(this->MyFrame, cvPoint(Xakt.eye1.x,Xakt.eye1.y), cvPoint(Xakt.eye1.x+Xakt.eye1.width,Xakt.eye1.y+Xakt.eye1.height), CV_RGB(0,25,55), 2, 8, 0 );
+ // cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(255,25,55), 2, 8, 0 );
+
+                           // MYdisplay::ShowImage(MyFrame,'x');
+                    continue;
+                }
 //                if( _prusecik(*eye,Xakt.eye1) > 0){
 //                    ZARAZ ++;
+////        MYdisplay::DrawPoint(this->MyFrame,cvPoint(eye->x,eye->y));
+////
+////   cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(255,25,55), 2, 8, 0 );
+//eyeCounter++;
+
+//                    continue;
 //                }
                 Xakt.eye2 = *eye;
             }
@@ -122,10 +140,11 @@ CvMemStorage * storageEye = 0;
             //cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(0,25,255), 2, 8, 0 );
             eyeCounter++;
 
-            if(i == ZARAZ) {
+            if(i >= ZARAZ) {
                 ZARAZ = 1;
                 break; //! ochrana, pouze dve oci!
             }
+           //
         }
 
     cvReleaseHaarClassifierCascade(&cascadeEye);
@@ -135,11 +154,22 @@ CvMemStorage * storageEye = 0;
 }
 
 
+int MYdetektor::_prekriz(CvRect A, CvRect B,CvRect Roi){
+    if(B.x >  Roi.width/2){ // je v pravo
+        if( A.x > Roi.width/2) return -1;//je taky v pravo coz je spatna
+    }else if(B.x <= Roi.width/2){// je v levo
+        if( A.x <= Roi.width/2) return -1;//je taky v levo -> spatne
+    }
+  return 0;
+}
+
 int MYdetektor::_prusecik(CvRect A, CvRect B){
 
     if(A.x >= B.x && A.x <= B.x + B.width) return 1;
     if(A.y >= B.y && A.y <= B.y + B.height) return 1;
 
+    if(B.x >= A.x && B.x <= A.x + A.width) return 1;
+    if(B.y >= A.y && B.y <= A.y + A.height) return 1;
     return 0;
 
 }

@@ -35,7 +35,7 @@ MYoblicej *ksicht;
         detect->setFrame(image);
 
         double tt = (double)cvGetTickCount();
-        if(counter >= 0){
+        if(counter >=0){
 //            detect->FindFaces();
 //            detect->DrawSezOblic();
             detect->FindFaces();
@@ -74,7 +74,7 @@ MYoblicej *ksicht;
 
 
 
-                MYdisplay::ShowImage(image,(char)-1);
+                MYdisplay::ShowImage(image,(char)'q');
             }
 //            while(facec !epmt){ Myoblice(display->nextface);
 //
