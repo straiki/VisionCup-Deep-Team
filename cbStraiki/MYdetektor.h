@@ -24,7 +24,9 @@ using namespace std;
 
 /** Cesty k haarcascades*/
 
-
+struct Xicht{
+    CvRect rFace, eye1,eye2;
+};
 
 class MYdetektor
 {
@@ -37,29 +39,28 @@ class MYdetektor
         */
         IplImage * MyFrame;
 
-        /** @var deque<int> sezOblic
+        /** @var deque<Xicht> sXichts
         *   @brief Seznam vsech nalezenych oblizeju
         */
-        deque<MYoblicej> sXichts;
-        /** @var MYoblicej xicht
-        *   @brief aktualni oblicej
-        */
-        MYoblicej xicht;
+        deque<Xicht> sX;
+
+        Xicht Xakt;
 
         /**
         *   Metoda, ktera v obrazku zvyrazni obliceje
         *   podle klasifikatoru nejakeho z OpenCV
         */
         int DrawFaces();
+
         /**
         *   Metoda, ktera najde oblicej v obrazku
         */
         int FindFaces();
+        int FindEyes(CvRect Roi);
+        int FindMouth(IplImage *);
 
         int Fpokus();
-
-        int FindEyes(IplImage *);
-        int FindMouth(IplImage *);
+        int Epokus();
         /**
         *   Vykresli obdelniky kolem nalezenych obliceju
         */
@@ -72,6 +73,10 @@ class MYdetektor
         void setFrame(IplImage *);
     protected:
     private:
+
+        int _prusecik(CvRect,CvRect);
+        int _prekriz(CvRect,CvRect,CvRect);
+
         void OrezPic(CvPoint, CvPoint);
         /**
         *   Setter - nasteveni vsech pouzivanych cascades

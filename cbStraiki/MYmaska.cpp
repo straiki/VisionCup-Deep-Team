@@ -14,6 +14,12 @@ MYmaska::MYmaska(IplImage *frame){
 //destruktor
 MYmaska::~MYmaska(){
 	cout << "znicena maska" << endl;
+    if(this->source) cvReleaseImage(&this->source);
+    if(this->edited) cvReleaseImage(&this->edited);
+    if(this->rotated) cvReleaseImage(&this->rotated);
+    if(this->mask) cvReleaseImage(&this->mask);
+    if(this->mask2) cvReleaseImage(&this->mask2);
+    if(this->mask3) cvReleaseImage(&this->mask3);
 }
 
 void MYmaska::open(string name){
@@ -26,6 +32,7 @@ void MYmaska::open_mask(string name){
 
 void MYmaska::changeSize(float size){
 
+cout << size << endl;
 	//zmena originalu
     this->edited = cvCreateImage(cvSize((int)(this->source->width*size),
 										(int)(this->source->height*size)),
@@ -87,7 +94,8 @@ void MYmaska::vytvorKnirek(MYoblicej *oblicej){
     this->oblicej = oblicej;
     this->open("../masks/mustache.png");
     this->open_mask("../masks/mustache_mask.png");
-    this->changeSize(0.5);
+    float velikost = ((oblicej->sirka)*0.9)/(source->width*1.0);
+    this->changeSize(velikost);
     this->rotateImage(this->oblicej->uhel);
 
 }
@@ -97,17 +105,19 @@ void MYmaska::vytvorKaju(MYoblicej *oblicej){
     this->oblicej = oblicej;
     this->open("../masks/gott.png");
     this->open_mask("../masks/gott_mask2.png");
-    this->changeSize(0.5);
+    float velikost = ((oblicej->sirka)*1.5)/(source->width*1.0);
+    this->changeSize(velikost);
     this->rotateImage(this->oblicej->uhel);
 
 }
+
 void MYmaska::vytvorKlobouk(MYoblicej *oblicej){
 
     this->oblicej = oblicej;
     this->open("../masks/klobouk.png");
     this->open_mask("../masks/klobouk_mask.png");
-    this->changeSize(oblicej->vzdalenost_oci*4/source->width);
-
+    float velikost = ((oblicej->sirka)*1.5)/(source->width*1.0);
+    this->changeSize(velikost);
     this->rotateImage(this->oblicej->uhel);
 
 }
@@ -115,7 +125,6 @@ void MYmaska::vytvorKlobouk(MYoblicej *oblicej){
 void MYmaska::vytvorPusu(MYoblicej * oblic){
     static int i = 1;
     this->oblicej = oblic;
-
 
     MYvideo *prd = new MYvideo();
         prd->open("../masks/pusa.avi");
@@ -126,11 +135,20 @@ void MYmaska::vytvorPusu(MYoblicej * oblic){
         	 akt = prd->next_frame();
         	 if( i >= 100) i = 1;
         }
-        this->source = akt;
-        i++;
+        this->source = cvCreateImage(cvGetSize(akt),
+                               akt->depth,
+                               akt->nChannels);
+        cvCopy(akt,this->source);
+        cout << "ok" << endl;
 
-    this->changeSize(0.5);
+        i+=5;
+
+    float velikost = ((oblicej->sirka)*0.9)/(source->width*1.0);
+    this->changeSize(velikost);
     this->rotateImage(this->oblicej->uhel);
+
+    delete prd;
+    //cvReleaseImage(&akt);
 }
 uchar MYmaska::interpolate(int barva2, int barva, int krok, int pocet_kroku){
    // return (krok % 2) ? (barva) : (barva2);
@@ -145,8 +163,9 @@ uchar MYmaska::interpolate(int barva2, int barva, int krok, int pocet_kroku){
 }
 
 void MYmaska::skryjOci(MYoblicej *oblicej){
-    int sirka = 75;
-    int vyska = 55;
+
+    int prodluz = 30;
+
     this->oblicej = oblicej;
 
     this->open("../masks/oko.png"); //this->source = cvCreateImage(cvSize(img->width,img->height),IPL_DEPTH_8U, 3);
@@ -156,7 +175,12 @@ void MYmaska::skryjOci(MYoblicej *oblicej){
     //this->mask = cvCreateImage(cvSize(img->width,img->height),IPL_DEPTH_8U, 3);
     //cvCopy(img, this->mask);
     // naalokovan prostor
-    CvRect rect = cvRect(oblicej->leve_oko_x + oblicej->sour_x - sirka/2, oblicej->leve_oko_y + oblicej->sour_y - vyska/2, sirka, vyska);
+   // CvRect rect = cvRect(oblicej->leve_oko_x + oblicej->sour_x - sirka/2, oblicej->leve_oko_y + oblicej->sour_y - vyska/2, sirka, vyska);
+   CvRect rect = this->oblicej->Leye;
+   rect.x -= prodluz/2;
+   rect.y -= prodluz/2;
+   rect.width  = this->oblicej->Leye.width+prodluz;
+   rect.height = this->oblicej->Leye.height+prodluz;
     cvSetImageROI(this->frame, rect);//jsem na levem oku
 int k;
     for(int i = rect.x; i < (rect.x + rect.width); i++ ){
@@ -176,7 +200,12 @@ int k;
     }
     cvResetImageROI(this->frame);
 
-    rect = cvRect(oblicej->prave_oko_x + oblicej->sour_x - sirka/2, oblicej->prave_oko_y + oblicej->sour_y - vyska/2, sirka, vyska);
+
+    rect = this->oblicej->Reye;
+   rect.x -= prodluz/2;
+   rect.y -= prodluz/2;
+   rect.width  = this->oblicej->Reye.width+prodluz;
+   rect.height = this->oblicej->Reye.height+prodluz;
     cvSetImageROI(this->frame, rect);//jsem na levem oku
 
     for(int i = rect.x; i < (rect.x + rect.width); i++ ){
@@ -198,13 +227,29 @@ int k;
 
 }
 
+void MYmaska::vytvorRohy(MYoblicej *oblicej){
+
+    this->oblicej = oblicej;
+    this->open("../masks/horns.png");
+    this->open_mask("../masks/horns_mask.png");
+    float velikost = ((oblicej->sirka)*1.1)/(source->width*1.0);
+    this->changeSize(velikost);
+    this->rotateImage(this->oblicej->uhel);
+
+}
+
+void MYmaska::vytvorBryle(MYoblicej *oblicej){
+
+    this->oblicej = oblicej;
+    this->open("../masks/bryle.png");
+    this->open_mask("../masks/bryle_mask.png");
+    float velikost = ((oblicej->sirka)*1.1)/(source->width*1.0);
+    this->changeSize(velikost);
+    this->rotateImage(this->oblicej->uhel);
+
+}
 
 
-#define PUSA 0
-#define KNIR 1
-#define KAJA 2
-#define KLOBOUK 3
-#define OCI 4
 IplImage* MYmaska::addMask(IplImage *frame,int typ){
 //    cvSetImageROI(frame, cvRect(mezi_oci_x - mask->rotated->width/2,
   //                              mezi_oci_y - mask->rotated->height/2));
@@ -218,26 +263,43 @@ IplImage* MYmaska::addMask(IplImage *frame,int typ){
     int x,y,i,j;
 
     if(typ == KNIR){
-        start_y = this->oblicej->sour_y + this->oblicej->knirek_y - this->rotated->height/2;
-        start_x = this->oblicej->sour_x + this->oblicej->knirek_x - this->rotated->width/2;
+    //    start_y = this->oblicej->sour_y + this->oblicej->knirek_y - this->rotated->height/2;
+    //    start_x = this->oblicej->sour_x + this->oblicej->knirek_x - this->rotated->width/2;
+    start_x = this->oblicej->Pmoust.x - this->rotated->height/2;
+    start_y = this->oblicej->Pmoust.y - this->rotated->height/2;
     }
     else if(typ == PUSA){
-        start_y = this->oblicej->sour_y + this->oblicej->pusa_y - this->rotated->height/2;
-        start_x = this->oblicej->sour_x + this->oblicej->pusa_x - this->rotated->width/2;
+    //    start_y = this->oblicej->sour_y + this->oblicej->pusa_y - this->rotated->height/2;
+    //    start_x = this->oblicej->sour_x + this->oblicej->pusa_x - this->rotated->width/2;
+
+    start_x = this->oblicej->Pmoust.x - this->rotated->height/2;
+    start_y = this->oblicej->Pmoust.y - this->rotated->height/2;
+
     }
     else if(typ == KAJA){
-        start_y = this->oblicej->sour_y + this->oblicej->stred_obliceje_y - this->rotated->height/2;
-        start_x = this->oblicej->sour_x + this->oblicej->stred_obliceje_x - this->rotated->width/2;
+        start_y = this->oblicej->Pkaja.y - this->rotated->height/2;
+        start_x = this->oblicej->Pkaja.x - this->rotated->width/2;
     }
     else if(typ == KLOBOUK){
-        start_y = this->oblicej->sour_y -45 - this->rotated->height/2;
-        start_x = this->oblicej->sour_x + this->oblicej->stred_obliceje_x - this->rotated->width/2;
+//        start_y = this->oblicej->sour_y - 45 - this->rotated->height/2;
+//        start_x = this->oblicej->sour_x -- this->rotated->height/2;
+    start_x = this->oblicej->Phead.x - this->rotated->height/2;
+    start_y = this->oblicej->Phead.y - this->rotated->height/2;
     }
     else if(typ == OCI){
-        start_y = this->oblicej->sour_y + this->oblicej->mezi_oci_y - this->rotated->height/2;
-        start_x = this->oblicej->sour_x + this->oblicej->mezi_oci_x - this->rotated->width/2;
+    start_x = this->oblicej->Peyes.x - this->rotated->height/2;
+    start_y = this->oblicej->Peyes.y - this->rotated->height/2;
     }
-
+    else if(typ == ROHY){
+//        start_y = this->oblicej->sour_y - 45 - this->rotated->height/2;
+//        start_x = this->oblicej->sour_x -- this->rotated->height/2;
+        start_x = this->oblicej->Prohy.x - this->rotated->height/2;
+        start_y = this->oblicej->Prohy.y - this->rotated->height/2;
+    }
+    else if(typ == BRYLE){
+    start_x = this->oblicej->Peyes.x - this->rotated->height/2;
+    start_y = this->oblicej->Peyes.y - this->rotated->height/2;
+    }
     for (i = start_y; i < start_y + this->rotated->height; i++) {
         for (j = start_x; j < start_x + this->rotated->width; j++) {
 

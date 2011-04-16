@@ -110,6 +110,7 @@ void MYmaska::vytvorKaju(MYoblicej *oblicej){
     this->rotateImage(this->oblicej->uhel);
 
 }
+
 void MYmaska::vytvorKlobouk(MYoblicej *oblicej){
 
     this->oblicej = oblicej;
