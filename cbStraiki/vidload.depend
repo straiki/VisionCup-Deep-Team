@@ -201,14 +201,14 @@
 	<ctype.h>
 	"MYoblicej.h"
 
-1302993710 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYoblicej.h
+1302996689 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYoblicej.h
 	<cv.h>
 
 1302959385 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYdisplay.h
 	<cv.h>
 	<highgui.h>
 
-1302993675 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.h
+1302996715 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.h
 	"stdhead.h"
 	"MYoblicej.h"
 
@@ -231,13 +231,13 @@
 	"MYdisplay.h"
 	<iostream>
 
-1302994654 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.cpp
+1302996813 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.cpp
 	"MYmaska.h"
 	"MYoblicej.h"
 	"stdhead.h"
 	"MYvideo.h"
 
-1302994627 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYoblicej.cpp
+1302996765 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYoblicej.cpp
 	"MYoblicej.h"
 	"MYdisplay.h"
 	"MYvideo.h"

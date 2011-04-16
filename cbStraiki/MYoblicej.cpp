@@ -105,6 +105,30 @@ void MYoblicej::DrawOblicej(IplImage * img,int typ){
             mask->addMask(img,BRYLE);
             break;
     	}
+        case BRYLE2:{
+            MYmaska *mask = new MYmaska(img);
+            mask->vytvorBryle2(this);
+            mask->addMask(img,BRYLE);
+            break;
+    	}
+        case PIRAT:{
+            MYmaska *mask = new MYmaska(img);
+            mask->vytvorPirata(this);
+            mask->addMask(img,PIRAT);
+            break;
+    	}
+        case SCREAM:{
+            MYmaska *mask = new MYmaska(img);
+            mask->vytvorScream(this);
+            mask->addMask(img,SCREAM);
+            break;
+    	}
+        case ROUBIK:{
+            MYmaska *mask = new MYmaska(img);
+            mask->vytvorRoubik(this);
+            mask->addMask(img,ROUBIK);
+            break;
+    	}
     	default:
     		break;
     }
@@ -221,6 +245,7 @@ void MYoblicej::vypocti_klicove_body(){
     Phead = cvPoint(+sin(uhel)*this->sirka*0.75+Pcent.x,-cos(uhel)*this->sirka*0.75+Pcent.y);
     Pmoust = cvPoint(-sin(uhel)*this->sirka*0.3+Pcent.x,+cos(uhel)*this->sirka*0.3+Pcent.y);
     Prohy = cvPoint(+sin(uhel)*this->sirka*1.10+Pcent.x,-cos(uhel)*this->sirka*1.1+Pcent.y);
+    Pscream = cvPoint(+sin(uhel)*this->sirka*0.01+Pcent.x,-cos(uhel)*this->sirka*0.01+Pcent.y);
 //	Pkaja.y = -cos(uhel)*vzdalenost_oci*0.1;
 //	Pkaja.y = Peyes.y;
 

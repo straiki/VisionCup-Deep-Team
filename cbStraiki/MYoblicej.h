@@ -30,7 +30,7 @@ public:
 
 
     CvRect Reye, Leye;
-    CvPoint PeyeR,PeyeL,Peyes,Pmouth,Pmoust,Pcent,Phead,Pkaja,Prohy;
+    CvPoint PeyeR,PeyeL,Peyes,Pmouth,Pmoust,Pcent,Phead,Pkaja,Prohy,Pscream;
     int sour_x,sour_y;
 	int vyska, sirka;
 	int prave_oko_x, prave_oko_y;
@@ -62,5 +62,9 @@ public:
 #define OCI 4
 #define ROHY 5
 #define BRYLE 6
+#define BRYLE2 7
+#define PIRAT 8
+#define SCREAM 9
+#define ROUBIK 10
 
 #endif // MYOBLICEJ_H
