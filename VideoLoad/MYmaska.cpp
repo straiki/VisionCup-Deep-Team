@@ -14,6 +14,12 @@ MYmaska::MYmaska(IplImage *frame){
 //destruktor
 MYmaska::~MYmaska(){
 	cout << "znicena maska" << endl;
+    cvReleaseImage(&this->source);
+    cvReleaseImage(&this->edited);
+    cvReleaseImage(&this->rotated);
+    cvReleaseImage(&this->mask);
+    cvReleaseImage(&this->mask2);
+    cvReleaseImage(&this->mask3);
 }
 
 void MYmaska::open(string name){

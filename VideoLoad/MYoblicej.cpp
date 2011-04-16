@@ -59,15 +59,15 @@ void MYoblicej::DrawOblicej(IplImage * img){
     	cvRectangle(img,h1,h2,CV_RGB(0,128,128), 1, 8, 0);
 
 
-       MYmaska mask(img);
-            mask.vytvorKaju(this);
-            mask.addMask(img,2);
+       MYmaska *mask = new MYmaska(img);
+            mask->vytvorKaju(this);
+            mask->addMask(img,2);
+            delete mask;
 
-        MYmaska maska(img);
-            maska.vytvorKlobouk(this);
-//
-            maska.addMask(img,3);
-
+       MYmaska *maska = new MYmaska(img);
+            maska->vytvorKlobouk(this);
+            maska->addMask(img,3);
+            delete mask;
 
 }
 
