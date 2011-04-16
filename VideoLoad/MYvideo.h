@@ -39,7 +39,7 @@ public:
     void open(string);
     void writeInit();
     void writeFrame(IplImage*);
-    static IplImage *addMask(IplImage*,MYmaska*);
+    static IplImage *addMask(IplImage*,MYmaska*,int);
 
 private:
 

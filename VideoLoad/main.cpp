@@ -25,6 +25,7 @@ double tta = (double)cvGetTickCount();
 MYvideo *video;
     video = new MYvideo();
     video->open("../videos/L2 - MD.avi");
+    video->writeInit();
 int counter = 0 ;
 
 detect = new MYdetektor(NULL); // zpracuj frame

@@ -91,7 +91,7 @@ static CvHaarClassifierCascade* cascade = 0;
                 sXichts.push_back(xicht);
                // FindMouth(this->MyFrame);
                 cvResetImageROI(this->MyFrame);
-                cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
+                //cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
                 if(i >= 0) break;
             }
             cvResetImageROI(this->MyFrame);
@@ -141,14 +141,14 @@ static CvHaarClassifierCascade* cascadeEye = 0;
             pt2.x = (r->x+r->width)*scale;
             pt1.y = r->y*scale;
             pt2.y = (r->y+r->height)*scale;
-                cvRectangle( imROI, pt1, pt2, CV_RGB(0,125,255), 2, 8, 0 );
+                //cvRectangle( imROI, pt1, pt2, CV_RGB(0,125,255), 2, 8, 0 );
                 _findEyeCenter(pt1,pt2);
 
                 if(i == 1) break;
         }
     }
     cvReleaseHaarClassifierCascade(&cascadeEye);
-    cvReleaseMemStorage(&storageEye);
+   // cvReleaseMemStorage(&storageEye);
 return eyes->total;
 }
 
@@ -222,9 +222,9 @@ void MYdetektor::DrawSezOblic(){
     for(int i = 0; i < sXichts.size() ; i++){
         MYmaska *maska;
         maska = new MYmaska();
-        maska->vytvorKnirek(&sXichts.at(i));
+        maska->vytvorKlobouk(&sXichts.at(i));
 
-        MYvideo::addMask(MyFrame,maska);
+        MYvideo::addMask(MyFrame,maska,3);
 //    	cvRectangle( this->MyFrame, sezOblic.at(i).a, sezOblic.at(i).b, CV_RGB(255,125,0), 2, 8, 0 );
     	//MYdisplay::ShowImage(this->MyFrame,'n');
   //  	OrezPic(sezOblic.at(i).a,sezOblic.at(i).b);

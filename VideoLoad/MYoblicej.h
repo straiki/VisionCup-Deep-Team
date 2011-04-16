@@ -23,6 +23,8 @@ public:
 	int delta_x, delta_y;
 	float uhel;
     int knirek_x, knirek_y;
+    int pusa_x, pusa_y;
+    int stred_obliceje_x, stred_obliceje_y;
 	float vzdalenost_oci;
 };
 

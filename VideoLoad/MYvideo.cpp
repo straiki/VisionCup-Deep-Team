@@ -35,7 +35,7 @@ void MYvideo::open(string file){
         cerr << "Obrazek nenalezen" << endl;
         return;
     }
-    this->writeInit();
+   // this->writeInit();
 }
 /**
  * @var cam - cislo kamery
@@ -66,14 +66,39 @@ IplImage* MYvideo::next_frame(){
     return this->img;
 }
 
-IplImage* MYvideo::addMask(IplImage *frame, MYmaska *mask){
+#define PUSA 0
+#define KNIR 1
+#define KAJA 2
+#define KLOBOUK 3
+IplImage* MYvideo::addMask(IplImage *frame, MYmaska *mask,int typ){
 //    cvSetImageROI(frame, cvRect(mezi_oci_x - mask->rotated->width/2,
   //                              mezi_oci_y - mask->rotated->height/2));
+
+
+  int start_y = 0;
+  int start_x = 0;
+
     const int Thres = 100;
     const int HT = 50;
     int x,y,i,j;
-    int start_y = mask->oblicej->sour_y + mask->oblicej->knirek_y - mask->rotated->height/2;
-    int start_x = mask->oblicej->sour_x + mask->oblicej->knirek_x - mask->rotated->width/2;
+
+    if(typ == KNIR){
+        start_y = mask->oblicej->sour_y + mask->oblicej->knirek_y - mask->rotated->height/2;
+        start_x = mask->oblicej->sour_x + mask->oblicej->knirek_x - mask->rotated->width/2;
+    }
+    else if(typ == PUSA){
+        start_y = mask->oblicej->sour_y + mask->oblicej->pusa_y - mask->rotated->height/2;
+        start_x = mask->oblicej->sour_x + mask->oblicej->pusa_x - mask->rotated->width/2;
+    }
+    else if(typ == KAJA){
+        start_y = mask->oblicej->sour_y + mask->oblicej->stred_obliceje_y - mask->rotated->height/2;
+        start_x = mask->oblicej->sour_x + mask->oblicej->stred_obliceje_x - mask->rotated->width/2;
+    }
+    else if(typ == KLOBOUK){
+        start_y = mask->oblicej->sour_y -45 - mask->rotated->height/2;
+        start_x = mask->oblicej->sour_x + mask->oblicej->stred_obliceje_x - mask->rotated->width/2;
+    }
+
     for (i = start_y; i < start_y + mask->rotated->height; i++) {
         for (j = start_x; j < start_x + mask->rotated->width; j++) {
 			if(CV_IMAGE_ELEM( mask->rotated, uchar, i - start_y, (j - start_x)*3)   < Thres &&
