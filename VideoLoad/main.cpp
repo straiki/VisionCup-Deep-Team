@@ -33,10 +33,17 @@ double tta = (double)cvGetTickCount();
         if(counter > 0){
 //            detect->FindFaces();
 //            detect->DrawSezOblic();
-            detect->Fpokus();
-            detect->DrawSezOblic();
-            MYdisplay::ShowImage(detect->MyFrame,(char)-1);
+            detect->FindFaces();
+            //detect->DrawSezOblic();
 
+            if(!detect->sX.empty()){
+                //! Vyprazdnit seznam kdyz si neco vyzvednu
+                MYoblicej ksicht(detect->sX.at(0).rFace,detect->sX.at(0).eye1,detect->sX.at(0).eye2);
+                detect->sX.clear();
+               ksicht.DrawOblicej(image);
+                ksicht.DrawHighPoints(image);
+                MYdisplay::ShowImage(image,(char)-1);
+            }
 //            while(facec !epmt){ Myoblice(display->nextface);
 //
 //            v
