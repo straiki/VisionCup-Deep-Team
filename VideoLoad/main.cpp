@@ -20,7 +20,7 @@ MYvideo *video;
 int counter = 0 ;
 
 detect = new MYdetektor(NULL); // zpracuj frame
-
+double tta = (double)cvGetTickCount();
     for(;;){
         IplImage *image = video->next_frame();
 
@@ -28,6 +28,8 @@ detect = new MYdetektor(NULL); // zpracuj frame
 
         //Zpracovani snimku
         detect->setFrame(image);
+
+        double tt = (double)cvGetTickCount();
         if(counter > 0){
 //            detect->FindFaces();
 //            detect->DrawSezOblic();
@@ -35,6 +37,8 @@ detect = new MYdetektor(NULL); // zpracuj frame
             MYdisplay::ShowImage(detect->MyFrame,(char)-1);
         }
 
+        tt = (double)cvGetTickCount() - tt;
+        cout << tt/(cvGetTickFrequency()*1000.) << " ms" << endl;
 
         char c = cvWaitKey(33);
         if(c == 27) break;
@@ -43,7 +47,7 @@ detect = new MYdetektor(NULL); // zpracuj frame
         cout << endl << counter << " - takovy snimek" << endl;
         counter++;
     }
-        double tta = (double)cvGetTickCount();
+
             tta = (double)cvGetTickCount() - tta;
             cout << tta/(cvGetTickFrequency()*1000.) << " -- CELKOVY CAS ms" << endl;
   //  detect.DrawSezOblic();
