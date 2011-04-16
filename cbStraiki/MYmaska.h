@@ -11,14 +11,19 @@ class MYmaska
 
 //promenne
 private:
-
+    uchar interpolate(uchar*, uchar*, int, int);
 
 //funkce
 public:
-	MYmaska();	//konstruktor
+	MYmaska(IplImage*);	//konstruktor
 	virtual ~MYmaska();	//destruktor
 	void open(string);
+	void open_mask(string);
 
+    IplImage *frame;
+    IplImage *mask;
+    IplImage *mask2;
+    IplImage *mask3;
     IplImage *source;
     IplImage *edited;
     IplImage *rotated;
@@ -30,6 +35,7 @@ public:
     void vytvorKaju(MYoblicej*);
     void vytvorKlobouk(MYoblicej*);
     void skryjOci(MYoblicej*, IplImage*);
+    IplImage *addMask(IplImage *,int);
 };
 
 #endif // MYMASKA_H
