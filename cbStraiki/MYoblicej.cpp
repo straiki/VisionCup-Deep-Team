@@ -99,6 +99,12 @@ void MYoblicej::DrawOblicej(IplImage * img,int typ){
             mask->addMask(img,ROHY);
             break;
     	}
+        case BRYLE:{
+            MYmaska *mask = new MYmaska(img);
+            mask->vytvorBryle(this);
+            mask->addMask(img,BRYLE);
+            break;
+    	}
     	default:
     		break;
     }

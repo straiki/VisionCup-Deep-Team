@@ -243,7 +243,7 @@ void MYmaska::vytvorBryle(MYoblicej *oblicej){
     this->oblicej = oblicej;
     this->open("../masks/bryle.png");
     this->open_mask("../masks/bryle_mask.png");
-    float velikost = ((oblicej->sirka)*1.1)/(source->width*1.0);
+    float velikost = ((oblicej->sirka)*0.8)/(source->width*1.0);
     this->changeSize(velikost);
     this->rotateImage(this->oblicej->uhel);
 
