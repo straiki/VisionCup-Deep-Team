@@ -86,7 +86,8 @@ void MYmaska::vytvorKlobouk(MYoblicej *oblicej){
 
     this->oblicej = oblicej;
     this->open("../masks/klobouk.png");
-    this->changeSize(0.3);
+    this->changeSize(oblicej->vzdalenost_oci*4/source->width);
+
     this->rotateImage(this->oblicej->uhel);
 
 }
