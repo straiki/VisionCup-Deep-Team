@@ -43,16 +43,36 @@ MYoblicej *ksicht;
 // pokud nenajde face nic nevykresli
             if(!detect->sX.empty()){
                 //! Vyprazdnit seznam kdyz si neco vyzvednu
-                ksicht = new MYoblicej(detect->sX.at(0).rFace,detect->sX.at(0).eye1,detect->sX.at(0).eye2);
-                ksicht->ber_v_uvahu(pre_ksicht);
-                detect->sX.clear();
-                ksicht->DrawOblicej(image);
+                int k = 0;
+                int x = 0;
+                while(!detect->sX.empty()){
+                     if(x >= 2){
+                        detect->sX.clear();
+                        break;
+                     }
+                     ksicht = new MYoblicej(detect->sX.at(k).rFace,detect->sX.at(k).eye1,detect->sX.at(k).eye2);
+                     //stabilizace
+                     ksicht->ber_v_uvahu(pre_ksicht);
+                     //Popnuti ze seznamu!
+                     detect->sX.pop_front();
 
-//                ksicht->DrawVodiciObdel(image);
-//                ksicht->DrawHighPoints(image);
 
-                delete pre_ksicht;
-                pre_ksicht = ksicht;
+                     ksicht->DrawVodiciObdel(image);
+                     ksicht->DrawHighPoints(image);
+                     ksicht->DrawOblicej(image);
+                     x++;
+
+                    delete pre_ksicht;
+                    pre_ksicht = ksicht;
+                }
+
+               // ksicht->ber_v_uvahu(pre_ksicht);
+                //detect->sX.clear();
+                //ksicht->DrawOblicej(image);
+
+
+
+
 
                 MYdisplay::ShowImage(image,(char)-1);
             }
