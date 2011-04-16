@@ -53,12 +53,17 @@ CvMemStorage* storage = 0;
            // cout << "Nasel facy" << endl;
             CvRect *face = (CvRect*)cvGetSeqElem(faces, i);
 
-            CvRect obdelnik = *face;
-            cvSetImageROI(this->MyFrame,obdelnik);
+            cvSetImageROI(this->MyFrame,*face);
             //MYdisplay::ShowImage(this->MyFrame,'x');
             if(Epokus() > 0){// hledam oci v ramci ksichtu
                 cvResetImageROI(this->MyFrame);
-                cvRectangle( this->MyFrame, cvPoint(face->x,face->y), cvPoint(face->x+face->width,face->y+face->height), CV_RGB(255,25,55), 2, 8, 0 );
+                //cvRectangle( this->MyFrame, cvPoint(face->x,face->y), cvPoint(face->x+face->width,face->y+face->height), CV_RGB(255,25,55), 2, 8, 0 );
+                Xakt.rFace = *face;
+                Xakt.eye1.x += Xakt.rFace.x;
+                Xakt.eye1.y += Xakt.rFace.y;
+                Xakt.eye2.x += Xakt.rFace.x;
+                Xakt.eye2.y += Xakt.rFace.y;
+                sX.push_back(Xakt);
             }
             else{
                 cvResetImageROI(this->MyFrame);
@@ -96,14 +101,23 @@ CvMemStorage * storageEye = 0;
      for(int i = 0; i < (eyes ? eyes->total : 0); i++ )
         {
             CvRect* eye = (CvRect*)cvGetSeqElem(eyes, i);
-                _findEyeCenter(cvPoint(eye->x,eye->y),cvPoint(eye->x+eye->width,eye->y+eye->height));
-            cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(0,25,255), 2, 8, 0 );
+
+            if(i == 0){
+                Xakt.eye1 = *eye;
+            }
+            else{
+                Xakt.eye2 = *eye;
+            }
+
+            //cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(0,25,255), 2, 8, 0 );
             eyeCounter++;
+
             if(i == 1) break; //! ochrana, pouze dve oci!
         }
 
     cvReleaseHaarClassifierCascade(&cascadeEye);
     cvReleaseMemStorage(&storageEye);
+    if( eyeCounter < 2) return 0; // pokud najdu mene nez jedno oko.
     return eyeCounter;
 }
 
@@ -145,15 +159,15 @@ static CvHaarClassifierCascade* cascade = 0;
 
             cvSetImageROI( this->MyFrame,cvRect( obl1.x, obl1.y, r->width, r->height));
 
-            MYoblicej::zeroesOblicej(&xicht);
+//            MYoblicej::zeroesOblicej(&xicht);
             if (FindEyes(this->MyFrame) > 1){ // detekovany oblicej
-                xicht.sour_x = obl1.x;
-                xicht.sour_y = obl1.y;
-                xicht.sirka = r->width;
-                xicht.vyska = r->height;
-
-                xicht.vypocti_klicove_body();
-                sXichts.push_back(xicht);
+//                xicht.sour_x = obl1.x;
+//                xicht.sour_y = obl1.y;
+//                xicht.sirka = r->width;
+//                xicht.vyska = r->height;
+//
+//                xicht.vypocti_klicove_body();
+//                sXichts.push_back(xicht);
                // FindMouth(this->MyFrame);
                 cvResetImageROI(this->MyFrame);
                 //cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
@@ -167,7 +181,7 @@ static CvHaarClassifierCascade* cascade = 0;
         }
         cvReleaseHaarClassifierCascade(&cascade);
         cvReleaseMemStorage(&storage);
-    return sXichts.size(); // vraci pocet nalezenych obliceju
+    return sX.size(); // vraci pocet nalezenych obliceju
 
 }
 
@@ -263,41 +277,41 @@ return mouth->total;
 
 CvPoint MYdetektor::_findEyeCenter(CvPoint a, CvPoint b){
     CvPoint stred = cvPoint(a.x + abs(a.x-b.x)/2, a.y + abs(a.y-b.y)/2);
-
-
-    if( xicht.prave_oko_x == 0){
-        xicht.prave_oko_x = stred.x;
-        xicht.prave_oko_y = stred.y;
-    }
-    else if( xicht.leve_oko_x == 0){
-        xicht.leve_oko_x = stred.x;
-        xicht.leve_oko_y = stred.y;
-    }
-
-
-
-    MYdisplay::DrawPoint(MyFrame,stred);
+//
+//
+//    if( xicht.prave_oko_x == 0){
+//        xicht.prave_oko_x = stred.x;
+//        xicht.prave_oko_y = stred.y;
+//    }
+//    else if( xicht.leve_oko_x == 0){
+//        xicht.leve_oko_x = stred.x;
+//        xicht.leve_oko_y = stred.y;
+//    }
+//
+//
+//
+//    MYdisplay::DrawPoint(MyFrame,stred);
 
 }
 
 void MYdetektor::DrawSezOblic(){
+    for(int i = 0; i < sX.size() ; i++){
 
+        // Vykresleni Obliceje
+        CvPoint h1 = cvPoint(sX.at(i).rFace.x,sX.at(i).rFace.y);
+        CvPoint h2 = cvPoint(sX.at(i).rFace.x+sX.at(i).rFace.width,sX.at(i).rFace.y+sX.at(i).rFace.height);
+    	cvRectangle(this->MyFrame,h1,h2,CV_RGB(255,25,60), 2, 8, 0);
 
+    	//Vykresleni Oci
+        h1 = cvPoint(sX.at(i).eye1.x,sX.at(i).eye1.y);
+        h2 = cvPoint(sX.at(i).eye1.x+sX.at(i).eye1.width,sX.at(i).eye1.y+sX.at(i).eye1.height);
+    	cvRectangle(this->MyFrame,h1,h2,CV_RGB(0,0,255), 2, 8, 0);
 
-    for(int i = 0; i < sXichts.size() ; i++){
-        MYmaska *maska;
-        maska = new MYmaska();
-        maska->vytvorPusu(&sXichts.at(i));
-
-        MYvideo::addMask(MyFrame,maska,0);
-//    	cvRectangle( this->MyFrame, sezOblic.at(i).a, sezOblic.at(i).b, CV_RGB(255,125,0), 2, 8, 0 );
-    	//MYdisplay::ShowImage(this->MyFrame,'n');
-  //  	OrezPic(sezOblic.at(i).a,sezOblic.at(i).b);
-        delete maska;
+        h1 = cvPoint(sX.at(i).eye2.x,sX.at(i).eye2.y);
+        h2 = cvPoint(sX.at(i).eye2.x+sX.at(i).eye2.width,sX.at(i).eye2.y+sX.at(i).eye2.height);
+    	cvRectangle(this->MyFrame,h1,h2,CV_RGB(0,90,200), 2, 8, 0);
     }
-    sXichts.clear();
-
-
+    sX.clear(); // vymaz seznam
 }
 
 void MYdetektor::OrezPic(CvPoint pt1, CvPoint pt2){

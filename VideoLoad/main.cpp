@@ -34,7 +34,13 @@ double tta = (double)cvGetTickCount();
 //            detect->FindFaces();
 //            detect->DrawSezOblic();
             detect->Fpokus();
+            detect->DrawSezOblic();
             MYdisplay::ShowImage(detect->MyFrame,(char)-1);
+
+//            while(facec !epmt){ Myoblice(display->nextface);
+//
+//            v
+//            }
         }
 
         tt = (double)cvGetTickCount() - tt;
