@@ -138,7 +138,8 @@ void MYmaska::vytvorPusu(MYoblicej * oblic){
         this->source = akt;
         i++;
 
-    this->changeSize(0.5);
+    float velikost = ((oblicej->sirka)*0.5)/(source->width*1.0);
+    this->changeSize(velikost);
     this->rotateImage(this->oblicej->uhel);
     delete prd;
 }
@@ -195,8 +196,10 @@ IplImage* MYmaska::addMask(IplImage *frame,int typ){
     start_y = this->oblicej->Pmoust.y - this->rotated->height/2;
     }
     else if(typ == PUSA){
-        start_y = this->oblicej->sour_y + this->oblicej->pusa_y - this->rotated->height/2;
-        start_x = this->oblicej->sour_x + this->oblicej->pusa_x - this->rotated->width/2;
+    //    start_y = this->oblicej->sour_y + this->oblicej->pusa_y - this->rotated->height/2;
+    //    start_x = this->oblicej->sour_x + this->oblicej->pusa_x - this->rotated->width/2;
+    start_x = this->oblicej->Pmoust.x - this->rotated->height/2;
+    start_y = this->oblicej->Pmoust.y - this->rotated->height/2;
     }
     else if(typ == KAJA){
         start_y = this->oblicej->Pkaja.y - this->rotated->height/2;

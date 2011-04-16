@@ -47,15 +47,20 @@ void MYoblicej::DrawOblicej(IplImage * img){
 
 
 
-       MYmaska *mask = new MYmaska(img);
-            mask->vytvorPusu(this);
-            mask->addMask(img,0);
-            delete mask;
+//       MYmaska *mask = new MYmaska(img);
+//            mask->vytvorPusu(this);
+//            mask->addMask(img,0);
+//            delete mask;
 
-//       MYmaska *maska = new MYmaska(img);
-//            maska->vytvorKlobouk(this);
-//            maska->addMask(img,3);
-//            delete maska;
+       MYmaska *maska = new MYmaska(img);
+            maska->vytvorKlobouk(this);
+            maska->addMask(img,3);
+            delete maska;
+
+    MYmaska *maska2 = new MYmaska(img);
+            maska2->vytvorKnirek(this);
+            maska2->addMask(img,1);
+            delete maska2;
 
 }
 
@@ -160,11 +165,11 @@ void MYoblicej::vypocti_klicove_body(){
 //	Pkaja.y = -cos(uhel)*vzdalenost_oci*0.1;
 //	Pkaja.y = Peyes.y;
 
-	pusa_x = sin(uhel)*vzdalenost_oci*1.2;
-	pusa_x*=-1;
-//	pusa_x += mezi_oci_x;
-	pusa_y = cos(uhel)*vzdalenost_oci*1.2;
-//	pusa_y += mezi_oci_y;
+//	pusa_x = sin(uhel)*vzdalenost_oci*1.2;
+//	pusa_x*=-1;
+////	pusa_x += mezi_oci_x;
+//	pusa_y = cos(uhel)*vzdalenost_oci*1.2;
+////	pusa_y += mezi_oci_y;
 
 	stred_obliceje_x = -sin(uhel)*vzdalenost_oci*1.3;
 	stred_obliceje_x*=-1;
