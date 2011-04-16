@@ -104,7 +104,8 @@ void MYmaska::vytvorKaju(MYoblicej *oblicej){
     this->oblicej = oblicej;
     this->open("../masks/gott.png");
     this->open_mask("../masks/gott_mask2.png");
-    this->changeSize(0.5);
+    float velikost = ((oblicej->sirka)*1.5)/(source->width*1.0);
+    this->changeSize(velikost);
     this->rotateImage(this->oblicej->uhel);
 
 }
@@ -115,7 +116,6 @@ void MYmaska::vytvorKlobouk(MYoblicej *oblicej){
     this->open_mask("../masks/klobouk_mask.png");
     float velikost = ((oblicej->sirka)*1.5)/(source->width*1.0);
     this->changeSize(velikost);
-
     this->rotateImage(this->oblicej->uhel);
 
 }
