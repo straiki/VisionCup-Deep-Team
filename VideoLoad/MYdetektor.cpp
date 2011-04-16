@@ -96,7 +96,7 @@ CvMemStorage * storageEye = 0;
 
     CvSeq* eyes = cvHaarDetectObjects( this->MyFrame, cascadeEye, storageEye,
                                         1.25, 4, 0,
-                                        cvSize(35, 15) );
+                                        cvSize(35, 15) ); // 1.25 4.0
 
      for(int i = 0; i < (eyes ? eyes->total : 0); i++ )
         {
@@ -109,7 +109,7 @@ CvMemStorage * storageEye = 0;
                 Xakt.eye2 = *eye;
             }
 
-            //cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(0,25,255), 2, 8, 0 );
+            cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(0,25,255), 2, 8, 0 );
             eyeCounter++;
 
             if(i == 1) break; //! ochrana, pouze dve oci!

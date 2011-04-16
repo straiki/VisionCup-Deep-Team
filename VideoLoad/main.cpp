@@ -41,7 +41,7 @@ double tta = (double)cvGetTickCount();
                 detect->sX.clear();
                 ksicht.DrawOblicej(image);
                 ksicht.DrawHighPoints(image);
-                MYdisplay::ShowImage(image,(char)'q');
+               // MYdisplay::ShowImage(image,(char)'q');
             }
 //            while(facec !epmt){ Myoblice(display->nextface);
 //

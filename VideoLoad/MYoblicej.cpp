@@ -58,12 +58,10 @@ void MYoblicej::DrawOblicej(IplImage * img){
         h2 = cvPoint(Leye.x + Leye.width,Leye.y + Leye.height);
     	cvRectangle(img,h1,h2,CV_RGB(0,128,128), 1, 8, 0);
 
-        MYmaska maska;
-            maska.open("../masks/klobouk.png");
-            maska.open_mask("../masks/klobouk_mask.png");
-            maska.vytvorKlobouk(this);
-
-    	 MYvideo::addMask(img,&maska,3);
+//        MYmaska maska(img);
+//            maska.vytvorKlobouk(this);
+//
+//            maska.addMask(img,3);
 }
 
 void MYoblicej::DrawHighPoints(IplImage * img){
@@ -71,7 +69,7 @@ void MYoblicej::DrawHighPoints(IplImage * img){
     MYdisplay::DrawPoint(img,Pcent,5,2,CV_RGB(0,0,0));
     MYdisplay::DrawPoint(img,PeyeL,5,2,CV_RGB(0,128,128));
     MYdisplay::DrawPoint(img,PeyeR,5,2,CV_RGB(0,0,128));
-    MYdisplay::DrawPoint(img,Peyes,5,2,CV_RGB(128,0,128));
+    MYdisplay::DrawPoint(img,Peyes,5,2,CV_RGB(128,128,128));
 
     MYdisplay::DrawPoint(img,Pmoust,5,2,CV_RGB(255,255,128));
 
@@ -89,7 +87,7 @@ void MYoblicej::_Eyes(CvRect R, CvRect L){
     PeyeR = cvPoint(R.x+R.width/2,R.y+R.height/2);
 
     //! @todo  doplnit vypocet stredu mezi ocima
-    Peyes = cvPoint(this->mezi_oci_x,this->mezi_oci_y);
+    Peyes = cvPoint(PeyeL.x+abs(PeyeR.x-PeyeL.x)/2,PeyeL.y + abs(PeyeR.y-PeyeL.y)/2);
 
    // cout << mezi_oci_x << " xpakx " << mezi_oci_y << endl;
 }
@@ -147,8 +145,11 @@ void MYoblicej::vypocti_klicove_body(){
 	pusa_y = cos(uhel)*vzdalenost_oci*1.2;
 	pusa_y += mezi_oci_y;
 
-    stred_obliceje_x = mezi_oci_x;
-	stred_obliceje_y = mezi_oci_y-10;
+	stred_obliceje_x = -sin(uhel)*vzdalenost_oci*1.3;
+	stred_obliceje_x*=-1;
+	stred_obliceje_x += mezi_oci_x;
+	stred_obliceje_y = -cos(uhel)*vzdalenost_oci*1.3;
+	stred_obliceje_y += mezi_oci_y;
 
     cout << knirek_x << " x " << knirek_x << endl;
 	//knirek_y -= 70;//kaja gott
