@@ -11,7 +11,7 @@ class MYmaska
 
 //promenne
 private:
-    uchar interpolate(uchar*, uchar*, int, int);
+    uchar interpolate(int barva2, int barva, int krok, int pocet_kroku);
 
 //funkce
 public:
@@ -34,8 +34,9 @@ public:
     void vytvorPusu(MYoblicej*);
     void vytvorKaju(MYoblicej*);
     void vytvorKlobouk(MYoblicej*);
-    void skryjOci(MYoblicej*, IplImage*);
+    void skryjOci(MYoblicej*);
     IplImage *addMask(IplImage *,int);
 };
+
 
 #endif // MYMASKA_H

@@ -2,9 +2,11 @@
 #include "MYdisplay.h"
 #include "MYvideo.h"
 
+
 #include <iostream>
 #include <vector>
 
+// cesta pocet_obliceju parametry ...
 int main( int argc, char** argv )
 {
 
@@ -15,12 +17,16 @@ cout << "PRO DALSI SNIMEK STISTKNI KLAVESU q" << endl;
 
 MYvideo *video;
     video = new MYvideo();
-    video->open("../videos/L2 - RK.avi");
+    video->open(argv[1]);
     video->writeInit();
 int counter = 0 ;
 
 detect = new MYdetektor(NULL); // zpracuj frame
 double tta = (double)cvGetTickCount();
+
+MYoblicej *pre_ksicht=NULL;
+MYoblicej *ksicht;
+
     for(;;){
         IplImage *image = video->next_frame();
 
@@ -38,10 +44,41 @@ double tta = (double)cvGetTickCount();
 // pokud nenajde face nic nevykresli
             if(!detect->sX.empty()){
                 //! Vyprazdnit seznam kdyz si neco vyzvednu
-                MYoblicej ksicht(detect->sX.at(0).rFace,detect->sX.at(0).eye1,detect->sX.at(0).eye2);
-                detect->sX.clear();
-                ksicht.DrawOblicej(image);
-                ksicht.DrawHighPoints(image);
+                int k = 0;
+                int x = 0;
+                while(!detect->sX.empty()){
+                     if(x >= atoi(argv[2])){
+                        detect->sX.clear();
+                        break;
+                     }
+                     ksicht = new MYoblicej(detect->sX.at(k).rFace,detect->sX.at(k).eye1,detect->sX.at(k).eye2);
+                     //stabilizace
+                     ksicht->ber_v_uvahu(pre_ksicht);
+                     //Popnuti ze seznamu!
+                     detect->sX.pop_front();
+
+
+           //          ksicht->DrawVodiciObdel(image);
+           //          ksicht->DrawHighPoints(image);
+
+
+                    for(int i=3; i<argc; i++){
+                     ksicht->DrawOblicej(image, atoi(argv[i]));
+                    }
+
+                     x++;
+
+                    delete pre_ksicht;
+                    pre_ksicht = ksicht;
+                }
+
+               // ksicht->ber_v_uvahu(pre_ksicht);
+                //detect->sX.clear();
+                //ksicht->DrawOblicej(image);
+
+
+
+
 
                 MYdisplay::ShowImage(image,(char)-1);
             }

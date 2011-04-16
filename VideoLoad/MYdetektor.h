@@ -56,7 +56,7 @@ class MYdetektor
         *   Metoda, ktera najde oblicej v obrazku
         */
         int FindFaces();
-        int FindEyes();
+        int FindEyes(CvRect Roi);
         int FindMouth(IplImage *);
 
         int Fpokus();
@@ -75,6 +75,7 @@ class MYdetektor
     private:
 
         int _prusecik(CvRect,CvRect);
+        int _prekriz(CvRect,CvRect,CvRect);
 
         void OrezPic(CvPoint, CvPoint);
         /**

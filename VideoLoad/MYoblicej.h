@@ -30,7 +30,7 @@ public:
 
 
     CvRect Reye, Leye;
-    CvPoint PeyeR,PeyeL,Peyes,Pmouth,Pmoust,Pcent,Phead;
+    CvPoint PeyeR,PeyeL,Peyes,Pmouth,Pmoust,Pcent,Phead,Pkaja;
     int sour_x,sour_y;
 	int vyska, sirka;
 	int prave_oko_x, prave_oko_y;
@@ -44,12 +44,21 @@ public:
 	float vzdalenost_oci;
 
 
-	void DrawOblicej(IplImage *);
+	void DrawOblicej(IplImage *,int typ=0);
 	void swapEyes(CvRect *, CvRect*);
 	/**
 	*   VYkresli dulezite, vypocitane body z obliceje
 	*/
 	void DrawHighPoints(IplImage *);
+	void DrawVodiciObdel(IplImage *);
+
+	void ber_v_uvahu(MYoblicej*);
 };
+
+#define PUSA 0
+#define KNIR 1
+#define KAJA 2
+#define KLOBOUK 3
+#define OCI 4
 
 #endif // MYOBLICEJ_H
