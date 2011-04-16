@@ -30,6 +30,7 @@ void MYdetektor::setFrame(IplImage * setter){
 
 
 int MYdetektor::Fpokus(){
+int FaceCounter = 0;
 // Vytvoreni a naloadovani Klasifikatoru pro oblicej
 CvHaarClassifierCascade* cascade = 0;
     cascade = (CvHaarClassifierCascade*)cvLoad( cascFace, 0, 0, 0 );
@@ -49,16 +50,21 @@ CvMemStorage* storage = 0;
                                             cvSize(40, 40) );
 
         for(int i = 0; i < faces->total ; i++){
-            cout << "Nasel facy" << endl;
+           // cout << "Nasel facy" << endl;
             CvRect *face = (CvRect*)cvGetSeqElem(faces, i);
 
             CvRect obdelnik = *face;
             cvSetImageROI(this->MyFrame,obdelnik);
-            MYdisplay::ShowImage(this->MyFrame,'x');
-            if(Epokus() > 1){// hledam oci v ramci ksichtu
+            //MYdisplay::ShowImage(this->MyFrame,'x');
+            if(Epokus() > 0){// hledam oci v ramci ksichtu
+                cvResetImageROI(this->MyFrame);
                 cvRectangle( this->MyFrame, cvPoint(face->x,face->y), cvPoint(face->x+face->width,face->y+face->height), CV_RGB(255,25,55), 2, 8, 0 );
             }
-            cvResetImageROI(this->MyFrame);
+            else{
+                cvResetImageROI(this->MyFrame);
+            }
+
+            FaceCounter++;
         }
 
 
@@ -66,10 +72,11 @@ CvMemStorage* storage = 0;
     cvReleaseHaarClassifierCascade(&cascade);
     cvReleaseMemStorage(&storage);
 
-    return faces->total; // vracim pocet nalezenych ksichtu (i s ocima)
+    return FaceCounter; // vracim pocet nalezenych ksichtu (i s ocima)
 }
 
 int MYdetektor::Epokus(){
+int eyeCounter = 0;
 CvHaarClassifierCascade * cascadeEye = 0;
     cascadeEye = (CvHaarClassifierCascade*)cvLoad( cascEyes, 0, 0, 0 );
 CvMemStorage * storageEye = 0;
@@ -81,7 +88,7 @@ CvMemStorage * storageEye = 0;
         return -1;
     }
 
-cout << "Hledam oci" << endl;
+
     CvSeq* eyes = cvHaarDetectObjects( this->MyFrame, cascadeEye, storageEye,
                                         1.25, 4, 0,
                                         cvSize(35, 15) );
@@ -89,12 +96,15 @@ cout << "Hledam oci" << endl;
      for(int i = 0; i < (eyes ? eyes->total : 0); i++ )
         {
             CvRect* eye = (CvRect*)cvGetSeqElem(eyes, i);
-               // _findEyeCenter(pt1,pt2);
+                _findEyeCenter(cvPoint(eye->x,eye->y),cvPoint(eye->x+eye->width,eye->y+eye->height));
             cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(0,25,255), 2, 8, 0 );
-
+            eyeCounter++;
+            if(i == 1) break; //! ochrana, pouze dve oci!
         }
 
-    return eyes->total;
+    cvReleaseHaarClassifierCascade(&cascadeEye);
+    cvReleaseMemStorage(&storageEye);
+    return eyeCounter;
 }
 
 int MYdetektor::FindFaces(){
