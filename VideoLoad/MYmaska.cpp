@@ -32,6 +32,7 @@ void MYmaska::open_mask(string name){
 
 void MYmaska::changeSize(float size){
 
+cout << size << endl;
 	//zmena originalu
     this->edited = cvCreateImage(cvSize((int)(this->source->width*size),
 										(int)(this->source->height*size)),
@@ -112,7 +113,7 @@ void MYmaska::vytvorKlobouk(MYoblicej *oblicej){
     this->oblicej = oblicej;
     this->open("../masks/klobouk.png");
     this->open_mask("../masks/klobouk_mask.png");
-    this->changeSize(oblicej->vzdalenost_oci*4/source->width);
+    this->changeSize(oblicej->sirka*2/source->width);
 
     this->rotateImage(this->oblicej->uhel);
 

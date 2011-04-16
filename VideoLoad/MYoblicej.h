@@ -50,6 +50,7 @@ public:
 	*   VYkresli dulezite, vypocitane body z obliceje
 	*/
 	void DrawHighPoints(IplImage *);
+	void ber_v_uvahu(MYoblicej*);
 };
 
 #endif // MYOBLICEJ_H

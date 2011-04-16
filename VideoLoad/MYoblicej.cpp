@@ -103,7 +103,7 @@ void MYoblicej::_Moustache(){
 }
 
 void MYoblicej::_Hat(CvRect F){
-    Phead = cvPoint(F.x + F.width/2,F.y);
+   // Phead = cvPoint(F.x + F.width/2,F.y);
 
 }
 
@@ -150,7 +150,7 @@ void MYoblicej::vypocti_klicove_body(){
 //	Pkaja.x = Peyes.x;
 
 	Pkaja = cvPoint(sin(uhel)*vzdalenost_oci*0.17+Peyes.x,-cos(uhel)*vzdalenost_oci*0.17+Peyes.y);
-
+    Phead = cvPoint(sin(uhel)*vzdalenost_oci*0.5+Peyes.x,-cos(uhel)*vzdalenost_oci*0.5+Peyes.y);
 //	Pkaja.y = -cos(uhel)*vzdalenost_oci*0.1;
 //	Pkaja.y = Peyes.y;
 
@@ -171,14 +171,9 @@ void MYoblicej::vypocti_klicove_body(){
 //	this->uhel = (uhel/(2*M_PI))*360.0;
 }
 
-void MYoblicej::zeroesOblicej(MYoblicej * o){
-    o->sour_x = 0;
-    o->sour_y = 0;
+void MYoblicej::ber_v_uvahu(MYoblicej *pre_ksicht){
 
-    o->prave_oko_x = 0;
-    o->leve_oko_x = 0;
-    o->leve_oko_y = 0;
-    o->prave_oko_y = 0;
+    if(pre_ksicht==NULL) return;
 
 
 }

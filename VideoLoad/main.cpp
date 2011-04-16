@@ -21,6 +21,10 @@ int counter = 0 ;
 
 detect = new MYdetektor(NULL); // zpracuj frame
 double tta = (double)cvGetTickCount();
+
+MYoblicej *pre_ksicht=NULL;
+MYoblicej *ksicht;
+
     for(;;){
         IplImage *image = video->next_frame();
 
@@ -38,12 +42,15 @@ double tta = (double)cvGetTickCount();
 // pokud nenajde face nic nevykresli
             if(!detect->sX.empty()){
                 //! Vyprazdnit seznam kdyz si neco vyzvednu
-                MYoblicej ksicht(detect->sX.at(0).rFace,detect->sX.at(0).eye1,detect->sX.at(0).eye2);
+                ksicht = new MYoblicej(detect->sX.at(0).rFace,detect->sX.at(0).eye1,detect->sX.at(0).eye2);
+                ksicht->ber_v_uvahu(pre_ksicht);
                 detect->sX.clear();
-                ksicht.DrawOblicej(image);
-                ksicht.DrawHighPoints(image);
+                ksicht->DrawOblicej(image);
+                ksicht->DrawHighPoints(image);
+                delete pre_ksicht;
+                pre_ksicht = ksicht;
 
-                MYdisplay::ShowImage(image,(char)-1);
+                MYdisplay::ShowImage(image,(char)'a');
             }
 //            while(facec !epmt){ Myoblice(display->nextface);
 //
