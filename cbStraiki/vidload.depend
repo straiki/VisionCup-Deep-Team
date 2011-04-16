@@ -1,21 +1,10 @@
 # depslib dependency file v1.0
-1302869544 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
-	"MYdetektor.h"
+1302897185 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYdisplay.cpp
+	"MYdisplay.h"
 
-1302869585 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
+1302897185 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYdisplay.h
 	<cv.h>
 	<highgui.h>
-	<iostream>
-	<vector>
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<assert.h>
-	<math.h>
-	<float.h>
-	<limits.h>
-	<time.h>
-	<ctype.h>
 
 1270517080 /usr/include/opencv//cv.h
 	<chdl.h>
@@ -97,81 +86,36 @@
 
 1270517080 /usr/include/opencv//highgui.hpp
 
-1302869515 source:/home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdisplay.cpp
+1302906169 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
+	"MYdetektor.h"
 	"MYdisplay.h"
-
-1302869515 /home/xsimur01/progr/VisionCup-Deep-Team/VideoLoad/MYdisplay.h
-
-1302870211 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
-	"MYdetektor.h"
-
-1302870211 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
-	<cv.h>
-	<highgui.h>
-	<iostream>
-	<vector>
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<assert.h>
-	<math.h>
-	<float.h>
-	<limits.h>
-	<time.h>
-	<ctype.h>
-
-1302870211 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYdisplay.cpp
-	"MYdisplay.h"
-
-1302870211 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYdisplay.h
-
-1302870211 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/main.cpp
-	"MYdetektor.h"
-	<iostream>
-	<vector>
-
-1302870287 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYdetektor.cpp
-	"MYdetektor.h"
-
-1302870211 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYdetektor.h
-	<cv.h>
-	<highgui.h>
-	<iostream>
-	<vector>
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<assert.h>
-	<math.h>
-	<float.h>
-	<limits.h>
-	<time.h>
-	<ctype.h>
-
-1302870211 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYdisplay.cpp
-	"MYdisplay.h"
-
-1302870211 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYdisplay.h
-
-1302904380 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/main.cpp
-	"stdhead.h"
-	"MYdetektor.h"
 	"MYmaska.h"
 	"MYvideo.h"
-	"MYoblicej.h"
+
+1302904515 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYdetektor.h
+	<cv.h>
+	<highgui.h>
+	<deque>
 	<iostream>
 	<vector>
-
-1302891992 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.cpp
-	"MYmaska.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<math.h>
+	<float.h>
+	<limits.h>
+	<time.h>
+	<ctype.h>
 	"MYoblicej.h"
-	"stdhead.h"
 
-1302890672 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.h
+1302904515 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYoblicej.h
+
+1302904515 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYmaska.h
 	"stdhead.h"
 	"MYoblicej.h"
 
-1302872966 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/stdhead.h
+1302888995 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/stdhead.h
 	<stdlib.h>
 	<stdio.h>
 	<iostream>
@@ -182,26 +126,47 @@
 	<highgui.h>
 	<string>
 
-1302896649 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYoblicej.cpp
-	"MYoblicej.h"
-	"stdhead.h"
-
-1302896492 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYoblicej.h
-
-1302903957 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYvideo.cpp
-	"MYvideo.h"
-	"MYoblicej.h"
-
-1302890740 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYvideo.h
+1302904515 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYvideo.h
 	"stdhead.h"
 	"MYmaska.h"
 
-1302908175 source:/homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYdetektor.cpp
-	"MYdetektor.h"
+1302906169 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYmaska.cpp
+	"MYmaska.h"
+	"MYoblicej.h"
+	"stdhead.h"
 
-1302908175 /homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYdetektor.h
+1302906169 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYoblicej.cpp
+	"MYoblicej.h"
+	"stdhead.h"
+
+1302906169 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYvideo.cpp
+	"MYvideo.h"
+	"MYoblicej.h"
+
+1302906169 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/main.cpp
+	"MYdetektor.h"
+	"MYdisplay.h"
+	"MYvideo.h"
+	<iostream>
+	<vector>
+
+1302897185 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYdisplay.cpp
+	"MYdisplay.h"
+
+1302897185 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYdisplay.h
 	<cv.h>
 	<highgui.h>
+
+1302944376 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYdetektor.cpp
+	"MYdetektor.h"
+	"MYdisplay.h"
+	"MYmaska.h"
+	"MYvideo.h"
+
+1302939282 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYdetektor.h
+	<cv.h>
+	<highgui.h>
+	<deque>
 	<iostream>
 	<vector>
 	<stdio.h>
@@ -213,41 +178,15 @@
 	<limits.h>
 	<time.h>
 	<ctype.h>
-
-1302908175 source:/homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYdisplay.cpp
-	"MYdisplay.h"
-
-1302908175 /homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYdisplay.h
-
-1291520124 /usr/local/include/opencv//cv.h
-	"opencv2/core/core_c.h"
-	"opencv2/core/core.hpp"
-	"opencv2/imgproc/imgproc_c.h"
-	"opencv2/imgproc/imgproc.hpp"
-	"opencv2/video/tracking.hpp"
-	"opencv2/features2d/features2d.hpp"
-	"opencv2/flann/flann.hpp"
-	"opencv2/calib3d/calib3d.hpp"
-	"opencv2/objdetect/objdetect.hpp"
-	"opencv2/legacy/compat.hpp"
-	"opencv2/core/internal.hpp"
-
-1291520124 /usr/local/include/opencv//highgui.h
-	"opencv2/core/core_c.h"
-	"opencv2/core/core.hpp"
-	"opencv2/highgui/highgui_c.h"
-	"opencv2/highgui/highgui.hpp"
-
-1302908175 source:/homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYmaska.cpp
-	"MYmaska.h"
 	"MYoblicej.h"
-	"stdhead.h"
 
-1302908175 /homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYmaska.h
+1302943937 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYoblicej.h
+
+1302943909 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.h
 	"stdhead.h"
 	"MYoblicej.h"
 
-1302908441 /homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/stdhead.h
+1302888995 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/stdhead.h
 	<stdlib.h>
 	<stdio.h>
 	<iostream>
@@ -258,53 +197,28 @@
 	<highgui.h>
 	<string>
 
-1291520124 /usr/local/include/opencv//cxcore.h
-	"opencv2/core/core_c.h"
-	"opencv2/core/core.hpp"
-
-1302908175 /homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYoblicej.h
-
-1302908175 source:/homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYoblicej.cpp
-	"MYoblicej.h"
-	"stdhead.h"
-
-1302908175 source:/homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYvideo.cpp
-	"MYvideo.h"
-	"MYoblicej.h"
-
-1302908175 /homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/MYvideo.h
+1302939282 /data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYvideo.h
 	"stdhead.h"
 	"MYmaska.h"
 
-1302908600 source:/homes/eva/xv/xvahal02/Desktop/mediacontest/VisionCup-Deep-Team/cbStraiki/main.cpp
+1302944404 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYmaska.cpp
+	"MYmaska.h"
+	"MYoblicej.h"
 	"stdhead.h"
+	"MYvideo.h"
+
+1302939282 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYoblicej.cpp
+	"MYoblicej.h"
+	"stdhead.h"
+
+1302940697 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/MYvideo.cpp
+	"MYvideo.h"
+	"MYoblicej.h"
+
+1302944479 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/main.cpp
 	"MYdetektor.h"
-	"MYmaska.h"
+	"MYdisplay.h"
 	"MYvideo.h"
-	"MYoblicej.h"
 	<iostream>
 	<vector>
-
-1291520124 /homes/eva/xv/xvahal02/Desktop/OpenCV-2.2.0/include/opencv/cv.h
-	"opencv2/core/core_c.h"
-	"opencv2/core/core.hpp"
-	"opencv2/imgproc/imgproc_c.h"
-	"opencv2/imgproc/imgproc.hpp"
-	"opencv2/video/tracking.hpp"
-	"opencv2/features2d/features2d.hpp"
-	"opencv2/flann/flann.hpp"
-	"opencv2/calib3d/calib3d.hpp"
-	"opencv2/objdetect/objdetect.hpp"
-	"opencv2/legacy/compat.hpp"
-	"opencv2/core/internal.hpp"
-
-1291520124 /homes/eva/xv/xvahal02/Desktop/OpenCV-2.2.0/include/opencv/highgui.h
-	"opencv2/core/core_c.h"
-	"opencv2/core/core.hpp"
-	"opencv2/highgui/highgui_c.h"
-	"opencv2/highgui/highgui.hpp"
-
-1291520124 /homes/eva/xv/xvahal02/Desktop/OpenCV-2.2.0/include/opencv/cxcore.h
-	"opencv2/core/core_c.h"
-	"opencv2/core/core.hpp"
 

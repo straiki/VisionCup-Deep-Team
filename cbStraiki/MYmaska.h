@@ -26,6 +26,10 @@ public:
 	void changeSize(float);
     void rotateImage(float);
     void vytvorKnirek(MYoblicej*);
+    void vytvorPusu(MYoblicej*);
+    void vytvorKaju(MYoblicej*);
+    void vytvorKlobouk(MYoblicej*);
+    void skryjOci(MYoblicej*, IplImage*);
 };
 
 #endif // MYMASKA_H
