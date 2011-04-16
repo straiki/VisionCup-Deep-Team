@@ -113,7 +113,8 @@ void MYmaska::vytvorKlobouk(MYoblicej *oblicej){
     this->oblicej = oblicej;
     this->open("../masks/klobouk.png");
     this->open_mask("../masks/klobouk_mask.png");
-    this->changeSize(oblicej->sirka*2/source->width);
+    float velikost = ((oblicej->sirka)*1.5)/(source->width*1.0);
+    this->changeSize(velikost);
 
     this->rotateImage(this->oblicej->uhel);
 
@@ -202,7 +203,7 @@ IplImage* MYmaska::addMask(IplImage *frame,int typ){
 //        start_y = this->oblicej->sour_y - 45 - this->rotated->height/2;
 //        start_x = this->oblicej->sour_x -- this->rotated->height/2;
     start_x = this->oblicej->Phead.x - this->rotated->height/2;
-    start_y = this->oblicej->Phead.y -45- this->rotated->height/2;
+    start_y = this->oblicej->Phead.y - this->rotated->height/2;
     }
     else if(typ == OCI){
         start_y = this->oblicej->sour_y + this->oblicej->mezi_oci_y - this->rotated->height/2;

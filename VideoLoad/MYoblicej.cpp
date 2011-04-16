@@ -67,7 +67,7 @@ void MYoblicej::DrawOblicej(IplImage * img){
        MYmaska *maska = new MYmaska(img);
             maska->vytvorKlobouk(this);
             maska->addMask(img,3);
-            delete mask;
+            delete maska;
 
 }
 
@@ -150,7 +150,7 @@ void MYoblicej::vypocti_klicove_body(){
 //	Pkaja.x = Peyes.x;
 
 	Pkaja = cvPoint(sin(uhel)*vzdalenost_oci*0.17+Peyes.x,-cos(uhel)*vzdalenost_oci*0.17+Peyes.y);
-    Phead = cvPoint(sin(uhel)*vzdalenost_oci*0.5+Peyes.x,-cos(uhel)*vzdalenost_oci*0.5+Peyes.y);
+    Phead = cvPoint(sin(uhel)*this->sirka*0.9+Pcent.x,-cos(uhel)*this->sirka*0.9+Pcent.y);
 //	Pkaja.y = -cos(uhel)*vzdalenost_oci*0.1;
 //	Pkaja.y = Peyes.y;
 
@@ -174,6 +174,14 @@ void MYoblicej::vypocti_klicove_body(){
 void MYoblicej::ber_v_uvahu(MYoblicej *pre_ksicht){
 
     if(pre_ksicht==NULL) return;
+
+    this->uhel = (pre_ksicht->uhel+this->uhel)/2.0;
+    if((this->uhel>2.0)&&(this->uhel<5.0)) this->uhel +=3.1415926535;
+
+    this->sirka = (pre_ksicht->sirka+this->sirka)/2.0;
+    this->vyska = (pre_ksicht->vyska+this->vyska)/2.0;
+    this->prave_oko_x = (pre_ksicht->prave_oko_x+this->prave_oko_x)/2.0;
+    this->prave_oko_y = (pre_ksicht->prave_oko_y+this->prave_oko_y)/2.0;
 
 
 }

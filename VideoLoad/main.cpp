@@ -50,7 +50,7 @@ MYoblicej *ksicht;
                 delete pre_ksicht;
                 pre_ksicht = ksicht;
 
-                MYdisplay::ShowImage(image,(char)'a');
+                MYdisplay::ShowImage(image,(char)-1);
             }
 //            while(facec !epmt){ Myoblice(display->nextface);
 //
