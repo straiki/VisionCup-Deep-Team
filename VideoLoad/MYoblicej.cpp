@@ -47,30 +47,19 @@ void MYoblicej::DrawOblicej(IplImage * img){
 
 
 
-<<<<<<< HEAD
 //       MYmaska *mask = new MYmaska(img);
 //            mask->vytvorPusu(this);
 //            mask->addMask(img,0);
 //            delete mask;
-=======
        MYmaska *mask = new MYmaska(img);
             mask->vytvorKnirek(this);
             mask->addMask(img,0);
             delete mask;
->>>>>>> cd76b058b5fdc15f7803156ec6e27a68febc7815
-
-       MYmaska *maska = new MYmaska(img);
-            maska->vytvorKlobouk(this);
-            maska->addMask(img,3);
-            delete maska;
-<<<<<<< HEAD
 
     MYmaska *maska2 = new MYmaska(img);
             maska2->vytvorKnirek(this);
             maska2->addMask(img,1);
             delete maska2;
-=======
->>>>>>> cd76b058b5fdc15f7803156ec6e27a68febc7815
 
 }
 
