@@ -116,15 +116,15 @@ CvMemStorage * storageEye = 0;
                 Xakt.eye1 = *eye;
             }
             else{
-                if( _prekriz(*eye,Xakt.eye1,Roi) <0){
-                // Oci sou prekrizene
-                    cout << "prekriz" << endl;
- // cvRectangle(this->MyFrame, cvPoint(Xakt.eye1.x,Xakt.eye1.y), cvPoint(Xakt.eye1.x+Xakt.eye1.width,Xakt.eye1.y+Xakt.eye1.height), CV_RGB(0,25,55), 2, 8, 0 );
- // cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(255,25,55), 2, 8, 0 );
-
-                           // MYdisplay::ShowImage(MyFrame,'x');
-                    continue;
-                }
+//                if( _prekriz(*eye,Xakt.eye1,Roi) <0){
+//                // Oci sou prekrizene
+//                    cout << "prekriz" << endl;
+// // cvRectangle(this->MyFrame, cvPoint(Xakt.eye1.x,Xakt.eye1.y), cvPoint(Xakt.eye1.x+Xakt.eye1.width,Xakt.eye1.y+Xakt.eye1.height), CV_RGB(0,25,55), 2, 8, 0 );
+// // cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(255,25,55), 2, 8, 0 );
+//
+//                           // MYdisplay::ShowImage(MyFrame,'x');
+//                    continue;
+//                }
 //                if( _prusecik(*eye,Xakt.eye1) > 0){
 //                    ZARAZ ++;
 ////        MYdisplay::DrawPoint(this->MyFrame,cvPoint(eye->x,eye->y));
