@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="cbStraiki" />
+		<Option title="vidload" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -17,7 +17,7 @@
 					<Add option="-w" />
 					<Add option="-g" />
 					<Add directory="/usr/local/lib/" />
-					<Add directory="/usr/include/opencv/" />
+					<Add directory="/usr/local/include/opencv/" />
 				</Compiler>
 				<Linker>
 					<Add option="-lhighgui -lcv -lm -lcvaux" />

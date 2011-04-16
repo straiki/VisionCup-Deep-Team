@@ -20,17 +20,18 @@
 #include "MYoblicej.h"
 
 MYvideo::MYvideo(){
-    this->capture = 0;
+   // this->capture = 0;
 }
 
 MYvideo::~MYvideo(){
+    //if(this->capture)
     cvReleaseCapture(&this->capture);
 }
 /**
  * @var file - vstuppni soubor
  */
 void MYvideo::open(string file){
-    this->capture = 0;
+  //  this->capture = 0;
     if(!(capture = cvCaptureFromFile(file.c_str()))){
         cerr << "Obrazek nenalezen" << endl;
         return;

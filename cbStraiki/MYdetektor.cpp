@@ -11,6 +11,9 @@ MYdetektor::MYdetektor(IplImage * ctor)
     cout << "Nastaveni obrazku a klasifikatoru" << endl;
     this->MyFrame = ctor; // natahnuti obrazku
     this->_setHaars();
+
+    Xakt.eye1 = {0,};
+    Xakt.eye2 = {0,};
 }
 
 MYdetektor::~MYdetektor()
@@ -29,30 +32,52 @@ void MYdetektor::setFrame(IplImage * setter){
 }
 
 
-int MYdetektor::Fpokus(){
+int MYdetektor::FindFaces(){
+int FaceCounter = 0;
+// Vytvoreni a naloadovani Klasifikatoru pro oblicej
 CvHaarClassifierCascade* cascade = 0;
     cascade = (CvHaarClassifierCascade*)cvLoad( cascFace, 0, 0, 0 );
-
+// Vytvoreni pametoveho mista
 CvMemStorage* storage = 0;
     storage = cvCreateMemStorage(0);
+    cvClearMemStorage(storage);
+
     if( !cascade ){ // kontrola nacteni cascade
-        fprintf( stderr, "ERROR: Could not load classifier cascade\n" );
+        cerr << "ERROR:  nenacten Klasifikator Obliceje" << endl;
         return -1;
     }
 
-    cvClearMemStorage( storage );
     //prochazim jednotlive vyrezy
         CvSeq* faces = cvHaarDetectObjects( this->MyFrame, cascade, storage,
                                             1.2, 4, CV_HAAR_DO_CANNY_PRUNING,
                                             cvSize(40, 40) );
 
-        if(faces->total > 0){
+        for(int i = 0; i < faces->total ; i++){
+           // cout << "Nasel facy" << endl;
+            CvRect *face = (CvRect*)cvGetSeqElem(faces, i);
 
-            for(int i = 0; i < faces->total ; i++){
-                cout << "Nasel facy" << endl;
-                CvRect *face = (CvRect*)cvGetSeqElem(faces, i);
-                cvRectangle( this->MyFrame, cvPoint(face->x,face->y), cvPoint(face->x+face->width,face->y+face->height), CV_RGB(255,25,55), 2, 8, 0 );
+            CvRect forRoi = cvRect(face->x,face->y + (face->height/4.5), face->width,face->height/2.8);
+            cvSetImageROI(this->MyFrame,forRoi);
+            //cvSetImageROI(this->MyFrame,*face);
+
+            if(FindEyes(forRoi) > 0){// hledam oci v ramci ksichtu
+               // MYdisplay::ShowImage(MyFrame,'x');
+                cvResetImageROI(this->MyFrame);
+//                cvRectangle( this->MyFrame, cvPoint(face->x,face->y), cvPoint(face->x+face->width,face->y+face->height), CV_RGB(255,25,55), 2, 8, 0 );
+
+
+                Xakt.rFace = *face;
+                Xakt.eye1.x += Xakt.rFace.x;
+                Xakt.eye1.y += Xakt.rFace.y + (face->height/4.5);
+                Xakt.eye2.x += Xakt.rFace.x;
+                Xakt.eye2.y += Xakt.rFace.y + (face->height/4.5);
+                sX.push_back(Xakt);
             }
+            else{
+                cvResetImageROI(this->MyFrame);
+            }
+
+            FaceCounter++;
         }
 
 
@@ -60,117 +85,95 @@ CvMemStorage* storage = 0;
     cvReleaseHaarClassifierCascade(&cascade);
     cvReleaseMemStorage(&storage);
 
+    return FaceCounter; // vracim pocet nalezenych ksichtu (i s ocima)
 }
 
-int MYdetektor::FindFaces(){
-    // Create memory for calculations
-static CvMemStorage* storage = 0;
-// Create a new Haar classifier
-static CvHaarClassifierCascade* cascade = 0;
+int MYdetektor::FindEyes(CvRect Roi){
 
-
-    //cout << "Hledam Obliceje" << endl;
-    cascade = (CvHaarClassifierCascade*)cvLoad( cascFace, 0, 0, 0 );
-
-    if( !cascade ){ // kontrola nacteni cascade
-        fprintf( stderr, "ERROR: Could not load classifier cascade\n" );
-        return -1;
-    }
-    storage = cvCreateMemStorage(0); // vynulovani pametoveho uloziste
-    int scale = 1; // skala, nejaky pomer zvetseni dejme tomu == zmensieni obrazku podil velikosti
-
-
-    CvPoint pt1, pt2;
-    CvPoint obl1,obl2;
-    cvClearMemStorage( storage );
-    //prochazim jednotlive vyrezy
-        CvSeq* faces = cvHaarDetectObjects( this->MyFrame, cascade, storage,
-                                            1.2, 4, CV_HAAR_DO_CANNY_PRUNING,
-                                            cvSize(40, 40) );
-        for( int i = 0; i < (faces ? faces->total : 0); i++ )
-        {
-           // Create a new rectangle for drawing the face
-            CvRect* r = (CvRect*)cvGetSeqElem( faces, i );
-
-            // Find the dimensions of the face,and scale it if necessary
-            obl1.x = r->x*scale;
-            obl2.x = (r->x+r->width)*scale;
-            obl1.y = r->y*scale;
-            obl2.y = (r->y+r->height)*scale;
-
-            cvSetImageROI( this->MyFrame,cvRect( obl1.x, obl1.y, r->width, r->height));
-
-            MYoblicej::zeroesOblicej(&xicht);
-            if (FindEyes(this->MyFrame) > 1){ // detekovany oblicej
-                xicht.sour_x = obl1.x;
-                xicht.sour_y = obl1.y;
-                xicht.sirka = r->width;
-                xicht.vyska = r->height;
-
-                xicht.vypocti_klicove_body();
-                sXichts.push_back(xicht);
-               // FindMouth(this->MyFrame);
-                cvResetImageROI(this->MyFrame);
-                //cvRectangle( this->MyFrame, obl1, obl2, CV_RGB(255,25,55), 2, 8, 0 );
-                if(i >= 0) break;
-            }
-            cvResetImageROI(this->MyFrame);
-
-
-
-
-        }
-        cvReleaseHaarClassifierCascade(&cascade);
-        cvReleaseMemStorage(&storage);
-    return sXichts.size(); // vraci pocet nalezenych obliceju
-
-}
-
-int MYdetektor::FindEyes(IplImage * imROI){
-
-static CvMemStorage* storageEye = 0;
-static CvHaarClassifierCascade* cascadeEye = 0;
-
-
-   // cout << "Hledam Ocicka" << endl;
+int ZARAZ = 1;
+int eyeCounter = 0;
+CvHaarClassifierCascade * cascadeEye = 0;
     cascadeEye = (CvHaarClassifierCascade*)cvLoad( cascEyes, 0, 0, 0 );
+CvMemStorage * storageEye = 0;
+    storageEye = cvCreateMemStorage(0);
+    cvClearMemStorage(storageEye);
 
-    if( !cascadeEye ){ // kontrola nacteni cascade
-        fprintf( stderr, "ERROR: Could not load classifier cascade\n" );
+    if(!cascadeEye){
+        cerr << "ERROR:  nenacten Klasifikator Oci" << endl;
         return -1;
     }
-    storageEye = cvCreateMemStorage(0); // vynulovani pametoveho uloziste
-    int scale = 1; // skala, nejaky pomer zvetseni dejme tomu == zmensieni obrazku podil velikosti
 
 
-    CvPoint pt1, pt2;
-    int i;
+    CvSeq* eyes = cvHaarDetectObjects( this->MyFrame, cascadeEye, storageEye,
+                                        1.25, 4, 0,
+                                        cvSize(35, 15) ); // 1.25 4.0
 
-    cvClearMemStorage( storageEye );
-        CvSeq* eyes = cvHaarDetectObjects( imROI, cascadeEye, storageEye,
-                                            1.25, 4, 0,
-                                            cvSize(35, 15) );
-//! dobre paramatry 1.15,4,0=CVHAAR,35,15
-    if(eyes->total > 1){ // Pouze pro vice jak jedno Oci :)
-        for( i = 0; i < (eyes ? eyes->total : 0); i++ )
+     for(int i = 0; i < (eyes ? eyes->total : 0); i++ )
         {
-           // Create a new rectangle for drawing the face
-            CvRect* r = (CvRect*)cvGetSeqElem( eyes, i );
-            // Find the dimensions of the face,and scale it if necessary
-            pt1.x = r->x*scale;
-            pt2.x = (r->x+r->width)*scale;
-            pt1.y = r->y*scale;
-            pt2.y = (r->y+r->height)*scale;
-                //cvRectangle( imROI, pt1, pt2, CV_RGB(0,125,255), 2, 8, 0 );
-                _findEyeCenter(pt1,pt2);
+            CvRect* eye = (CvRect*)cvGetSeqElem(eyes, i);
 
-                if(i == 1) break;
+            if(i == 0){
+                Xakt.eye1 = *eye;
+            }
+            else{
+                if( _prekriz(*eye,Xakt.eye1,Roi) <0){
+                // Oci sou prekrizene
+                    cout << "prekriz" << endl;
+ // cvRectangle(this->MyFrame, cvPoint(Xakt.eye1.x,Xakt.eye1.y), cvPoint(Xakt.eye1.x+Xakt.eye1.width,Xakt.eye1.y+Xakt.eye1.height), CV_RGB(0,25,55), 2, 8, 0 );
+ // cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(255,25,55), 2, 8, 0 );
+
+                           // MYdisplay::ShowImage(MyFrame,'x');
+                    continue;
+                }
+//                if( _prusecik(*eye,Xakt.eye1) > 0){
+//                    ZARAZ ++;
+////        MYdisplay::DrawPoint(this->MyFrame,cvPoint(eye->x,eye->y));
+////
+////   cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(255,25,55), 2, 8, 0 );
+//eyeCounter++;
+
+//                    continue;
+//                }
+                Xakt.eye2 = *eye;
+            }
+
+            //cvRectangle(this->MyFrame, cvPoint(eye->x,eye->y), cvPoint(eye->x+eye->width,eye->y+eye->height), CV_RGB(0,25,255), 2, 8, 0 );
+            eyeCounter++;
+
+            if(i >= ZARAZ) {
+                ZARAZ = 1;
+                break; //! ochrana, pouze dve oci!
+            }
+           //
         }
-    }
+
     cvReleaseHaarClassifierCascade(&cascadeEye);
-   // cvReleaseMemStorage(&storageEye);
-return eyes->total;
+    cvReleaseMemStorage(&storageEye);
+    if( eyeCounter < 2) return 0; // pokud najdu mene nez jedno oko.
+    return eyeCounter;
 }
+
+
+int MYdetektor::_prekriz(CvRect A, CvRect B,CvRect Roi){
+    if(B.x >  Roi.width/2){ // je v pravo
+        if( A.x > Roi.width/2) return -1;//je taky v pravo coz je spatna
+    }else if(B.x <= Roi.width/2){// je v levo
+        if( A.x <= Roi.width/2) return -1;//je taky v levo -> spatne
+    }
+  return 0;
+}
+
+int MYdetektor::_prusecik(CvRect A, CvRect B){
+
+    if(A.x >= B.x && A.x <= B.x + B.width) return 1;
+    if(A.y >= B.y && A.y <= B.y + B.height) return 1;
+
+    if(B.x >= A.x && B.x <= A.x + A.width) return 1;
+    if(B.y >= A.y && B.y <= A.y + A.height) return 1;
+    return 0;
+
+}
+
 
 int MYdetektor::FindMouth(IplImage * imROI){
 
@@ -218,50 +221,41 @@ return mouth->total;
 
 CvPoint MYdetektor::_findEyeCenter(CvPoint a, CvPoint b){
     CvPoint stred = cvPoint(a.x + abs(a.x-b.x)/2, a.y + abs(a.y-b.y)/2);
-
-
-    if( xicht.prave_oko_x == 0){
-        xicht.prave_oko_x = stred.x;
-        xicht.prave_oko_y = stred.y;
-    }
-    else if( xicht.leve_oko_x == 0){
-        xicht.leve_oko_x = stred.x;
-        xicht.leve_oko_y = stred.y;
-    }
-
-
-
-    MYdisplay::DrawPoint(MyFrame,stred);
+//
+//
+//    if( xicht.prave_oko_x == 0){
+//        xicht.prave_oko_x = stred.x;
+//        xicht.prave_oko_y = stred.y;
+//    }
+//    else if( xicht.leve_oko_x == 0){
+//        xicht.leve_oko_x = stred.x;
+//        xicht.leve_oko_y = stred.y;
+//    }
+//
+//
+//
+//    MYdisplay::DrawPoint(MyFrame,stred);
 
 }
-#define PUSA 0
-#define KNIR 1
-#define KAJA 2
-#define KLOBOUK 3
-#define OCI 4
+
 void MYdetektor::DrawSezOblic(){
+    for(int i = 0; i < sX.size() ; i++){
 
+        // Vykresleni Obliceje
+        CvPoint h1 = cvPoint(sX.at(i).rFace.x,sX.at(i).rFace.y);
+        CvPoint h2 = cvPoint(sX.at(i).rFace.x+sX.at(i).rFace.width,sX.at(i).rFace.y+sX.at(i).rFace.height);
+    	cvRectangle(this->MyFrame,h1,h2,CV_RGB(255,25,60), 2, 8, 0);
 
+    	//Vykresleni Oci
+        h1 = cvPoint(sX.at(i).eye1.x,sX.at(i).eye1.y);
+        h2 = cvPoint(sX.at(i).eye1.x+sX.at(i).eye1.width,sX.at(i).eye1.y+sX.at(i).eye1.height);
+    	cvRectangle(this->MyFrame,h1,h2,CV_RGB(0,0,255), 2, 8, 0);
 
-    for(int i = 0; i < sXichts.size() ; i++){
-        MYmaska *maska;
-        maska = new MYmaska(MyFrame);
-        //maska->vytvorKaju(&sXichts.at(i));
-        //maska->vytvorPusu(&sXichts.at(i));
-        maska->vytvorKnirek(&sXichts.at(i));
-        //maska->vytvorKlobouk(&sXichts.at(i));
-       // IplImage *oko = cvLoadImage("../img/oko.jpg");
-        maska->skryjOci(&sXichts.at(i));//, oko);
-
-        maska->addMask(MyFrame,OCI);
-//    	cvRectangle( this->MyFrame, sezOblic.at(i).a, sezOblic.at(i).b, CV_RGB(255,125,0), 2, 8, 0 );
-    	//MYdisplay::ShowImage(this->MyFrame,'n');
-        //OrezPic(sezOblic.at(i).a,sezOblic.at(i).b);
-        delete maska;
+        h1 = cvPoint(sX.at(i).eye2.x,sX.at(i).eye2.y);
+        h2 = cvPoint(sX.at(i).eye2.x+sX.at(i).eye2.width,sX.at(i).eye2.y+sX.at(i).eye2.height);
+    	cvRectangle(this->MyFrame,h1,h2,CV_RGB(0,90,200), 2, 8, 0);
     }
-    sXichts.clear();
-
-
+    sX.clear(); // vymaz seznam
 }
 
 void MYdetektor::OrezPic(CvPoint pt1, CvPoint pt2){
@@ -276,7 +270,7 @@ IplImage *img2 = cvCreateImage(cvGetSize(MyFrame),
 /* copy subimage */
 cvCopy(MyFrame, img2, NULL);
 
-    FindEyes(img2);
+//    FindEyes(img2);
 cvResetImageROI(MyFrame);
     MYdisplay::ShowImage(MyFrame,"aj");
 MYdisplay::ShowImage(img2,'n');
