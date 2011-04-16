@@ -30,7 +30,7 @@ double tta = (double)cvGetTickCount();
         detect->setFrame(image);
 
         double tt = (double)cvGetTickCount();
-        if(counter >= 16){
+        if(counter >= 0){
 //            detect->FindFaces();
 //            detect->DrawSezOblic();
             detect->FindFaces();

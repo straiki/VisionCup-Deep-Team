@@ -58,10 +58,17 @@ void MYoblicej::DrawOblicej(IplImage * img){
         h2 = cvPoint(Leye.x + Leye.width,Leye.y + Leye.height);
     	cvRectangle(img,h1,h2,CV_RGB(0,128,128), 1, 8, 0);
 
-//        MYmaska maska(img);
-//            maska.vytvorKlobouk(this);
+
+       MYmaska mask(img);
+            mask.vytvorKaju(this);
+            mask.addMask(img,2);
+
+        MYmaska maska(img);
+            maska.vytvorKlobouk(this);
 //
-//            maska.addMask(img,3);
+            maska.addMask(img,3);
+
+
 }
 
 void MYoblicej::DrawHighPoints(IplImage * img){

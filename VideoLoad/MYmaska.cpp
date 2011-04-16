@@ -187,8 +187,8 @@ IplImage* MYmaska::addMask(IplImage *frame,int typ){
         start_x = this->oblicej->sour_x + this->oblicej->pusa_x - this->rotated->width/2;
     }
     else if(typ == KAJA){
-        start_y = this->oblicej->sour_y + this->oblicej->stred_obliceje_y - this->rotated->height/2;
-        start_x = this->oblicej->sour_x + this->oblicej->stred_obliceje_x - this->rotated->width/2;
+        start_y = this->oblicej->Peyes.y - this->rotated->height/2;
+        start_x = this->oblicej->Peyes.x - this->rotated->width/2;
     }
     else if(typ == KLOBOUK){
 //        start_y = this->oblicej->sour_y - 45 - this->rotated->height/2;
