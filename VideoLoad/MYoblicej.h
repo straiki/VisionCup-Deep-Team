@@ -30,7 +30,7 @@ public:
 
 
     CvRect Reye, Leye;
-    CvPoint PeyeR,PeyeL,Peyes,Pmouth,Pmoust,Pcent,Phead;
+    CvPoint PeyeR,PeyeL,Peyes,Pmouth,Pmoust,Pcent,Phead,Pkaja;
     int sour_x,sour_y;
 	int vyska, sirka;
 	int prave_oko_x, prave_oko_y;

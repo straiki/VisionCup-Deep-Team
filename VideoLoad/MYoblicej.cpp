@@ -24,8 +24,8 @@ MYoblicej::MYoblicej(CvRect Face, CvRect rEye1, CvRect rEye2){
 
     _CenterPoint(Face);
 
-    vypocti_klicove_body();
     _Eyes(this->Reye,this->Leye);
+    vypocti_klicove_body();
     _Moustache();
     _Hat(Face);
 }
@@ -93,7 +93,6 @@ void MYoblicej::_Eyes(CvRect R, CvRect L){
     PeyeL = cvPoint(L.x+L.width/2,L.y+L.height/2);
     PeyeR = cvPoint(R.x+R.width/2,R.y+R.height/2);
 
-    //! @todo  doplnit vypocet stredu mezi ocima
     Peyes = cvPoint(PeyeL.x+abs(PeyeR.x-PeyeL.x)/2,PeyeL.y + abs(PeyeR.y-PeyeL.y)/2);
 
    // cout << mezi_oci_x << " xpakx " << mezi_oci_y << endl;
@@ -142,15 +141,24 @@ void MYoblicej::vypocti_klicove_body(){
     vzdalenost_oci = sqrt(delta_x*delta_x+delta_y*delta_y);
 	knirek_x = sin(uhel)*vzdalenost_oci*0.8;
 	knirek_x*=-1;
-	knirek_x += mezi_oci_x;
+	knirek_x += Peyes.x;
 	knirek_y = cos(uhel)*vzdalenost_oci*0.8;
-	knirek_y += mezi_oci_y;
+	knirek_y += Peyes.y;
+
+//	Pkaja.x = -sin(uhel)*vzdalenost_oci*0.1;
+//	Pkaja.x*=-1;
+//	Pkaja.x = Peyes.x;
+
+	Pkaja = cvPoint(sin(uhel)*vzdalenost_oci*0.17+Peyes.x,-cos(uhel)*vzdalenost_oci*0.17+Peyes.y);
+
+//	Pkaja.y = -cos(uhel)*vzdalenost_oci*0.1;
+//	Pkaja.y = Peyes.y;
 
 	pusa_x = sin(uhel)*vzdalenost_oci*1.2;
 	pusa_x*=-1;
-	pusa_x += mezi_oci_x;
+//	pusa_x += mezi_oci_x;
 	pusa_y = cos(uhel)*vzdalenost_oci*1.2;
-	pusa_y += mezi_oci_y;
+//	pusa_y += mezi_oci_y;
 
 	stred_obliceje_x = -sin(uhel)*vzdalenost_oci*1.3;
 	stred_obliceje_x*=-1;
@@ -158,7 +166,7 @@ void MYoblicej::vypocti_klicove_body(){
 	stred_obliceje_y = -cos(uhel)*vzdalenost_oci*1.3;
 	stred_obliceje_y += mezi_oci_y;
 
-    cout << knirek_x << " x " << knirek_x << endl;
+    //cout << Pkaja.x << " x " << Pkaja.y << endl;
 	//knirek_y -= 70;//kaja gott
 //	this->uhel = (uhel/(2*M_PI))*360.0;
 }
