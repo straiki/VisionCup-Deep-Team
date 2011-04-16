@@ -48,14 +48,14 @@ void MYoblicej::DrawOblicej(IplImage * img){
 
 
        MYmaska *mask = new MYmaska(img);
-            mask->vytvorKaju(this);
-            mask->addMask(img,2);
+            mask->vytvorKnirek(this);
+            mask->addMask(img,1);
             delete mask;
 
-//       MYmaska *maska = new MYmaska(img);
-//            maska->vytvorKlobouk(this);
-//            maska->addMask(img,3);
-//            delete maska;
+       MYmaska *maska = new MYmaska(img);
+            maska->vytvorKlobouk(this);
+            maska->addMask(img,3);
+            delete maska;
 
 }
 
@@ -104,7 +104,7 @@ void MYoblicej::_Eyes(CvRect R, CvRect L){
 }
 
 void MYoblicej::_Moustache(){
-    Pmoust = cvPoint(this->knirek_x,this->knirek_y);
+  //  Pmoust = cvPoint(this->knirek_x,this->knirek_y);
 }
 
 void MYoblicej::_Hat(CvRect F){
@@ -156,6 +156,7 @@ void MYoblicej::vypocti_klicove_body(){
 
 	Pkaja = cvPoint(+sin(uhel)*this->sirka*0.12+Pcent.x,-cos(uhel)*this->sirka*0.12+Pcent.y);
     Phead = cvPoint(+sin(uhel)*this->sirka*0.75+Pcent.x,-cos(uhel)*this->sirka*0.75+Pcent.y);
+    Pmoust = cvPoint(-sin(uhel)*this->sirka*0.3+Pcent.x,+cos(uhel)*this->sirka*0.3+Pcent.y);
 //	Pkaja.y = -cos(uhel)*vzdalenost_oci*0.1;
 //	Pkaja.y = Peyes.y;
 
@@ -187,7 +188,7 @@ void MYoblicej::ber_v_uvahu(MYoblicej *pre_ksicht){
         pre_ksicht->uhel -= 6.283185307;
     }
 
-    this->uhel = (pre_ksicht->uhel+this->uhel)/2.0;
+    this->uhel = (pre_ksicht->uhel+pre_ksicht->uhel+this->uhel)/3.0;
     this->sirka = (pre_ksicht->sirka+this->sirka)/2.0;
     this->vyska = (pre_ksicht->vyska+this->vyska)/2.0;
     this->prave_oko_x = (pre_ksicht->prave_oko_x+this->prave_oko_x)/2.0;
