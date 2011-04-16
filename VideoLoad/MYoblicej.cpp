@@ -191,10 +191,10 @@ void MYoblicej::ber_v_uvahu(MYoblicej *pre_ksicht){
     this->uhel = (pre_ksicht->uhel+pre_ksicht->uhel+this->uhel)/3.0;
     this->sirka = (pre_ksicht->sirka+this->sirka)/2.0;
     this->vyska = (pre_ksicht->vyska+this->vyska)/2.0;
-    this->prave_oko_x = (pre_ksicht->prave_oko_x+pre_ksicht->prave_oko_x+this->prave_oko_x)/3.0;
-    this->prave_oko_y = (pre_ksicht->prave_oko_y+pre_ksicht->prave_oko_y+this->prave_oko_y)/3.0;
-    this->leve_oko_x = (pre_ksicht->leve_oko_x+pre_ksicht->leve_oko_x+this->leve_oko_x)/3.0;
-    this->leve_oko_y = (pre_ksicht->leve_oko_y+pre_ksicht->leve_oko_y+this->leve_oko_y)/3.0;
+    this->prave_oko_x = (pre_ksicht->prave_oko_x+this->prave_oko_x)/2.0;
+    this->prave_oko_y = (pre_ksicht->prave_oko_y+this->prave_oko_y)/2.0;
+    this->leve_oko_x = (pre_ksicht->leve_oko_x+this->leve_oko_x)/2.0;
+    this->leve_oko_y = (pre_ksicht->leve_oko_y+this->leve_oko_y)/2.0;
 
 
 }
