@@ -94,7 +94,8 @@ void MYmaska::vytvorKnirek(MYoblicej *oblicej){
     this->oblicej = oblicej;
     this->open("../masks/mustache.png");
     this->open_mask("../masks/mustache_mask.png");
-    this->changeSize(0.5);
+    float velikost = ((oblicej->sirka)*0.9)/(source->width*1.0);
+    this->changeSize(velikost);
     this->rotateImage(this->oblicej->uhel);
 
 }
@@ -188,8 +189,10 @@ IplImage* MYmaska::addMask(IplImage *frame,int typ){
     int x,y,i,j;
 
     if(typ == KNIR){
-        start_y = this->oblicej->sour_y + this->oblicej->knirek_y - this->rotated->height/2;
-        start_x = this->oblicej->sour_x + this->oblicej->knirek_x - this->rotated->width/2;
+    //    start_y = this->oblicej->sour_y + this->oblicej->knirek_y - this->rotated->height/2;
+    //    start_x = this->oblicej->sour_x + this->oblicej->knirek_x - this->rotated->width/2;
+    start_x = this->oblicej->Pmoust.x - this->rotated->height/2;
+    start_y = this->oblicej->Pmoust.y - this->rotated->height/2;
     }
     else if(typ == PUSA){
         start_y = this->oblicej->sour_y + this->oblicej->pusa_y - this->rotated->height/2;
