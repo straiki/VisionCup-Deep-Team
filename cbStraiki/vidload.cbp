@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="str_cb" />
+		<Option title="vidload" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -11,13 +11,13 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="testy/4.jpg" />
+				<Option parameters="test/2.png" />
 				<Compiler>
 					<Add option="-pedantic" />
 					<Add option="-w" />
 					<Add option="-g" />
 					<Add directory="/usr/local/lib/" />
-					<Add directory="../../../OpenCV-2.2.0/include/opencv" />
+					<Add directory="/usr/include/opencv/" />
 				</Compiler>
 				<Linker>
 					<Add option="-lhighgui -lcv -lm -lcvaux" />
@@ -54,7 +54,6 @@
 		<Unit filename="MYvideo.cpp" />
 		<Unit filename="MYvideo.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="stdhead.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
