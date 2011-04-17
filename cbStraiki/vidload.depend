@@ -7,14 +7,14 @@
 	<cv.h>
 	<highgui.h>
 
-1270517080 /usr/include/opencv//cv.h
+1263944927 /usr/include/opencv//cv.h
 	<chdl.h>
 	"cxcore.h"
 	"cvtypes.h"
 	"cv.hpp"
 	"cvcompat.h"
 
-1270517080 /usr/include/opencv//cxcore.h
+1263944927 /usr/include/opencv//cxcore.h
 	"ipl.h"
 	"ipl/ipl.h"
 	"cxtypes.h"
@@ -22,24 +22,24 @@
 	"cvver.h"
 	"cxcore.hpp"
 
-1270517080 /usr/include/opencv//cxtypes.h
+1263944927 /usr/include/opencv//cxtypes.h
 	<assert.h>
 	<stdlib.h>
 	<string.h>
 	<float.h>
 	<stdint.h>
-	<intrin.h>
 	<emmintrin.h>
+	<mmintrin.h>
 	<fastmath.h>
 	<math.h>
 	<ipl.h>
 	<ipl/ipl.h>
 
-1270517080 /usr/include/opencv//cxerror.h
+1263944927 /usr/include/opencv//cxerror.h
 
-1270517080 /usr/include/opencv//cvver.h
+1263944927 /usr/include/opencv//cvver.h
 
-1270517080 /usr/include/opencv//cxcore.hpp
+1263944927 /usr/include/opencv//cxcore.hpp
 	"cxmisc.h"
 	<algorithm>
 	<cmath>
@@ -52,40 +52,40 @@
 	"cxmat.hpp"
 	"cxflann.h"
 
-1270517080 /usr/include/opencv//cxmisc.h
+1263944927 /usr/include/opencv//cxmisc.h
 	<limits.h>
 	<malloc.h>
 	<alloca.h>
 	<stdlib.h>
 
-1270517080 /usr/include/opencv//cxoperations.hpp
+1263944927 /usr/include/opencv//cxoperations.hpp
 	<string.h>
 	<limits.h>
 	<ext/atomicity.h>
 	<bits/atomicity.h>
 	"windows.h"
 
-1270517080 /usr/include/opencv//cxmat.hpp
+1263944927 /usr/include/opencv//cxmat.hpp
 	<limits.h>
 
-1270517080 /usr/include/opencv//cxflann.h
+1263944927 /usr/include/opencv//cxflann.h
 
-1270517080 /usr/include/opencv//cvtypes.h
+1263944927 /usr/include/opencv//cvtypes.h
 	<assert.h>
 	<stdlib.h>
 
-1270517080 /usr/include/opencv//cv.hpp
+1263944927 /usr/include/opencv//cv.hpp
 
-1270517080 /usr/include/opencv//cvcompat.h
+1263944927 /usr/include/opencv//cvcompat.h
 	<string.h>
 
-1270517080 /usr/include/opencv//highgui.h
+1263944927 /usr/include/opencv//highgui.h
 	"cxcore.h"
 	<windows.h>
 	<chdl.h>
 	"highgui.hpp"
 
-1270517080 /usr/include/opencv//highgui.hpp
+1263944927 /usr/include/opencv//highgui.hpp
 
 1302991735 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/VideoLoad/MYdetektor.cpp
 	"MYdetektor.h"
@@ -248,6 +248,82 @@
 	"MYoblicej.h"
 
 1302991735 source:/data/Programing/VisionMaraton/project1/VisionCup-Deep-Team/cbStraiki/main.cpp
+	"MYdetektor.h"
+	"MYdisplay.h"
+	"MYvideo.h"
+	<iostream>
+	<vector>
+
+1302994190 source:/home/xsimur01/progr/VisionCup-Deep-Team/cbStraiki/MYdetektor.cpp
+	"MYdetektor.h"
+	"MYdisplay.h"
+	"MYmaska.h"
+	"MYvideo.h"
+
+1302994190 /home/xsimur01/progr/VisionCup-Deep-Team/cbStraiki/MYdetektor.h
+	<cv.h>
+	<highgui.h>
+	<deque>
+	<iostream>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<math.h>
+	<float.h>
+	<limits.h>
+	<time.h>
+	<ctype.h>
+	"MYoblicej.h"
+
+1303019511 /home/xsimur01/progr/VisionCup-Deep-Team/cbStraiki/MYoblicej.h
+	<cv.h>
+
+1302994190 /home/xsimur01/progr/VisionCup-Deep-Team/cbStraiki/MYdisplay.h
+	<cv.h>
+	<highgui.h>
+
+1303019511 /home/xsimur01/progr/VisionCup-Deep-Team/cbStraiki/MYmaska.h
+	"stdhead.h"
+	"MYoblicej.h"
+
+1302881885 /home/xsimur01/progr/VisionCup-Deep-Team/cbStraiki/stdhead.h
+	<stdlib.h>
+	<stdio.h>
+	<iostream>
+	<math.h>
+	<cv.h>
+	<cxcore.h>
+	<highgui.h>
+	<highgui.h>
+	<string>
+
+1302945564 /home/xsimur01/progr/VisionCup-Deep-Team/cbStraiki/MYvideo.h
+	"stdhead.h"
+	"MYmaska.h"
+
+1302994190 source:/home/xsimur01/progr/VisionCup-Deep-Team/cbStraiki/MYdisplay.cpp
+	"MYdisplay.h"
+	<iostream>
+
+1303019511 source:/home/xsimur01/progr/VisionCup-Deep-Team/cbStraiki/MYmaska.cpp
+	"MYmaska.h"
+	"MYoblicej.h"
+	"stdhead.h"
+	"MYvideo.h"
+
+1303019511 source:/home/xsimur01/progr/VisionCup-Deep-Team/cbStraiki/MYoblicej.cpp
+	"MYoblicej.h"
+	"MYdisplay.h"
+	"MYvideo.h"
+	"stdhead.h"
+
+1302994190 source:/home/xsimur01/progr/VisionCup-Deep-Team/cbStraiki/MYvideo.cpp
+	"MYvideo.h"
+	"MYoblicej.h"
+
+1302994190 source:/home/xsimur01/progr/VisionCup-Deep-Team/cbStraiki/main.cpp
 	"MYdetektor.h"
 	"MYdisplay.h"
 	"MYvideo.h"
