@@ -37,6 +37,11 @@ public:
     void skryjOci(MYoblicej*);
     void vytvorRohy(MYoblicej*);
     void vytvorBryle(MYoblicej*);
+    void vytvorBryle2(MYoblicej*);
+    void vytvorPirata(MYoblicej*);
+    void vytvorScream(MYoblicej*);
+    void vytvorRoubik(MYoblicej*);
+
     IplImage *addMask(IplImage *,int);
 };
 

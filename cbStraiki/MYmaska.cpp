@@ -243,12 +243,52 @@ void MYmaska::vytvorBryle(MYoblicej *oblicej){
     this->oblicej = oblicej;
     this->open("../masks/bryle.png");
     this->open_mask("../masks/bryle_mask.png");
-    float velikost = ((oblicej->sirka)*1.1)/(source->width*1.0);
+    float velikost = ((oblicej->sirka)*0.8)/(source->width*1.0);
+    this->changeSize(velikost);
+    this->rotateImage(this->oblicej->uhel);
+
+}
+void MYmaska::vytvorBryle2(MYoblicej *oblicej){
+
+    this->oblicej = oblicej;
+    this->open("../masks/bryle2.png");
+    this->open_mask("../masks/bryle2_mask.png");
+    float velikost = ((oblicej->sirka)*0.9)/(source->width*1.0);
     this->changeSize(velikost);
     this->rotateImage(this->oblicej->uhel);
 
 }
 
+void MYmaska::vytvorPirata(MYoblicej *oblicej){
+
+    this->oblicej = oblicej;
+    this->open("../masks/pirat.jpg");
+    this->open_mask("../masks/pirat_maska.jpg");
+    float velikost = ((oblicej->sirka)*0.6)/(source->width*1.0);
+    this->changeSize(velikost);
+    this->rotateImage(this->oblicej->uhel);
+
+}
+void MYmaska::vytvorScream(MYoblicej *oblicej){
+
+    this->oblicej = oblicej;
+    this->open("../masks/scream.png");
+    this->open_mask("../masks/scream_mask.png");
+    float velikost = ((oblicej->sirka)*1.9)/(source->width*1.0);
+    this->changeSize(velikost);
+    this->rotateImage(this->oblicej->uhel);
+
+}
+void MYmaska::vytvorRoubik(MYoblicej *oblicej){
+
+    this->oblicej = oblicej;
+    this->open("../masks/roubik.png");
+    this->open_mask("../masks/roubik_maska.png");
+    float velikost = ((oblicej->sirka)*1.0)/(source->width*1.0);
+    this->changeSize(velikost);
+    this->rotateImage(this->oblicej->uhel);
+
+}
 
 IplImage* MYmaska::addMask(IplImage *frame,int typ){
 //    cvSetImageROI(frame, cvRect(mezi_oci_x - mask->rotated->width/2,
@@ -299,6 +339,18 @@ IplImage* MYmaska::addMask(IplImage *frame,int typ){
     else if(typ == BRYLE){
     start_x = this->oblicej->Peyes.x - this->rotated->height/2;
     start_y = this->oblicej->Peyes.y - this->rotated->height/2;
+    }
+    else if(typ == PIRAT){
+        start_x = this->oblicej->PeyeL.x - this->rotated->height/2;
+        start_y = this->oblicej->PeyeL.y - this->rotated->height/2;
+    }
+    else if(typ == SCREAM){
+        start_x = this->oblicej->Pscream.x - this->rotated->height/2;
+        start_y = this->oblicej->Pscream.y - this->rotated->height/2;
+    }
+    else if(typ == ROUBIK){
+        start_x = this->oblicej->Pmoust.x - this->rotated->height/2;
+        start_y = this->oblicej->Pmoust.y - this->rotated->height/2;
     }
     for (i = start_y; i < start_y + this->rotated->height; i++) {
         for (j = start_x; j < start_x + this->rotated->width; j++) {
