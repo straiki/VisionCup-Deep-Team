@@ -80,7 +80,7 @@ MYoblicej *ksicht;
 
 
 
-                MYdisplay::ShowImage(image,(char)-1);
+                //MYdisplay::ShowImage(image,(char)-1);
             }
 //            while(facec !epmt){ Myoblice(display->nextface);
 //
